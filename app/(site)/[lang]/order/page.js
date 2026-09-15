@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import OrderForm from "@/components/order/OrderForm";
 import { LOCALES, getDictionary } from "@/lib/i18n";
 import { getOrderPricing } from "@/lib/pricing";
+import { languageAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }) {
     description: order.metaDescription,
     alternates: {
       canonical: `/${lang}/order`,
-      languages: Object.fromEntries(LOCALES.map((l) => [l, `/${l}/order`])),
+      languages: languageAlternates("/order"),
     },
     // The order page is a form, not a landing page — there is nothing here for
     // a search result to usefully show, and every variant is the same page.

@@ -26,7 +26,7 @@ const cairo = Cairo({
 export const metadata = {
   title: "لوحة تحكم قصتي",
   applicationName: "قصتي",
-  manifest: "/manifest.webmanifest",
+  manifest: "/admin-manifest.webmanifest",
   appleWebApp: {
     capable: true,
     title: "قصتي",

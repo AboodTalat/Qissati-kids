@@ -10,6 +10,7 @@ import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 import { getDictionary } from "@/lib/i18n";
 import { getPricing } from "@/lib/pricing";
+import { landingStructuredData, serializeJsonLd } from "@/lib/seo";
 
 // Sections take their copy as a prop rather than reaching for a global. That
 // keeps every one of them a pure server component and makes the locale an
@@ -22,9 +23,13 @@ export default async function Home({ params }) {
   // fetch fails soft to an all-`null` table, so an unreachable API renders the
   // `[X]` placeholders this page has always shown rather than breaking it.
   const pricing = await getPricing();
+  const structuredData = landingStructuredData({ dict, lang, pricing });
 
   return (
     <>
+      <script type="application/ld+json">
+        {serializeJsonLd(structuredData)}
+      </script>
       <Header lang={lang} dict={dict} onLanding />
       <main className="flex-1">
         <Hero dict={dict} lang={lang} />

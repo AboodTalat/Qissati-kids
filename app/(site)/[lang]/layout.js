@@ -1,5 +1,10 @@
 import { Cairo } from "next/font/google";
 import { LOCALES, dirOf, getDictionary } from "@/lib/i18n";
+import {
+  languageAlternates,
+  SITE_ORIGIN,
+  verificationMetadata,
+} from "@/lib/seo";
 import "../../globals.css";
 
 // This IS the root layout — there is no app/layout.js, because <html lang>
@@ -26,18 +31,43 @@ export async function generateMetadata({ params }) {
   const { meta } = getDictionary(lang);
 
   return {
+    metadataBase: new URL(SITE_ORIGIN),
     title: meta.title,
     description: meta.description,
+    applicationName: "Qissati",
+    category: "children's books",
+    creator: "Qissati",
+    publisher: "Qissati",
     alternates: {
       canonical: `/${lang}`,
-      languages: Object.fromEntries(LOCALES.map((l) => [l, `/${l}`])),
+      languages: languageAlternates(),
     },
     openGraph: {
       title: meta.ogTitle,
       description: meta.ogDescription,
+      url: `/${lang}`,
+      siteName: "Qissati",
       locale: meta.ogLocale,
+      alternateLocale: lang === "ar" ? ["en_US"] : ["ar_JO"],
       type: "website",
     },
+    twitter: {
+      card: "summary",
+      title: meta.ogTitle,
+      description: meta.ogDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    verification: verificationMetadata(),
   };
 }
 
