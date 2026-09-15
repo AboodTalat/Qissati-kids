@@ -1,26 +1,241 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Qissati brand tokens ────────────────────────────────────────────────
+   Ratio guide: ~60% cream/white/ink, ~30% brand teal, ~10% gold + berry.
+   Deliberately NOT blue+orange / blue+pink — the teal+gold pairing reads
+   warm and non-gendered. Keep it that way.                              */
+@theme {
+  --color-brand: #1f8a8c;
+  --color-brand-deep: #146466;
+  --color-brand-tint: #e6f2f2;
+  --color-gold: #f4b740;
+  --color-gold-soft: #fbd68b;
+  --color-berry: #b84c6e;
+  --color-berry-deep: #9c3d5b;
+  --color-cream: #fdf8f0;
+  --color-cream-deep: #f7eee0;
+  /* The brief's Warm Gray (#8a8580) is only 3.46:1 on cream — below WCAG AA
+     for text. Kept as --color-muted-soft for borders/decoration; the text
+     token is darkened to the nearest AA-passing warm gray — 5.07:1 on cream,
+     4.78:1 on the cream-deep section backgrounds. */
+  --color-muted-soft: #8a8580;
+  --color-muted: #6f6a64;
+  --color-ink: #2e2a26;
+  --color-surface: #ffffff;
+
+  /* Soft, warm shadows — never the default cold gray drop shadow. */
+  --shadow-soft: 0 2px 4px -2px rgb(46 42 38 / 0.06), 0 8px 20px -6px rgb(46 42 38 / 0.1);
+  --shadow-lift: 0 4px 8px -4px rgb(46 42 38 / 0.08), 0 18px 40px -12px rgb(46 42 38 / 0.16);
+  --shadow-book: 0 10px 20px -8px rgb(20 100 102 / 0.25), 0 30px 60px -20px rgb(46 42 38 / 0.3);
+
+  --radius-card: 1.5rem;
+  --radius-blob: 2.5rem;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-twinkle: twinkle 3.5s ease-in-out infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Slow, warm light drift behind the hero and the closing panel — the
+   Aceternity aurora idea recoloured into teal/gold instead of neon blue. */
+@keyframes aurora {
+  0%   { transform: translate3d(-6%, -4%, 0) scale(1);    opacity: 0.75; }
+  50%  { transform: translate3d(4%, 3%, 0) scale(1.12);   opacity: 1; }
+  100% { transform: translate3d(-2%, 6%, 0) scale(1.04);  opacity: 0.8; }
+}
+
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  100% { transform: translate3d(-4%, 5%, 0) rotate(8deg); }
+}
+
+/* The bookmark tab: a rounded rectangle notched into a V at the bottom. Used
+   by the header's active-link indicator and by the recommended tier, so the
+   two read as one motif rather than two coincidental gold shapes. */
+@utility bookmark-tab {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 66%, 0 100%);
+}
+
+/* The type size for a focusable form control.
+   **iOS Safari zooms the whole page in when a control smaller than 16px takes
+   focus**, and it does not zoom back out — so on an iPhone, tapping a field
+   knocked the layout sideways and left the reader pinching to recover. The
+   controls here were set at 0.95rem, which is 15.2px.
+   The fix has to be the font size. `maximum-scale=1` in the viewport also
+   stops the zoom, and it does it by taking pinch-zoom away from everyone who
+   needs it, which is a WCAG failure traded for a layout bug.
+   So: exactly 16px on phones, and the design's 0.95rem from `sm` up, where no
+   browser does this. Anything a finger can focus and type into gets this. */
+@utility control-text {
+  font-size: 1rem;
+  @media (width >= 40rem) {
+    font-size: 0.95rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  /* Height of the fixed header. Not a @theme token: it changes at a
+     breakpoint, and @theme values can't be swapped inside a media query.
+     Header.jsx reads it as h-[var(--header-h)], and every in-page anchor
+     offsets by it, so the bar and the scroll offset can never drift apart. */
+  :root {
+    --header-h: 4rem;
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 5rem;
+    }
+  }
+
+  html {
+    /* Anchor targets land clear of the bar. This is the ONLY anchor offset —
+       scroll-padding and a section's own scroll-margin would add together. */
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  /* Smooth scrolling is opted into AFTER hydration (Header sets data-ready).
+     While it is on `html` from the start it also applies to the browser's
+     initial scroll-to-fragment, so landing on /en#pricing animates all the way
+     down from the top — which reads as the page running away with itself. A
+     deep link should arrive instantly; only in-page clicks should glide. */
+  html[data-ready] {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Arabic numerals inside otherwise-Arabic copy stay latin for legibility. */
+  :lang(ar) {
+    font-variant-numeric: lining-nums;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  /*
+   * A focused field that is ALSO invalid must not wear two colours.
+   *
+   * The order form focuses the first missing field on a failed submit, so this
+   * combination is not an edge case — it is what every parent sees the moment
+   * they submit an incomplete form. With the brand-teal ring above and the
+   * berry error border from `CONTROL`, the control came out double-bordered in
+   * two different colours, which reads as a rendering fault rather than as
+   * "this field needs you". Same ring, error colour, so the state is one thing.
+   *
+   * The border still carries the error too, and the word "مطلوب" sits under
+   * the field — the state is never signalled by colour alone (WCAG 1.4.1).
+   */
+  [aria-invalid="true"]:focus-visible {
+    outline-color: var(--color-berry-deep);
+  }
 }
+
+/* ── Entrances & scroll reveals ──────────────────────────────────────────
+   Deliberately CSS-only. A JS-driven reveal has to hide the content first,
+   which means shipping an inline flag script and an observer, and leaves the
+   page invisible for anyone whose bundle is slow, blocked, or throttled. Here
+   the revealed state IS the default: browsers without scroll-driven timelines
+   (Firefox today) simply render a finished page, and every element stays
+   readable if CSS or JS never arrives.                                     */
+
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes enter-soft {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes enter-scale {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes enter-word {
+  from { opacity: 0; transform: translateY(0.4em); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+/* A hairline drawing itself along its own length. Needs `origin-top` (or
+   origin-left) on the element — the keyframe only supplies the scale. */
+@keyframes enter-rule {
+  from { opacity: 0; transform: scaleY(0); }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+/* Above the fold: plays once on load, driven by its own delay. */
+[data-enter] {
+  animation: enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--enter-delay, 0s);
+}
+[data-enter="soft"]  { animation-name: enter-soft; }
+[data-enter="scale"] { animation-name: enter-scale; }
+[data-enter="word"]  { animation-name: enter-word; }
+[data-enter="rule"]  { animation-name: enter-rule; }
+
+/* Below the fold: progress is tied to the element's travel through the
+   viewport, so it reveals exactly as it scrolls into view. */
+@supports (animation-timeline: view()) {
+  [data-reveal] {
+    animation: enter-up 1s linear both;
+    animation-timeline: view();
+    animation-range: entry calc(4% + var(--reveal-shift, 0%)) cover
+      calc(30% + var(--reveal-shift, 0%));
+  }
+  [data-reveal="soft"]  { animation-name: enter-soft; }
+  [data-reveal="scale"] { animation-name: enter-scale; }
+  /* Rules draw over a longer range than a block reveal, so the line is still
+     growing while you read the column beside it rather than snapping in. */
+  [data-reveal="rule"] {
+    animation-name: enter-rule;
+    animation-range: entry 6% cover 46%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* `html[data-ready]` outranks a bare `html`, so this has to match it to win. */
+  html, html[data-ready] { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Reveals resolve to their finished state rather than not at all. */
+  [data-enter], [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+
+

@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# The example file IS meant to be committed — it is the list of variables a
+# new checkout needs, with no values in it.
+!.env.example
+docs/marketing/.cairo-font.ttf
