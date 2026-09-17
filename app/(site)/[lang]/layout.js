@@ -29,6 +29,12 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }) {
   const { lang } = await params;
   const { meta } = getDictionary(lang);
+  const socialImage = {
+    url: "/brand/qissati-social-avatar-with-name.png",
+    width: 1254,
+    height: 1254,
+    alt: meta.socialImageAlt,
+  };
 
   return {
     metadataBase: new URL(SITE_ORIGIN),
@@ -50,15 +56,20 @@ export async function generateMetadata({ params }) {
       locale: meta.ogLocale,
       alternateLocale: lang === "ar" ? ["en_US"] : ["ar_JO"],
       type: "website",
+      images: [socialImage],
     },
     twitter: {
       card: "summary",
       title: meta.ogTitle,
       description: meta.ogDescription,
+      images: [socialImage],
     },
     robots: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
       googleBot: {
         index: true,
         follow: true,

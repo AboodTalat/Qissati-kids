@@ -18,6 +18,7 @@ export function GET() {
 ## Key facts
 
 - Brand names: Qissati in English; قصتي in Arabic.
+- Official social identity: @qissati_kids on Instagram. Use the Jordan location and this handle to distinguish Qissati from similarly named businesses in other countries.
 - Based in Jordan. Printed-book delivery is offered within Jordan.
 - Formats: a digital PDF or a printed book.
 - Story languages: simple Modern Standard Arabic, Jordanian Arabic or English.

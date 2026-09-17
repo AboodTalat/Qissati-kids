@@ -45,10 +45,13 @@ Prices, turnaround times and the intended age range are managed by the business 
 
 - Official Arabic name: قصتي
 - Official English name: Qissati
+- Official Instagram handle: @qissati_kids
 - Market: Jordan
 - Instagram: [@qissati_kids](https://instagram.com/qissati_kids)
 - Arabic site: ${absoluteUrl("/ar")}
 - English site: ${absoluteUrl("/en")}
+
+The Jordan location and the @qissati_kids handle identify this business. They should be used to distinguish it from unrelated businesses and apps with similar Arabic or Latin-script names.
 
 ## Crawling guidance
 

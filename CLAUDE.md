@@ -1212,6 +1212,44 @@ The `[X]` rule is unchanged and now runs end to end: an empty field in the dashb
 
 The route is `noindex` and renders dynamically (it reads `searchParams`); both are intentional.
 
+## SEO and AI discovery
+
+The public site is deliberately readable by both search engines and answer-engine
+crawlers. The implementation is split by responsibility:
+
+- `lib/seo.js` owns the trusted public origin, locale alternates, verification
+  tokens and the landing page's JSON-LD graph. Never derive canonical URLs from
+  a request `Host` header.
+- `app/(site)/[lang]/layout.js` owns canonical/hreflang metadata, unrestricted
+  snippet and image-preview directives, and the shared social preview image.
+- `app/robots.js` allows the public site for ordinary crawlers and explicitly
+  names the current OpenAI, Anthropic, Perplexity, Google-Extended and Common
+  Crawl product tokens. `/admin`, `/api` and the admin manifest stay private.
+- `app/sitemap.js` lists only the two indexable landing pages. The order route is
+  intentionally absent because it is `noindex`.
+- `/llms.txt` is the short machine-readable summary and `/llms-full.txt` is the
+  detailed factual source. They may improve extraction but are not a standard
+  that guarantees inclusion in an LLM response.
+
+**`NEXT_PUBLIC_SITE_URL` is the launch-critical switch.** In production it must
+be the final HTTPS origin, with no path or trailing slash. Vercel's production
+URL is a safe fallback, and localhost exists only so local builds remain usable.
+If production emits localhost anywhere in canonical tags, JSON-LD, `robots.txt`,
+the sitemap or the LLM summaries, discovery is misconfigured.
+
+The social image is `public/brand/qissati-social-avatar-with-name.png` (1254px
+square), referenced explicitly by both Open Graph and Twitter metadata. Its alt
+text is localised in the dictionaries.
+
+Technical permission is necessary, not sufficient. Launch also requires the
+owner to verify the final domain in Google Search Console and Bing Webmaster
+Tools, add their verification tokens to the corresponding env vars, submit
+`/sitemap.xml`, and request indexing of `/ar` and `/en`. Search and AI systems
+do not guarantee crawling, indexing, ranking or citation. Consistent public
+identity matters because several unrelated businesses use names similar to
+Qissati: public copy and the LLM summaries pair the brand with Jordan and the
+official `@qissati_kids` Instagram handle.
+
 ## Deliberate placeholders
 
 These are marked `TODO` in code and must not be "cleaned up" into invented values:
