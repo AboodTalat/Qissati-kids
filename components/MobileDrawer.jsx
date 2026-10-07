@@ -5,7 +5,13 @@ import { animate, stagger, utils } from "animejs";
 import { X } from "lucide-react";
 import { LogoMark } from "./Logo";
 import { InstagramIcon, OrderButton } from "./ui";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, NAV_LINKS, orderPath } from "@/lib/site";
+import {
+  homePath,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  NAV_LINKS,
+  orderPath,
+} from "@/lib/site";
 import { canAnimate } from "@/lib/motion";
 
 /**
@@ -146,12 +152,18 @@ export default function MobileDrawer({
         className="fixed inset-y-0 end-0 z-[70] flex w-[min(20rem,86vw)] flex-col overflow-y-auto bg-cream shadow-lift"
       >
         <div className="flex items-center justify-between gap-3 border-b border-ink/5 px-5 py-4">
-          <span data-row className="inline-flex items-center gap-2.5">
+          <a
+            data-row
+            href={onLanding ? "#top" : homePath(lang)}
+            onClick={onDismiss}
+            aria-label={dict.header.homeLabel}
+            className="inline-flex items-center gap-2.5 rounded-2xl"
+          >
             <LogoMark className="h-10" />
             <span className="text-xl font-extrabold leading-none text-brand-deep">
               {dict.brand.wordmark}
             </span>
-          </span>
+          </a>
           <button
             type="button"
             onClick={onDismiss}

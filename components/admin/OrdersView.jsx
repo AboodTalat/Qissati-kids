@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { AdminButton, Empty, Notice, StatusPill } from "./AdminUi";
 import { STATUSES, STATUS_LABEL, label, money, pages, when } from "@/lib/admin";
 import { adminApi } from "@/lib/api";
+import { ordersListPath } from "@/lib/admin-routes";
 
 /**
  * The order list.
@@ -19,11 +21,11 @@ import { adminApi } from "@/lib/api";
  * means the list stays fast as the queue grows *and* the long-form answers
  * about a child aren't sitting in a response that never displays them.
  */
-export default function OrdersView({ token, onOpen, reloadKey }) {
-  const [status, setStatus] = useState("");
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+export default function OrdersView({ token, onOpen, initialFilters }) {
+  const [status, setStatus] = useState(initialFilters.status);
+  const [search, setSearch] = useState(initialFilters.q);
+  const [query, setQuery] = useState(initialFilters.q);
+  const [page, setPage] = useState(initialFilters.page);
   const [data, setData] = useState(null);
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState("");
@@ -54,7 +56,15 @@ export default function OrdersView({ token, onOpen, reloadKey }) {
     return () => {
       cancelled = true;
     };
-  }, [token, status, query, page, reloadKey]);
+  }, [token, status, query, page]);
+
+  // Keep the queue position addressable. Returning from an order or reloading
+  // the page now restores the same filter, search and page.
+  const syncFilters = (nextStatus, nextQuery, nextPage) => {
+    window.history.replaceState(null, "", ordersListPath({
+      status: nextStatus, q: nextQuery, page: nextPage,
+    }));
+  };
 
   // A filter change has to reset the page, or filtering from page 3 of "all"
   // lands on page 3 of a two-page result and shows an empty list.
@@ -62,16 +72,20 @@ export default function OrdersView({ token, onOpen, reloadKey }) {
     setBusy(true);
     setStatus(value);
     setPage(1);
+    syncFilters(value, query, 1);
   };
 
   const runSearch = (e) => {
     e.preventDefault();
     setBusy(true);
-    setQuery(search.trim());
+    const nextQuery = search.trim();
+    setQuery(nextQuery);
     setPage(1);
+    syncFilters(status, nextQuery, 1);
   };
 
   const orders = data?.orders ?? [];
+  const listQuery = ordersListPath({ status, q: query, page }).slice("/admin".length);
 
   return (
     <div className="flex flex-col gap-6">
@@ -136,19 +150,15 @@ export default function OrdersView({ token, onOpen, reloadKey }) {
                   className="cursor-pointer border-b border-ink/10 transition-colors hover:bg-brand-tint/50"
                 >
                   <Td>
-                    {/* The row is clickable, but a keyboard user needs a real
-                        control — so the reference is the button, and the row
-                        click is the convenience on top of it. */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onOpen(o.id);
-                      }}
+                    {/* The row is a convenience; the reference is a real link
+                        that can be copied or opened in another tab. */}
+                    <Link
+                      href={`/admin/orders/${encodeURIComponent(o.id)}${listQuery}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="font-bold tabular-nums text-brand-deep underline-offset-4 hover:underline"
                     >
                       {o.reference}
-                    </button>
+                    </Link>
                   </Td>
                   <Td>{o.childName}</Td>
                   <Td className="text-muted">{o.parentName}</Td>
@@ -185,7 +195,9 @@ export default function OrdersView({ token, onOpen, reloadKey }) {
               disabled={data.page <= 1}
               onClick={() => {
                 setBusy(true);
-                setPage((p) => Math.max(1, p - 1));
+                const nextPage = Math.max(1, page - 1);
+                setPage(nextPage);
+                syncFilters(status, query, nextPage);
               }}
             >
               <ChevronRight className="h-4 w-4 ltr:hidden" aria-hidden="true" />
@@ -198,7 +210,9 @@ export default function OrdersView({ token, onOpen, reloadKey }) {
               disabled={data.page >= data.pages}
               onClick={() => {
                 setBusy(true);
-                setPage((p) => p + 1);
+                const nextPage = page + 1;
+                setPage(nextPage);
+                syncFilters(status, query, nextPage);
               }}
             >
               التالي

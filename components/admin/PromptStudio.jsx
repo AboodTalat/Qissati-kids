@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, Copy, Download, LoaderCircle } from "lucide-react";
 import { AdminButton, Notice, Panel } from "./AdminUi";
 import { pages as pagesLabel, photos as photosLabel } from "@/lib/admin";
@@ -19,6 +19,7 @@ import {
   storyProofFilename,
   storyProofId,
 } from "@/lib/story-proof";
+import { loadStoryWorkspace, saveStoryWorkspace } from "@/lib/story-workspace";
 
 const BASE_REVIEW_ITEMS = [
   { id: "facts", label: "الأسماء والأعمار والجنس وصلة رفيق القصة كلهم مطابقين للطلب." },
@@ -33,13 +34,21 @@ const BASE_REVIEW_ITEMS = [
     label:
       "كل كلمة ضرورية لفهم الحدث مناسبة لعمر الطفل، وأي كلمة جديدة مفهومة فوراً من وصف بسيط بنفس الجملة.",
   },
-  { id: "personal", label: "عادة الطفل وصفاته بتحرّك القصة، والطفل هو صاحب القرار بالحل." },
+  { id: "personal", label: "تفاصيل الطفل طالعة من أفعاله، مش قائمة صفات؛ عادته حاضرة بكرامة، والقرار المهم إله." },
+  {
+    id: "goal",
+    label: "الهدف ظاهر من موقف طبيعي واختيار صغير، بلا تشخيص أو محاضرة أو وعد إن الطفل تغيّر نهائياً.",
+  },
   {
     id: "safe",
     label:
       "تصرفات الطفل مناسبة لعمره؛ عند الحاجة الكبير قريب، والطفل مع هيك هو اللي بلاحظ وبختار وبيحل.",
   },
-  { id: "visual", label: "أوصاف الرسمات متسلسلة ومتنوعة وما فيها نصوص أو تفاصيل متناقضة." },
+  {
+    id: "visual",
+    label:
+      "راجعنا visual_continuity وأوصاف الرسمات مع النص: كل رسمة بتكمّل نتيجة الصفحة اللي قبلها، والأماكن واللبس والأغراض والألوان ثابتة إلا إذا النص غيّرها بوضوح.",
+  },
 ];
 
 /**
@@ -59,11 +68,10 @@ const BASE_REVIEW_ITEMS = [
  * render — no effect, no fetch, no
  * second copy of the story anywhere.
  *
- * That paste is deliberately not persisted. The story is not ours to store
- * beyond the order itself, it changes on every re-run, and the dashboard's
- * views are state rather than routes — so going back to the list and returning
- * clears it. Re-pasting costs one Cmd+V; a stale story silently generating
- * last week's page 7 costs a reprint.
+ * The story-generation workspace is persisted in this browser under the order
+ * reference. That keeps the paste, selected length and approval gates together
+ * without putting private draft text on the server or leaking one order's
+ * progress into another order.
  *
  * **The paste itself lives in `OrderPanel`, not here.** `BookPrint` lays the
  * finished book out from the same JSON, so this panel cannot be the only thing
@@ -84,6 +92,50 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
   const [downloadedProofId, setDownloadedProofId] = useState("");
   const [parentApproved, setParentApproved] = useState(false);
   const [referencesApproved, setReferencesApproved] = useState(false);
+  const [workspaceReference, setWorkspaceReference] = useState("");
+
+  useEffect(() => {
+    const reference = order?.reference ?? "";
+    const workflow = loadStoryWorkspace(reference).workflow;
+    let live = true;
+    Promise.resolve().then(() => {
+      if (!live) return;
+      setConceptApproved(workflow.conceptApproved);
+      setLegacyPetDescription(workflow.legacyPetDescription);
+      setReviewChecks(workflow.reviewChecks);
+      setDownloadedProofId(workflow.downloadedProofId);
+      setParentApproved(workflow.parentApproved);
+      setReferencesApproved(workflow.referencesApproved);
+      setWorkspaceReference(reference);
+    });
+    return () => {
+      live = false;
+    };
+  }, [order?.reference]);
+
+  useEffect(() => {
+    const reference = order?.reference ?? "";
+    if (!reference || workspaceReference !== reference) return;
+    saveStoryWorkspace(reference, {
+      workflow: {
+        conceptApproved,
+        legacyPetDescription,
+        reviewChecks,
+        downloadedProofId,
+        parentApproved,
+        referencesApproved,
+      },
+    });
+  }, [
+    conceptApproved,
+    downloadedProofId,
+    legacyPetDescription,
+    order?.reference,
+    parentApproved,
+    referencesApproved,
+    reviewChecks,
+    workspaceReference,
+  ]);
 
   const copy = async (key, text) => {
     try {
@@ -113,13 +165,13 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
   const proofDownloaded = Boolean(currentProofId && downloadedProofId === currentProofId);
   const reviewItems = isPet
     ? [
-        ...BASE_REVIEW_ITEMS,
+        ...BASE_REVIEW_ITEMS.filter((item) => item.id !== "goal" || order.story?.storyType === "goal"),
         {
           id: "pet",
           label: "نوع الحيوان ولونه وعلاماته مطابقين لوصف الأهل، مش تفاصيل اخترعها النموذج.",
         },
       ]
-    : BASE_REVIEW_ITEMS;
+    : BASE_REVIEW_ITEMS.filter((item) => item.id !== "goal" || order.story?.storyType === "goal");
   const storyReady = Boolean(conceptApproved && (!isPet || petDescription));
   const reviewReady =
     Boolean(story) && storyReady && reviewItems.every((item) => reviewChecks[item.id]);
@@ -187,13 +239,17 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
         نسخة نص واضحة للأهل. القصة بتنكتب بمسار سببي من أول صفحة لآخر صفحة، وما
         بتنفتح رسمات الصفحات قبل موافقة الأهل عليها.
       </p>
+      <p className="mt-2 text-xs leading-relaxed text-muted">
+        رد Gemini، طول النص، وعلامات المراجعة والموافقة بتنحفظ تلقائياً على هالمتصفح
+        لكل طلب لحاله.
+      </p>
 
       <div className="mt-7 flex flex-col gap-7">
         {/* ── 1 ─────────────────────────────────────────────────────────── */}
         <Step
           number="١"
           title="نص القصة"
-          hint="الصقوه بـ Gemini. البرومبت بخطّط مسار القصة صفحة بصفحة، وبيرجّع العنوان، الملخّص، الإهداء، نص كل صفحة ووصف رسمتها بصيغة JSON."
+          hint="الصقوه بـ Gemini. البرومبت ببني قصة من تفاصيل الطفل، وبيطلب بحثاً عن الحقائق العامة غير الواضحة إذا أداة البحث متاحة، وبيرجّع النص وأوصاف الرسم بصيغة JSON. راجعوا أي معلومة من مصادرها قبل الاعتماد عليها."
         >
           {/* Not a knob: the length decides how many words, who the book is
               for, and how much of each illustration the text will cover — and
@@ -537,7 +593,7 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
         <Step
           number="٦"
           title="رسمات الصفحات"
-          hint={`كل وحدة لحالها بـ Nano Banana Pro${attachmentHint}. زر كل صفحة بنسخ برومبتها وتعليماتها كاملة لحالها؛ استعملوا الأوراق كمراجع هوية فقط، ونزّلوا الملفات بالترتيب.`}
+          hint={`ولّدوا الغلاف، وبعده الصفحات بالترتيب بـ Nano Banana Pro${attachmentHint}. الصفحة الأولى بتاخد الغلاف كمرجع للألوان؛ وكل صفحة بعدها بتاخد الرسمة السابقة المعتمدة بدون النص. البرومبت بربط الرسمة بنصها والحدث اللي قبلها.`}
         >
           {!story ? (
             <p className="text-sm leading-loose text-muted">
@@ -549,33 +605,43 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
               الرسمات.
             </Notice>
           ) : (
-            <ul>
-              {prompts.map((p) => (
-                <li
-                  key={p.key}
-                  className="flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 py-3 last:border-b-0"
-                >
-                  <span className="text-[0.95rem] font-bold text-ink">{p.label}</span>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <PromptPeek text={p.text} />
-                    <AdminButton
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      aria-label={`نسخ البرومبت والتعليمات لـ ${p.label}`}
-                      onClick={() => copy(p.key, p.text)}
-                    >
-                      <CopyIcon done={copiedKey === p.key} />
-                      <span aria-live="polite">
-                        {copiedKey === p.key
-                          ? "تم نسخ البرومبت والتعليمات"
-                          : "انسخوا البرومبت والتعليمات"}
-                      </span>
-                    </AdminButton>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-col gap-4">
+              <Notice>
+                اعتمدوا كل رسمة مع نصها قبل ما تكملوا. إذا تغيّرت رسمة سابقة راجعوا
+                اللي بعدها. استعملوا نفس ملفات الرسم بـ PDF وWord؛ للطباعة اختاروا
+                ملف CMYK، وراجعوا الألوان بتجربة مطبوعة وملف ألوان المطبعة إذا متوفر.
+              </Notice>
+              <ul>
+                {prompts.map((p) => (
+                  <li
+                    key={p.key}
+                    className="flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 py-3 last:border-b-0"
+                  >
+                    <div className="min-w-0 flex-1 basis-full sm:basis-auto">
+                      <span className="text-[0.95rem] font-bold text-ink">{p.label}</span>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{p.attachmentHint}</p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <PromptPeek text={p.text} />
+                      <AdminButton
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        aria-label={`نسخ البرومبت والتعليمات لـ ${p.label}`}
+                        onClick={() => copy(p.key, p.text)}
+                      >
+                        <CopyIcon done={copiedKey === p.key} />
+                        <span aria-live="polite">
+                          {copiedKey === p.key
+                            ? "تم نسخ البرومبت والتعليمات"
+                            : "انسخوا البرومبت والتعليمات"}
+                        </span>
+                      </AdminButton>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </Step>
       </div>

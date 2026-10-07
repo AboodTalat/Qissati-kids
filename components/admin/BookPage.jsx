@@ -1,6 +1,6 @@
 "use client";
 
-import { BACK_LOGO_SRC, LAYOUT, VEIL_MAX, sizesFor } from "@/lib/book";
+import { BACK_LOGO_SRC, LAYOUT, VEIL_MAX, fontFor, sizesFor } from "@/lib/book";
 
 /**
  * One page of the book, at its true printed size.
@@ -18,6 +18,7 @@ export default function BookPage({
   image,
   title,
   childName,
+  fontProfile = fontFor(),
   // False when this page is one half of an imposed sheet: the break belongs to
   // the sheet, and leaving it here would paginate between the two halves.
   standalone = true,
@@ -37,6 +38,7 @@ export default function BookPage({
     // white. The operator still has to tick "Background graphics".
     printColorAdjust: "exact",
     WebkitPrintColorAdjust: "exact",
+    fontFamily: fontProfile.family,
   };
 
   if (page.kind === "blank") return <div style={base} />;
@@ -56,7 +58,7 @@ export default function BookPage({
               marginTop: `${LAYOUT.backGapMm}mm`,
               color: LAYOUT.cream,
               fontSize: `${LAYOUT.backWordPt}pt`,
-              fontWeight: 800,
+              fontWeight: fontProfile.weights.bold,
               lineHeight: 1,
             }}
           >
@@ -68,8 +70,8 @@ export default function BookPage({
               maxWidth: "150mm",
               color: LAYOUT.cream,
               fontSize: `${LAYOUT.backBodyPt}pt`,
-              fontWeight: 600,
-              lineHeight: 1.8,
+              fontWeight: fontProfile.weights.medium,
+              lineHeight: fontProfile.backLine,
               whiteSpace: "pre-wrap",
             }}
           >
@@ -117,8 +119,8 @@ export default function BookPage({
                   marginTop: "8mm",
                   color: st.textColor,
                   fontSize: `${LAYOUT.titlePt}pt`,
-                  fontWeight: 800,
-                  lineHeight: 1.5,
+                  fontWeight: fontProfile.weights.bold,
+                  lineHeight: fontProfile.titleLine,
                 }}
               >
                 {title}
@@ -129,7 +131,7 @@ export default function BookPage({
                   color: st.textColor,
                   opacity: 0.75,
                   fontSize: "13pt",
-                  fontWeight: 700,
+                  fontWeight: fontProfile.weights.bold,
                 }}
               >
                 {dir === "ltr"
@@ -143,7 +145,7 @@ export default function BookPage({
                 marginTop: "8mm",
                 color: st.textColor,
                 fontSize: `${sizesFor(page.kind)[st.size] ?? sizesFor(page.kind).m}pt`,
-                lineHeight: 2,
+                lineHeight: fontProfile.frontLine,
                 maxWidth: "80%",
                 whiteSpace: "pre-wrap",
               }}
@@ -195,16 +197,16 @@ export default function BookPage({
         </div>
       )}
 
-      {hasText ? <Words page={page} spec={spec} pad={pad} /> : null}
+      {hasText ? <Words page={page} spec={spec} pad={pad} fontProfile={fontProfile} /> : null}
       {page.kind === "story" && page.number != null ? (
-        <PageNumber number={page.number} spec={spec} dir={dir} />
+        <PageNumber number={page.number} spec={spec} dir={dir} fontProfile={fontProfile} />
       ) : null}
     </div>
   );
 }
 
 /** A small modern folio; covers, front matter and production blanks omit it. */
-function PageNumber({ number, spec, dir }) {
+function PageNumber({ number, spec, dir, fontProfile }) {
   const diameter = LAYOUT.folioMm;
   const label =
     dir === "rtl"
@@ -229,7 +231,7 @@ function PageNumber({ number, spec, dir }) {
         background: "rgba(253,248,240,0.86)",
         color: LAYOUT.brandDeep,
         fontSize: `${LAYOUT.folioPt}pt`,
-        fontWeight: 800,
+        fontWeight: fontProfile.weights.bold,
         lineHeight: 1,
       }}
     >
@@ -258,7 +260,7 @@ function PageNumber({ number, spec, dir }) {
  * `paintPage` in `lib/docx.js` draws all of this again on a canvas. Both read
  * their measurements from `LAYOUT`; anything changed here has to change there.
  */
-function Words({ page, spec, pad }) {
+function Words({ page, spec, pad, fontProfile }) {
   const st = page.style;
   const isCover = page.kind === "cover";
   const centred = st.place === "center";
@@ -315,14 +317,16 @@ function Words({ page, spec, pad }) {
       <p
         style={{
           width: "100%",
-          padding: pad,
-          ...(page.kind === "story" && page.number != null && st.place === "bottom"
-            ? { paddingBottom: `calc(${pad} + ${LAYOUT.folioMm + 2}mm)` }
-            : null),
+          paddingBlockStart: pad,
+          paddingInline: pad,
+          paddingBlockEnd:
+            page.kind === "story" && page.number != null && st.place === "bottom"
+              ? `calc(${pad} + ${LAYOUT.folioMm + 2}mm)`
+              : pad,
           color: st.textColor,
           fontSize: `${sizesFor(page.kind)[st.size] ?? sizesFor(page.kind).m}pt`,
-          fontWeight: isCover ? 800 : 400,
-          lineHeight: isCover ? 1.45 : LAYOUT.bodyLine,
+          fontWeight: isCover ? fontProfile.weights.bold : fontProfile.weights.regular,
+          lineHeight: isCover ? fontProfile.coverLine : fontProfile.bodyLine,
           textAlign: st.align,
           whiteSpace: "pre-wrap",
           // Move the copy without moving or resizing the colour/gradient

@@ -9,6 +9,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    // Separate Remotion package: checked with its own `npm run lint`.
+    "marketing-reel/**",
     "next-env.d.ts",
   ]),
 ]);

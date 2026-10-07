@@ -1,0 +1,20 @@
+Create the locked reference sheet for هاشم, the child's brother, age 3. This is a supporting character in a personalised children's book.
+
+Identity description, to follow exactly without adding or changing species, age, colouring, markings, clothes or proportions:
+Hashim is a fictional three-year-old Jordanian boy, approximately 95 cm tall, with olive skin, short dark brown curls, round cheeks and dark brown eyes. He always wears a mustard-gold short-sleeved T-shirt, cream trousers and deep teal grip socks. His toddler proportions remain distinct from Saif's.
+
+Draw the same character four times across one sheet on a plain neutral background: relaxed standing, smiling, moving, and a clear surprised expression. Keep the face, apparent age, outfit and proportions identical.
+
+Style, to follow exactly:
+soft painterly children's-book illustration with visible brush texture and a faint paper grain, no line art and no outlines; deep teal and petrol greens as the ground colour, with scene-appropriate light and warm golden illumination that comes from a believable source rather than flat overhead light; cream and ivory highlights, deep berry-red accents; rounded gentle character design with large dark expressive eyes, small soft features and lightly blushed cheeks; cosy, hand-painted, unhurried storybook mood
+
+COLOUR TARGETS FOR THE WHOLE BOOK — sRGB reference values, not CMYK ink percentages:
+Deep teal #146466 for the main grounds; warm gold #f4b740 for sourced light and small accents; cream/ivory #fdf8f0 for gentle highlights and harmony with the document's text panel; warm dark #2e2a26 for readable shadow detail; muted berry #b84c6e for restrained accents.
+These are palette anchors, not flat fills for every pixel. Keep natural skin tones, approved character colours and story-critical object colours faithful to their references; do not tint them teal or replace them with the house palette.
+Keep the same palette, white balance, saturation, contrast and painterly treatment across the approved sequence. Change the lighting only when the story explicitly changes time, weather or location; preserve each material's underlying colour.
+Use restrained, printable saturation and smooth tonal transitions. Keep texture visible in dark teal shadows and detail in cream/gold highlights; avoid neon, fluorescent colours, clipped whites, crushed blacks and excessive luminous bloom. Gold is an illustrated warm yellow, not a metallic-ink effect.
+Deliver the original high-resolution RGB artwork, preferably tagged sRGB if the tool supports it. Do not simulate CMYK by desaturating, add a print filter, or invent CMYK values. The same approved source image is used in the Word/RGB PDF and converted once through the printer's output ICC profile for the CMYK PDF/X-4. Exact screen-to-paper matching still depends on the press, paper and an approved physical proof.
+
+No text, letters, labels, pose names, numbers or watermark anywhere on the sheet.
+Output a 16:9 landscape sheet at the highest resolution available.
+This sheet is an identity reference only. It must never be reproduced as a pose grid inside a book illustration.

@@ -1,0 +1,67 @@
+{
+  "title": "كَرِيمٌ وَمُنَاوَرَةُ الْمُكَعَّبَاتِ الذَّكِيَّةِ",
+  "summary": "يُحَاوِلُ كَرِيمٌ بِنَاءَ بُرْجٍ عَالٍ فِي غُرْفَةِ أَلْعَابِهِ، لَكِنَّ قِطَعَ الْمُكَعَّبَاتِ تَتَسَاقَطُ فَجْأَةً وَتَتَنَاثَرُ عَلَى الْأَرْضِ. عِنْدَمَا يَشْعُرُ بِالْغَضَبِ، يَسْتَخْدِمُ عَادَتَهُ فِي عَدِّ أَصَابِعِهِ وَمُلَاحَظَةِ الدَّقَائِقِ لِيَهْدَأَ. يَنْتَقِلُ مَعَ أُمِّهِ إِلَى حَدِيقَةِ الْحَيِّ لِيَجِدَ حُلُولاً هَادِئَةً، مُخْتَاراً التَّعْبِيرَ بِكَلِمَاتِهِ بَدَلَ الصُّرَاخِ حَتَّى يَتِمَّ بِنَاءَ قِطْعَتِهِ بِنَجَاحٍ.",
+  "dedication": "إِلَى كَرِيمٍ، يَا مَنْ تَعْرِفُ كَيْفَ تَعُدُّ أَصَابِعَكَ بِهُدُوءٍ لِتَجِدَ السَّكِينَةَ فِي أَجْمَلِ اللَّحَظَاتِ.",
+  "character_brief": "A 7-year-old boy with a medium build, messy short dark hair, warm brown eyes, and olive skin tone. He wears a comfortable navy blue cotton t-shirt, grey trousers, and light canvas shoes. He is curious, thoughtful, and expressive.",
+  "visual_continuity": {
+    "characters": "Karim keeps the exact character_brief outfit on every page. His mother has olive skin, warm brown eyes and dark brown hair in a loose high bun; she always wears a berry-red knitted cardigan over a cream blouse and one long teal skirt with flat tan shoes.",
+    "locations": "The Amman playroom on the cover and pages 1–4 and 10 has one large wood-framed window on the left, cream plaster walls, teal lower wall panels, warm wooden floorboards, one red-and-cream geometric rug, a low white cabinet at right, a berry toy basket near the window and a small rose-red wooden table. The garden on pages 5–9 has one mature olive tree, a low weathered natural-brown vertical-slat fence, yellow daisies, berry bougainvillea, green grass, a compacted-earth track and pale Amman limestone buildings beyond.",
+    "objects": "The block set is always the same matte wooden set: red, teal-blue, mustard-yellow and green cubes/cylinders plus one red triangular roof; one particular red cube remains identifiable. The recurring stone on pages 5–9 is one single rough light-grey rectangular limestone block, approximately 45 × 22 × 15 cm, with a chipped upper-left corner and one thin cream vein. The toy car on pages 6–9 is one palm-sized red rounded sedan with black tyres, silver hubs and dark teal windows; never change it into another model or colour and never create a second car.",
+    "timeline": "Cover and pages 1–4 are the same warm afternoon in the playroom. Pages 5–8 progress through the same late-afternoon garden light and page 9 reaches low golden evening light. On page 5 the stone lies on grass; page 6 moves that exact stone beside the fence and establishes the red car; page 7 the exact car stops against that exact stone; page 8 Karim and his mother move that same stone without changing its shape; page 9 the stone remains visible at the side of the newly smoothed dirt track while the same red car rolls past it. Page 10 returns to the unchanged playroom at evening, using the same blocks to start a sturdier tower."
+  },
+  "cover": {
+    "illustration_description": "A warm, sunlit playroom in Amman with wooden floors. A 7-year-old boy sits on the floor near a half-built colorful wooden block tower, looking curious and thoughtful. The top 40% of the square frame is calm and uncluttered, showing a soft cream-colored wall."
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "بَنَى كَرِيمٌ بُرْجاً طَوِيلًا مِنَ الْمُكَعَّبَاتِ الْخَشَبِيَّةِ فِي غُرْفَةِ أَلْعَابِهِ بِمَهَارَةٍ. كَانَ يَتَمَنَّى أَنْ يَصِلَ الْبُرْجُ إِلَى إِطَارِ النَّافِذَةِ الْخَشَبِيَّةِ.",
+      "illustration_description": "Medium shot of a 7-year-old boy sitting on a playroom floor in Amman, carefully placing a small wooden block onto a tall, wobbly tower. Afternoon sunlight streams through a nearby window, illuminating dust motes."
+    },
+    {
+      "page_number": 2,
+      "text": "فَجْأَةً، اهْتَزَّتِ الطَّاوِلَةُ الصَّغِيرَةُ فَسَقَطَتِ الْمُكَعَّبَاتُ بِصَوْتٍ قَوِيٍّ عَلَى الْبِسَاطِ. انْتَشَرَتِ الْقِطَعُ الْمُتَعَدِّدَةُ فِي كُلِّ مَكَانٍ، فَقَبَضَ كَرِيمٌ يَدَيْهِ وَارْتَفَعَ صَوْتُهُ بِلَا حَوَلٍ.",
+      "illustration_description": "Close-up action shot inside the same playroom. Wooden blocks are scattered across the floor in disarray. The 7-year-old boy is shown clenching his small fists tightly, looking frustrated as he stares at the fallen blocks."
+    },
+    {
+      "page_number": 3,
+      "text": "تَذَكَّرَ كَرِيمٌ طَرِيقَتَهُ الْمُعْتَادَةَ؛ فَقَبَضَ يَدَيْهِ ثُمَّ بَدَأَ يَعُدُّ عَلَى أَصَابِعِهِ بِبُطْءٍ شَدِيدٍ. لَاحَظَ نَمْلَةً صَغِيرَةً تَمْشِي بِجَانِبِ قِطْعَةِ مُكَعَّبٍ حَمْرَاءَ عَلَى الْأَرْضِ.",
+      "illustration_description": "Close-up of the 7-year-old boy's hands counting on his fingers in the playroom. Nearby on the wooden floor, a tiny black ant crawls past a red wooden block under soft indoor lighting."
+    },
+    {
+      "page_number": 4,
+      "text": "تَنَفَّسَ كَرِيمٌ بِهُدُوءٍ وَأَخْذَ يَنْظُرُ إِلَى الأَشْيَاءِ الصَّغِيرَةِ حَوْلَهُ لِيَسْتَعِيدَ هُدُوءَهُ. قَالَ بِصَوْتٍ هَادِئٍ لِوَالِدَتِهِ الْجَالِسَةِ قُرْبَهُ: «سَأُعِيدُ تَرْتِيبَهَا مَرَّةً أُخْرَى» وَخَرَجَا مَعاً إِلَى حَدِيقَةِ الْحَيِّ.",
+      "illustration_description": "Medium shot of the 7-year-old boy taking a deep breath while looking toward his mother, who sits on a small chair nearby in the sunlit playroom, smiling gently at him."
+    },
+    {
+      "page_number": 5,
+      "text": "فِي حَدِيقَةِ الْحَيِّ، كَانَتِ الأَزْهَارُ الصَّفْرَاءُ تَتَفَتَّحُ تَحْتَ ضَوْءِ الشَّمْسِ الدَّافِئِ. رَأَى كَرِيمٌ حَجَرًا مُسْتَطِيلًا يُشْبِهُ قِطْعَةَ مُكَعَّبٍ كَبِيرَةً مَوْضُوعَةً عَلَى الْعُشْبِ الأَخْضَرِ.",
+      "illustration_description": "Wide establishing shot of the anchored Amman garden during late afternoon. The child character stands by the yellow daisies, looking curiously at the single rough light-grey rectangular limestone block on the grass; show its chipped upper-left corner and thin cream vein. Keep the lower 30% calm for text."
+    },
+    {
+      "page_number": 6,
+      "text": "اقْتَرَبَ كَرِيمٌ بِفُضُولٍ لِيَلْمُسَ الْحَجَرَ الطَّوِيلَ وَيَضَعَهُ بِجانِبِ السَّيَاجِ الْخَشَبِيِّ. كَانَ يُرِيدُ أَنْ يَبْنِيَ مَسَاراً جَدِيداً لِلسَّيَّارَاتِ الصَّغِيرَةِ فِي التُّرَابِ الرَّطْبِ.",
+      "illustration_description": "Medium action shot in the anchored Amman garden. The child character bends to touch the single rough light-grey rectangular limestone block with its chipped upper-left corner and cream vein, now beside the low natural-brown wooden fence. The palm-sized red rounded toy sedan is visible nearby. Keep the lower 30% calm for text."
+    },
+    {
+      "page_number": 7,
+      "text": "عِنْدَمَا تَعَثَّرَتِ السَّيَّارَةُ اللُّعْبَةُ بِالْحَجَرِ، شَعَرَ بِرَغْبَةٍ فِي الصُّرَاخِ مَرَّةً أُخْرَى. لَكِنَّهُ تَوَقَّفَ لِحَظَةٍ، وَعَدَّ عَلَى أَصَابِعِهِ ثَلَاثَ مَرَّاتٍ حَتَّى هَدَأَتْ أَنْفَاسُهُ السَّرِيعَةُ.",
+      "illustration_description": "Close-up in the anchored Amman garden. The child character counts on his fingers while watching the single palm-sized red rounded sedan stopped against the exact rough rectangular limestone block with its chipped upper-left corner and thin cream vein on the compacted-earth track. Keep the lower 30% calm for text."
+    },
+    {
+      "page_number": 8,
+      "text": "قَالَ كَرِيمٌ لِأُمِّهِ بِكَلِمَاتٍ وَاضِحَةٍ بَدَلَ أَنْ يَدْفَعَ الشَّيْءَ: «أَحْتَاجُ إِلَى مُسَاعَدَةٍ فِي تَعْدِيلِ مَكَانِ الحَجَرِ». حَمَلَا مَعاً الحَجَرَ الثَّقِيلَ وَوَضَعَاهُ بِعِنَايَةٍ عَلَى التُّرَابِ الْمُسْتَوِي.",
+      "illustration_description": "Medium shot in the anchored Amman garden. The child character and his mother in her fixed berry cardigan, cream blouse and long teal skirt carefully lift the exact single rough rectangular limestone block, with its chipped upper-left corner and thin cream vein. The same red toy sedan rests nearby. Keep the lower 30% calm for text."
+    },
+    {
+      "page_number": 9,
+      "text": "مَرَّتِ السَّيَّارَةُ الصَّغِيرَةُ بِسُهُولَةٍ فَوْقَ الطَّرِيقِ الَّذِي رَتَّبَاهُ بِعِنَايَةٍ فَائِقَةٍ. ابْتَسَمَ كَرِيمٌ بِسَعَادَةٍ وَهُوَ يُلَاحِظُ الظِّلَالَ الطَّوِيلَةَ لِلْأَشْجَارِ تَتَمَدَّدُ عَلَى العُشْبِ.",
+      "illustration_description": "Medium shot in the anchored Amman garden at low golden evening light. The child character smiles as the same palm-sized red rounded sedan rolls smoothly along the newly levelled compacted-earth track. The exact single rectangular limestone block remains visible beside the track, unchanged in shape, with its chipped upper-left corner and cream vein. Keep the lower 30% calm for text."
+    },
+    {
+      "page_number": 10,
+      "text": "عَادَا إِلَى غُرْفَةِ الأَلْعَابِ حَيْثُ انْتَظَرَتْهُمَا قِطَعُ الْمُكَعَّبَاتِ الصَّغِيرَةُ بِهُدُوءٍ. جَلَسَ كَرِيمٌ عَلَى الأَرْضِ، وَعَدَّ بِأَصَابِعِهِ بِلُطْفٍ، ثُمَّ بَدَأَ يَبْنِي مِنْ جَدِيدٍ.",
+      "illustration_description": "Close-up of the 7-year-old boy sitting peacefully on the playroom floor in the soft golden light of evening, carefully placing a wooden block on a new, sturdy tower foundation."
+    }
+  ]
+}

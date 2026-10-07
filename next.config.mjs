@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // `AGENTS.md` is intentionally only a pointer to the canonical `CLAUDE.md`.
+  // Next dev otherwise appends a second rules block and recreates the exact
+  // duplicated-guidance problem that file exists to prevent.
+  agentRules: false,
+
   // `X-Powered-By: Next.js` tells a scanner exactly which stack to look up
   // advisories for, and buys nothing in return.
   poweredByHeader: false,

@@ -19,6 +19,7 @@ import {
 } from "@/lib/admin";
 import { adminApi } from "@/lib/api";
 import { parseStoryJson } from "@/lib/prompts";
+import { loadStoryWorkspace, saveStoryWorkspace } from "@/lib/story-workspace";
 import { isPhone, toWhatsAppDigits } from "@/lib/phone";
 import OrderEditForm from "./OrderEditForm";
 
@@ -53,6 +54,7 @@ export default function OrderPanel({ token, orderId, role, onBack, onChanged }) 
   // agree, or a long page composes a face straight into the band that will sit
   // on top of it.
   const [storyLength, setStoryLength] = useState("medium");
+  const [storyWorkspaceReference, setStoryWorkspaceReference] = useState("");
   const [orderValues, setOrderValues] = useState(null);
   const [editing, setEditing] = useState(false);
 
@@ -67,11 +69,21 @@ export default function OrderPanel({ token, orderId, role, onBack, onChanged }) 
       setOrder(res.data.order);
       setOrderValues(res.data.values);
       setNotes(res.data.order.adminNotes ?? "");
+      const workspace = loadStoryWorkspace(res.data.order.reference);
+      setStoryRaw(workspace.raw);
+      setStoryLength(workspace.length);
+      setStoryWorkspaceReference(res.data.order.reference);
     });
     return () => {
       cancelled = true;
     };
   }, [token, orderId]);
+
+  useEffect(() => {
+    const reference = order?.reference ?? "";
+    if (!reference || storyWorkspaceReference !== reference) return;
+    saveStoryWorkspace(reference, { raw: storyRaw, length: storyLength });
+  }, [order?.reference, storyLength, storyRaw, storyWorkspaceReference]);
 
   const patch = async (body, message) => {
     setBusy(true);
@@ -86,8 +98,8 @@ export default function OrderPanel({ token, orderId, role, onBack, onChanged }) 
     setOrder(res.data.order);
     if (res.data.values) setOrderValues(res.data.values);
     setNotice(message);
-    // The list behind this panel shows status and photo count, so it has to be
-    // told; otherwise going back shows the state from before the edit.
+    // The route-based list refetches on return; callers can still react to a
+    // successful change when this panel is embedded elsewhere.
     onChanged?.();
     return res.data;
   };
@@ -444,7 +456,11 @@ export default function OrderPanel({ token, orderId, role, onBack, onChanged }) 
 
       {/* Laid out from the same paste, so the book and the prompts can never
           be built from two different versions of the story. */}
-      <BookStudio order={order} story={parsedStory.state === "ok" ? parsedStory.story : null} />
+      <BookStudio
+        order={order}
+        story={parsedStory.state === "ok" ? parsedStory.story : null}
+        token={token}
+      />
 
       {/* ── Our own notes ──────────────────────────────────────────────── */}
       <Panel title="ملاحظاتنا">

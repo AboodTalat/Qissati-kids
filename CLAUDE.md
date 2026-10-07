@@ -44,11 +44,12 @@ Stack: Next.js 16 App Router, React 19, **JavaScript (not TypeScript)**, Tailwin
 | `order/OrderForm`, `Fields`, `PhotoPicker`, `ReviewDialog`, `ThankYouDialog` | form state, and the three-way modal pattern |
 | `BookShowcase` | dead — see "Dead exports" |
 
-**`/admin` is client-side by design and inverts this.** Everything under
-`components/admin/` is a client component, because the dashboard is an
-authenticated single-page app whose every figure arrives over a bearer-token
-fetch — there is nothing for the server to render but an empty shell, which is
-also why both admin pages are `force-dynamic` and `no-store`.
+**`/admin` uses real routes with a shared client session.** The `(dashboard)`
+layout keeps `AdminApp` mounted across `/admin`, `/admin/settings`,
+`/admin/users`, `/admin/account` and `/admin/orders/[id]`. Each page renders its
+own client view because its figures arrive over a bearer-token fetch; the server
+renders only the protected shell. The PIN gate stays outside the dashboard route
+group. Every admin page is `force-dynamic` and covered by `no-store` headers.
 
 Keep it that way: a client wrapper exists so the section *around* it stays server-rendered.
 
@@ -348,7 +349,7 @@ The illustrations are AI-generated and **deliberately textless**. Generated Arab
 
 **The `dedication` field is still in the API and the dashboard on purpose.** Orders placed while the question existed carry a real one, so the model field, the validation entry and both shapers stay, and `OrderPanel` still renders the row — but only when it is non-empty, so new orders don't show a permanent "—". Removing any of that would hide real customer data. New orders simply store `''`.
 
-**`avoid` is the only field that constrains the story instead of describing the child, and it is the one with real stakes.** A personalised gift that lands on a bereavement, an absent parent or a fear the child has not been told they have is the worst thing this product can do, and nothing else on the form asks about it. It is optional and free text; in Template 1 it becomes a hard exclusion covering both the page text and the `illustration_description`, worked around silently rather than mentioned. In the dashboard it is deliberately **not** a table row — it is set apart in berry above the book panel, the way `quirk` is set apart in gold, because a prohibition lost in a list of rows is exactly the failure it exists to prevent. `setting` beside it is ordinary and optional: give the writer a real place or let them choose one.
+**`avoid` is the only field that constrains the story instead of describing the child, and it is the one with real stakes.** A personalised gift that lands on a bereavement, an absent parent or a fear the child has not been told they have is the worst thing this product can do, and nothing else on the form asks about it. It is optional and free text. The prompt reads its intended scope: a banned person or event is excluded from text and art, while a request not to name or frame a concern explicitly still permits the underlying goal to shape the plot. Neither kind is mentioned to the child. In the dashboard it is deliberately **not** a table row — it is set apart in berry above the book panel, the way `quirk` is set apart in gold, because a prohibition lost in a list of rows is exactly the failure it exists to prevent. `setting` beside it is ordinary and optional: give the writer a real place or let them choose one.
 
 **`city` and `area` are a dependent pair backed by `lib/jordan.js`, not free text.** The old single "المدينة أو المنطقة" box produced answers nobody could dispatch a courier from — every parent spells the same place differently. The top level is the **12 governorates**, which is the only complete, stable partition of the country, so Russeifa is an *area* under Zarqa and Ramtha one under Irbid rather than cities of their own. The second level is **towns and neighbourhoods, deliberately not the ألوية hierarchy** — 244 of them, compiled from the Arabic Wikipedia governorate articles and cross-checked against the English "Districts of Jordan" list rather than recited from memory. Two reasons for towns over districts: sources disagree on the district structure of the smaller governorates (Ajloun is 2 ألوية in one source and 5 in another) while the town names are consistent everywhere, and — decisive — nobody arranging a delivery says "لواء وادي السير", they say "مرج الحمام". Each governorate's ألوية centres are in the list alongside its towns, and Amman additionally carries the neighbourhoods people actually name. Every list ends in "أخرى", because this is a delivery *zone* — the exact address is arranged in the WhatsApp conversation that follows, and no list of a country's towns is ever finished.
 
@@ -364,7 +365,7 @@ There is deliberately **no tier question** here. Choosing between an avatar-only
 
 Renaming a key in `lib/order.js` without updating the prompt that consumes it breaks the pipeline silently — nothing will error, the stories will just get blander.
 
-`quirk` gets the largest control and the longest hint on purpose. The prompt weaves it through the story at two or more points, and it is the single thing that separates a personalised story from a template with the name swapped. A vague answer here produces exactly the product the landing page promises this is not.
+`quirk` gets the largest control and the longest hint on purpose. The prompt lets it appear early and return when its meaning changes, and it is one of the details that separates a personalised story from a template with the name swapped. It must not automatically become the solution: a worry-driven ritual should be treated with dignity, not rewarded as a magical talent or made a condition of being loved. A vague answer here produces exactly the product the landing page promises this is not.
 
 ### `contactHandle` is a phone number, and `lib/phone.js` is what makes that true
 
@@ -458,6 +459,8 @@ It used to be a 30-second `revalidate`, and that was wrong for a reason worth re
 
 **The price box says when, not just how much — and there are two answers, not one.** The PDF and the printed copy are different jobs: the digital file is finished when the book is, the printed one adds printing and a courier. So the settings carry **`turnaroundDaysPdf` and `turnaroundDaysPrint`**, and `turnaroundLabel(dict, pricing, format)` quotes the one for the format actually chosen.
 
+The order form's price breakdown adds a delivery row for printed stories: delivery within Jordan is free and included in the displayed price, with no extra fee. It appears for `format === "print"`, even if the printed-copy add-on is set to zero; a PDF order has no physical delivery. Keep this promise aligned with how the print price is set in the dashboard.
+
 They are **deliberately independent** — no `print >= pdf` validation anywhere. The owner may decide one before the other, and the site's standing rule is that undecided stays undecided; the two are not even on the same clock, since a print turnaround is quoted from the order and a PDF one from the details landing.
 
 `turnaroundLabel` returns `null` when no format is picked, and the line is then **not rendered at all** — a conditional row like `showPages`/`showFormat`/`showGift` beside it. Until a format is chosen there is no single promise to make, which is the same reason the total reads `[X]`. Once chosen it still renders "[X] أيام" while that format's number is unset. The day count goes through `daysLabel()` for the number-agreement reason `pagesLabel()` exists — verified: a 3-day PDF renders "3 أيام" and a 2-day print renders "يومين", the dual absorbing the numeral.
@@ -483,9 +486,9 @@ The FAQ answer carries **both**, as `[X]` (digital) and `[Y]` (printed). Neither
 
 ### The admin dashboard
 
-`/admin` (`app/(admin)/admin/page.js` → `components/admin/`). **Arabic, RTL, single locale** — its only readers are the Qissati team, and wiring it into the site's `[lang]` system would buy an English translation nobody asked for at the cost of putting the dashboard behind a locale segment and doubling every string. `noindex, nofollow`.
+`/admin` (`app/(admin)/admin/(dashboard)/page.js` → `components/admin/`). **Arabic, RTL, single locale** — its only readers are the Qissati team, and wiring it into the site's `[lang]` system would buy an English translation nobody asked for at the cost of putting the dashboard behind a locale segment and doubling every string. `noindex, nofollow`.
 
-It follows the site's visual rules rather than inventing dashboard ones — ruled rows over cards, hairlines over shadows, the gold bookmark marking the active tab exactly as the header marks the active nav link. A dashboard bolted onto a brand in a different visual language reads as a different product.
+It follows the site's visual rules rather than inventing dashboard ones — ruled rows over cards, hairlines over shadows, the gold bookmark marking the active route exactly as the header marks the active nav link. A dashboard bolted onto a brand in a different visual language reads as a different product.
 
 **`AdminUi.jsx` holds every shared part** — `AdminButton`, `Panel`, `Row`,
 `Notice`, `StatusPill`, `AdminField`, `PriceField`, `Empty`. They exist so the
@@ -497,7 +500,7 @@ a live region because every mutating action reports through it rather than a
 toast that vanishes before it is read, and `PriceField` turns an empty box into
 `null` rather than `0` — see "Prices are admin-managed now".
 
-**The tabs are `OrdersView` (+ `OrderPanel`), `SettingsView`, `UsersView` and
+**The route views are `OrdersView` (+ `OrderPanel`), `SettingsView`, `UsersView` and
 `AccountView`.** `UsersView` is الحسابات: admin-only, creates and deactivates
 accounts and resets passwords. It is the one place a password is set for someone
 else, which is why the API stamps `passwordChangedAt` on that path too — an
@@ -516,13 +519,13 @@ quote does not recalculate — any price difference is handled with the parent.
 vendored components expect. Nothing else uses it; the house style is plain
 template strings.
 
-**Views are state, not routes.** One operator working a queue moves between the list and an order constantly; routing would make each of those a route change that re-checks the session and repaints from empty. It buys deep links to an order, which is worth less here than a list that keeps its filter and scroll position when you come back from an order you just marked delivered.
+**Admin sections are routes.** `/admin` is the order queue, `/admin/settings` the prices, `/admin/users` the admin-only accounts, `/admin/account` the current operator, and `/admin/orders/[id]` a direct link to an order. The `(dashboard)` layout holds the checked session across navigation, so a route change does not repeat `GET /auth/me`. Queue status, search and page live in the URL and are carried into an order's back link, so returning restores the same list. The order page still defers `OrderPanel` and its book/export code until opened.
 
 **The session is a bearer token in `localStorage`**, checked against `GET /auth/me` on mount — a stored token is not a session (it may be expired, or belong to an account since deactivated), so it is only trusted after the server has answered for it. `localStorage` is readable by any script on this origin, which is the accepted trade for a cross-site API (Safari blocks the third-party cookie that would be the alternative); what keeps it honest is that this page renders no user-supplied HTML and loads no third-party script.
 
 **A 401 on any authenticated request ends the session**, through a single hook rather than four copies of the same rule. `lib/api.js` holds a module-level `setUnauthorizedHandler`; `request()` calls it when a response is 401 **and the request carried a token**, and `AdminApp` registers `expireSession` on mount. The token check is the load-bearing half: a 401 from `/auth/login` means "wrong password", and signing an operator out of a session they have not started would clear the form under them. Before this, an expired token left every panel saying "we couldn't fetch that" — which reads as the API being down and gives the operator nothing to act on.
 
-**`AccountView` is the one tab every role sees.** `adminApi.changePassword` sat in the client from the start with nothing calling it, which meant an operator who thought their password had leaked had no move at all — the best available was asking an admin to delete and re-create the account. Changing *your own* password is not an administrative act, so it is not in الحسابات, which is admin-only and would have left staff exactly as stuck.
+**`AccountView` is the one account page every role sees.** `adminApi.changePassword` sat in the client from the start with nothing calling it, which meant an operator who thought their password had leaked had no move at all — the best available was asking an admin to delete and re-create the account. Changing *your own* password is not an administrative act, so it is not in الحسابات, which is admin-only and would have left staff exactly as stuck.
 
 ### The dashboard is an installable PWA, without an offline copy of the dashboard
 
@@ -763,7 +766,9 @@ the prompt requires complete, linguistically correct tashkeel in the title,
 summary, dedication and every page's text, including names. The English character briefs
 and illustration descriptions are outside that rule. Jordanian colloquial is
 marked for its real spoken pronunciation rather than being given invented MSA
-case endings.
+case endings. The prompt tells the writer to compose and edit natural speech
+first, then apply tashkeel as a final pass, so the diacritics do not pull the
+actual wording toward stiff literary Arabic.
 
 **“Professional” is expressed as editorial constraints, not a compliment.**
 The story prompt asks Gemini to plan and revise before returning JSON, maintain
@@ -772,17 +777,25 @@ rhythm, concrete action, sensory detail and character-revealing dialogue, and
 remove filler, clichés, generic praise, repetitive patterns and decorative
 sentences. These rules remain subordinate to the selected per-page word range.
 
-**Story logic is mapped to the exact page count.** `storyArcSpec()` reserves
-page 1 for an active opening and planted personal detail, page 2 for the
-inciting change, the middle for distinct attempts and a consequence-driven
-turn, the third-to-last page for the child's prepared decisive action, the
-penultimate page for its concrete result, and the last page for an emotional
-landing that echoes the opening. The prompt treats every transition as a
+**Story logic is mapped to the exact page count.** `storyArcSpec()` offers an
+opening desire, change, attempts, turn, child-led choice, result and final
+emotional landing. Intermediate beats can move to fit a quiet relationship
+story; the last page still echoes the opening. The prompt treats every transition as a
 BECAUSE/THEREFORE link, tracks place/time/knowledge/objects/emotion across page
 boundaries, forbids unprepared solutions and silently reverse-outlines the
 draft before returning JSON. This is deliberately prompt-and-human-review
 rather than brittle automated validation: syntax can count pages and words,
 but it cannot prove that page 6 genuinely follows from page 5.
+
+**Goal stories have a separate editorial rule.** The parent's brief supplies
+the intended direction, while the book gives the child a concrete desire and
+one believable choice. It must not label, diagnose, shame, lecture or promise
+to cure the child. `avoid` may prohibit explicit framing without banning the
+entire emotional theme. For unfamiliar public facts, the prompt requests a
+search when the external tool offers one, with the private child and order
+details excluded from search queries. An unverifiable venue or specialised
+detail stays generic rather than becoming invented fact. The operator verifies
+any fact that matters before parent approval.
 
 **Clue logic and comprehension are explicit prompt gates.** A track, footprint,
 drop, crumb, mark or broken object must be shown being physically created in
@@ -831,13 +844,15 @@ description came back beginning with the literal word "ENGLISH." and ending
 with the note telling it what *not* to write, all of it destined to be pasted
 into an image model. The schema now holds nothing but `"..."`.
 
-**The paste is deliberately not persisted.** It changes on every re-run, it is
-not ours to keep beyond the order, and views here are state rather than routes
-— so leaving the order and coming back clears the box. Re-pasting costs one
-`Cmd+V`; a stale story silently generating last week's page 7 costs a reprint.
-For work that spans sessions, the operator saves the approved response as
-`story-approved.json` inside a local folder named for the order reference; the
-dashboard still never chooses an old version automatically.
+**The story-generation workspace is persisted per order in localStorage.** The
+Gemini response, text length and approval gates live together under
+`qissati.story-workspace.<reference>`, so leaving an order and returning on the
+same browser restores the bench without letting one order leak into another.
+The storage stays browser-local rather than becoming backend order data, and
+the approved response is still saved as `story-approved.json` inside a local
+folder named for the order reference. Artwork remains ordinary production
+files on disk and is mirrored into browser-local IndexedDB for reload recovery;
+multi-megabyte images do not belong in localStorage.
 
 Rules in `lib/prompts.js` that are load-bearing:
 
@@ -854,6 +869,37 @@ Rules in `lib/prompts.js` that are load-bearing:
   box. The light source varies naturally across daylight, windows, lamps, moon
   and genuinely glowing story objects; forcing the same glowing prop into every
   scene is repetition, not consistency.
+- **Character identity is necessary but not sufficient visual continuity.**
+  The story JSON also carries `visual_continuity`: compact English anchors for
+  recurring characters, locations, objects and timeline/state changes.
+  `pagePrompts()` repeats that whole bible verbatim on every independent image
+  call. It names redrawable facts — material, colour, proportions, scale,
+  furniture/architecture and distinctive marks — because “the same stone” or
+  “the same room” conveys nothing to a model that never saw the earlier page.
+  The human visual-review checkbox explicitly checks those anchors before art
+  prompts unlock. Older approved JSON remains readable when the field is absent;
+  every new story prompt asks for it.
+- **Page artwork is a sequence of approved references.** `pagePrompts()` includes
+  the previous page's actual text/scene and the current page's text, then asks
+  for only the current beat. Approve the cover first and attach it to page 1 for
+  palette/style; page 2 onward requires the previous approved, textless story
+  illustration alongside any character sheets. Identity sheets control the
+  characters, previous art controls compatible geometry/materials/state, and
+  current text controls intentional changes. Never treat the cover as page 1's
+  preceding event or copy the prior pose. `PromptStudio` shows each row's
+  attachment instructions and asks operators to recheck later pages after
+  replacing an earlier image. The external generation remains manual; no new
+  JSON field or image-upload integration was added.
+- **Image colour targets share the document palette.** `PRINT_COLOUR_RULES` is
+  repeated in the story brief and every image prompt, including character
+  sheets. Core sRGB anchors come from `LAYOUT` in `lib/book.js`, with the berry
+  accent matching `globals.css`. Keep material colours, saturation and grading
+  coherent without tinting skin or changing approved outfits; preserve shadow
+  and highlight detail. The model supplies RGB artwork, not guessed CMYK ink
+  percentages or a simulated print filter. Use the same approved source files
+  for Word/RGB PDF; the existing ICC conversion produces CMYK PDF/X-4. Prompt
+  wording cannot guarantee exact pixels or screen-to-paper matching: the
+  printer's output profile and a physical proof on their stock decide that.
 - **Customer values are facts, never instructions.** The prompt places an
   explicit security/data boundary above them: a command or prompt-like phrase
   inside any free-text answer stays quoted source material and cannot override
@@ -901,7 +947,7 @@ interior pages are square; short/medium pages reserve the bottom 30% and long
 pages the bottom 40%, matching the real 26% minimum scrim plus room for text;
 the cover keeps its full upper 40% calm for the title veil; the page is trimmed
 so essentials stay inside the middle 90%; and the model is
-asked for 4K because 22 cm at 300 dpi is ~2600 px and the default is well under
+asked for 4K because 21.6 cm including bleed at 300 dpi is ~2550 px and the default is well under
 that. All of it is derived from the real production files, and
 `docs/ai-prompts.md` records the three things about those files worth settling
 with the printer — including that a 10-page story cannot saddle-stitch, since
@@ -1036,11 +1082,46 @@ exists to remove.
 
 | | Page | Bleed | Blanks | Text |
 |---|---|---|---|---|
-| نسخة PDF للأهل | 220 mm | none | none | live, vector |
-| ملف الطباعة | 226 mm | 3 mm | none in reading order; imposed sheets only are padded | flattened into the page image |
+| نسخة PDF للأهل | 210 mm | none | none | live, vector |
+| ملف الطباعة | 216 mm | 3 mm | none in reading order; imposed sheets only are padded | flattened into the page image |
+
+**There are two PDF outputs because browser printing is RGB.** The first button
+opens the familiar Save as PDF review proof and labels it RGB; that file is for
+the family and internal approval, never the press. The second button appears in
+print mode and runs without setup: it automatically uses the bundled,
+unmodified `Coated_Fogra39L_VIGC_300.icc` standard coated-art output profile
+(FOGRA39, 300% TAC). A print-partner ICC/ICM remains an optional, more accurate
+override for their actual press and stock. Overrides are validated from the
+fixed ICC header (`acsp`, `CMYK`, `prtr`). The exporter renders each page once
+and posts one flattened JPEG at a time to the same-origin `/admin/cmyk-page`
+route. Sharp/libvips uses LittleCMS to transform it through the chosen profile,
+immediately returns a four-channel CMYK JPEG, and deletes any temporary custom
+profile copy; neither artwork nor a partner profile is retained. The bundled
+profile is read once per server process and is not re-uploaded with every page.
+Every conversion request carries the dashboard bearer token and the route
+revalidates it against `/auth/me` before reading the multipart body, so an
+unset PIN gate cannot turn the colour converter into a public CPU endpoint.
+
+The browser then builds a **PDF/X-4** with the CMYK JPEGs as ICCBased images,
+embeds the same profile as `/DestOutputProfile`, declares a `/GTS_PDFX` output
+intent, and writes MediaBox/BleedBox/TrimBox explicitly (3 mm TrimBox inset on
+reading-order pages). The automatic profile makes a valid one-click CMYK
+deliverable, but it is not a calibration of the partner's machine: they still
+have to confirm they accept PDF/X-4 and hard-proof the result on the actual
+stock. When they provide their real output profile, use the override.
+
+**The book face is selectable and persists with the rest of the edits.** The
+dashboard UI remains Cairo, but book pages can use Scheherazade New (the default
+for fully vocalised Arabic), Amiri, Noto Sans Arabic or Cairo. `next/font`
+provides every face as a CSS variable; `BookPage` uses that variable directly
+and `renderBook` resolves the generated family name before canvas painting, so
+the preview and flattened Word file cannot silently choose different type.
+Each profile carries its available weights and its own generous leading — tall
+harakat must not collide across lines, and Amiri must never be asked for a
+nonexistent 800 weight.
 
 **Print output can be imposed into printer's sheets**, because Qissati's print
-partner asks for them — 446 × 226 mm, two pages a side, matching
+partner asks for them — 426 × 216 mm, two pages a side, matching
 standard 2-up saddle-stitch pairing and mirrored left/right for the binding
 direction. `impose()` in `lib/book.js` owns the arrangement and `sheetSize()`
 the geometry.
@@ -1173,8 +1254,10 @@ Things that will bite:
 - **Edits persist in `localStorage`, keyed by order reference — not on the
   server.** It needs no backend change and keeps the story text off our
   infrastructure, where it sits today. The cost is that it is one machine's
-  copy. The **illustrations are not stored**: they are local files, a blob URL
-  does not survive a reload, and they have no business in `localStorage`.
+  copy. Illustration blobs are mirrored separately into browser-local IndexedDB
+  by `lib/book-artwork.js`; they survive a reload without putting multi-megabyte
+  image data in `localStorage`. The named production files remain the durable
+  source outside the browser.
 - **The printed page takes its direction from the story's language**, not the
   dashboard's. `/admin` is RTL, and an English book set right-to-left is as
   wrong as the reverse.
@@ -1237,6 +1320,10 @@ URL is a safe fallback, and localhost exists only so local builds remain usable.
 If production emits localhost anywhere in canonical tags, JSON-LD, `robots.txt`,
 the sitemap or the LLM summaries, discovery is misconfigured.
 
+The production canonical origin is `https://www.qissatikids.com`; the public
+language pages are `/ar` and `/en`. Keep the `www` host consistent across the
+environment value, canonical URLs, Search Console properties and public links.
+
 The social image is `public/brand/qissati-social-avatar-with-name.png` (1254px
 square), referenced explicitly by both Open Graph and Twitter metadata. Its alt
 text is localised in the dictionaries.
@@ -1249,6 +1336,129 @@ do not guarantee crawling, indexing, ranking or citation. Consistent public
 identity matters because several unrelated businesses use names similar to
 Qissati: public copy and the LLM summaries pair the brand with Jordan and the
 official `@qissati_kids` Instagram handle.
+
+## Remotion Instagram reel R12
+
+`marketing-reel/` is a separate Remotion project. `Qissati-R12-Questions`
+(`src/r12/`) is the 12-second Arabic reel at 1080×1920, 30 fps: a 1.5-second
+empty-form scroll, seven questions over 7.5 seconds, then story page 7 and
+the cover for 1.5 seconds each. Its `public/r12/` artwork was extracted from
+the supplied `kk.pdf`; the blank form captures came from `/ar/order`.
+The short captions follow the supplied storyboard; the real form labels in
+the captures are preserved. Music is original oscillator synthesis, with no
+voiceover: `npm run score:r12` regenerates it. Run `npm run dev` here for
+Studio, `npm run lint` and `npm run build` for validation, and
+`npm run render:r12` for `out/qissati-r12-instagram.mp4`. The root ESLint
+config excludes its generated `build/` bundle, which contains vendor code.
+Existing 20-second compositions are separate and remain available.
+
+`Qissati-R13` (`marketing-reel/src/r13/`) is the separate 20-second,
+600-frame plush-to-paper Reel. Its unified theatrical set, stitched cloth toy,
+unfolding shelf, hinged book, frame-driven camera and lights use
+`@remotion/three` 4.0.529. The elegant landscape uses flat vector paper cutouts
+in the 3D set; book pages have original vector artwork as canvas textures.
+`src/r13/Scene.jsx` owns the set and `art.js` the deterministic textures.
+R13 now uses a full-frame canvas and a softly lit teal paper backdrop. Its
+authored dolly/zoom starts 24% farther back; a frame-driven geometry bound check
+pulls back further when needed to keep the set within x=200–880, y=600–1045.
+The resulting background margin allows later crop adjustments. Arabic copy is
+centred in x=240–840, y=410–1166, with the final mark at y=530.
+RTL Arabic copy stays in the DOM and follows the supplied 20-cell R13
+schedule, with the 8–15 second visual cue changed to `لعبته بتدخل الحكاية`
+at the user's request; a matching toy illustration now appears on the book page.
+`public/r13/voiceover.txt` is the exact script and
+`npm run score:r13` generates separate original music and SFX WAVs. The supplied
+Abdullah ElevenLabs recording is preserved as `public/r13/voice-source.mp3`.
+`scripts/prepare-r13-voice.mjs` creates the 17.843-second `voice.wav` with a 3%
+pitch-preserving speed adjustment and loudness normalization, so narration
+finishes before the final two seconds. R13 defaults to `voice: true`. The 38
+per-word timings in `src/r13/captions.json` come from the prepared WAV using
+local multilingual Whisper small (`scripts/transcribe-r13.mjs`), with phrase
+edges reviewed against speech pauses and script spelling preserved. Captions
+and the dialogue/question headlines follow those measured timings. Music and
+SFX remain separate and are lowered under narration. The final question holds
+during the last two seconds.
+Command-line 3D stills here require `--gl=angle`.
+
+`Qissati-R14` (`marketing-reel/src/r14/`) is the 19-second, 570-frame
+Three.js door-choice Reel. It uses `@remotion/three` at the project's Remotion
+version, frame-driven camera and lighting, three closed miniature paper doors, and
+RTL DOM copy within the same x=180–900, y=300–1230 safe rectangle. Its exact
+voiceover script is `public/r14/voiceover.txt`; `npm run score:r14` generates
+separate original music and SFX WAV files. The `voice` prop enables a separate
+`public/r14/voice.wav` track. The supplied Abdullah ElevenLabs MP3 is preserved
+as `public/r14/voice-source.mp3`; the prepared 48kHz mono WAV lasts 16.851s after
+0.924% pitch-preserving acceleration and normalization. Speech ends around
+16.571s, before the final two seconds. R14 now defaults to `voice: true`.
+`captions.json` contains all 31 approved script words in 30 measured intervals
+from local multilingual Whisper small on the final WAV, with recognition
+spellings reconciled to the script. The connected closing phrase `ولا النور؟`
+uses one measured interval whose edges were reviewed against the waveform.
+`scripts/transcribe-r14.mjs` regenerates the raw final-WAV transcription;
+`captions-planned.json` remains only as a reference to the original cadence.
+`npm run voice:r14 -- /absolute/final.wav
+/absolute/alignment.json` imports the complete take with measured word timings,
+checks every script word, and prepares audio finishing before 17s without
+dropping words. `voice-timing.json` records alignment status and source/final hashes;
+enabling voice before alignment reports the missing input. The three close-ups
+hold 18 frames each, labels never disappear, and the CTA holds through the
+camera/light return at frame 569. The main app's lint excludes this separate
+package; run both projects' own build/lint gates. `marketing-reel/remotion.config.js`
+sets `Config.setChromiumOpenGlRenderer('angle')` so Three.js exports from Studio
+and the CLI create a WebGL context on this machine. `npm run render:r14` exports
+the complete H.264 video to `out/qissati-r14-instagram.mp4`.
+
+`Qissati-R15` (`marketing-reel/src/r15/`) is the separate 21-second,
+630-frame boot, stone and key Reel. `Scene.jsx` owns its museum plinth,
+continuous sampled-contour shadow morphs into a puddle, mountain and doorway,
+curved object orbits into the hinged open book, and actual depth-buffer BokehPass.
+Camera, geometry, lighting, lens focus and transitions derive from the frame;
+no autonomous `useFrame()` or accumulated animation is used. Arabic remains in
+the RTL DOM and follows the exact A/B/C/D schedule with word-level reveals.
+The final question, complete mark and CTA hold within x=180–900, y=300–1230
+through frame 629, including the faint object-stage reset in the final second.
+Its `safeAreaPreview` prop shows the boundary.
+The exact voiceover script is `public/r15/voiceover.txt`; the final R15 recording
+is still needed and `voice` remains false. `captions-planned.json` is a cadence
+reference, never claimed as measured alignment. `npm run transcribe:r15` runs
+local Arabic Whisper small. `npm run voice:r15 -- /absolute/take.wav
+/absolute/alignment.json` checks every approved word, preserves the original,
+prepares the 48kHz mono WAV and measured timestamps, and rejects narration
+reaching 19s or requiring over 25% acceleration. Review against the final WAV,
+then enable voice. `npm run score:r15` generates separate original music/SFX
+and aligns the three accents to the measured nouns; the camera and morphs use
+the same cues. First/middle/last checks are under `out/r15-checks/`; Studio is
+`/Qissati-R15` and `npm run render:r15` exports the MP4 when requested.
+
+### 20-second marketing reel and Instagram safe areas
+
+`Qissati-Marketing-Reel` and `Qissati-Clean-Master` use the five scenes in
+`marketing-reel/src/scenes/`. Their illustrations now come from the original
+embedded images in the supplied `kk.pdf`, under `public/story-pdf/`; its
+`source.json` maps filenames to PDF pages. The earlier `public/artwork/`
+illustrations are no longer used by these compositions. The separate R12
+composition has its own assets and layout.
+
+The penultimate `Keepsake` spread uses illustrations from PDF pages 5 and 13.
+Keep these as separate Remotion `Img` elements: two same-sized `CanvasImage`
+elements displayed the same illustration in Studio even when the still render
+was correct.
+
+Both 20-second compositions remain 1080×1920 at 30 fps. `reels-safe-area.js`
+defines the protected content rectangle: x=180–900, y=300–1230. All essential
+copy, logos and complete artwork sit inside it, including their motion. This
+reserves 300px at the top, 690px at the bottom and equal 180px side margins
+for Reel controls. The content axis is the true frame centre (x=540), and it
+fits inside a centred 4:5 feed crop. The masthead, headline, artwork and caption
+are centred on that axis, with upright artwork and consistent vertical gaps. `Stage` gives
+scene elements coordinates relative to this rectangle; do not reintroduce
+full-frame coordinates in those scenes. Backgrounds can bleed beyond it.
+
+`Qissati-Reels-Safe-Area-Check` adds a visible diagnostic overlay; the normal
+and clean compositions never show it. Safe areas reduce UI overlap; they
+cannot guarantee visibility under arbitrary user cropping, expanded captions
+or future Instagram interface changes. Inspect the upload placement before
+publishing, and retain the complete 9:16 frame.
 
 ## Deliberate placeholders
 

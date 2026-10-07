@@ -1,0 +1,51 @@
+{
+  "state": "ok",
+  "pages": [
+    {
+      "page": 1,
+      "words": 23,
+      "sceneWords": 48
+    },
+    {
+      "page": 2,
+      "words": 23,
+      "sceneWords": 47
+    },
+    {
+      "page": 3,
+      "words": 23,
+      "sceneWords": 49
+    },
+    {
+      "page": 4,
+      "words": 23,
+      "sceneWords": 50
+    },
+    {
+      "page": 5,
+      "words": 23,
+      "sceneWords": 48
+    },
+    {
+      "page": 6,
+      "words": 24,
+      "sceneWords": 48
+    },
+    {
+      "page": 7,
+      "words": 25,
+      "sceneWords": 50
+    },
+    {
+      "page": 8,
+      "words": 20,
+      "sceneWords": 50
+    }
+  ],
+  "model": {
+    "story": "Codex, using the current story prompt rules",
+    "images": "Built-in image_gen"
+  },
+  "approval": "test draft only; no parent approval recorded",
+  "likeness": "general-character placeholders; reference photos missing"
+}

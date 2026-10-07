@@ -1,0 +1,16 @@
+{
+  "aligned": true,
+  "status": "Final supplied ElevenLabs take enabled; measured on prepared WAV",
+  "voiceDurationMs": 16850.521,
+  "finalWordEndMs": 16571,
+  "alignedWordCount": 31,
+  "captionCount": 30,
+  "alignmentSource": "Local multilingual Whisper small on public/r14/voice.wav; approved script spelling preserved; closing phrase edges reviewed against the final waveform",
+  "speed": 1.009242077151335,
+  "sourceSha256": "f535f6ccd83895de2c6a5bb52e964d3fd069507d696302c4b585eb0c6db07478",
+  "finalSha256": "46d40c5cff8aba78e6d28c5d381a09ff36707b57fb90ad99afd70c32e67f3a32",
+  "alignmentFile": "out/r14-voice-transcription.json",
+  "alignmentSha256": "48e9f47a05d3c705e06799040f65cc269662ecb38bc92453cf80c28893f11470",
+  "originalMp3Sha256": "d1dfe3874a4a259c206f8adfee52c27b7527ffe943a8adae30be105a54b8b137",
+  "groupedClosingWords": "ولا النور؟ shares a measured interval; no invented internal word boundary"
+}

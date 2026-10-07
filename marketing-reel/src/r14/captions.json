@@ -1,0 +1,229 @@
+[
+  {
+    "text": "تخيّلوا",
+    "startMs": 140,
+    "endMs": 660,
+    "timestampMs": 400,
+    "confidence": null
+  },
+  {
+    "text": "بطل",
+    "startMs": 660,
+    "endMs": 1000,
+    "timestampMs": 830,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قصتنا",
+    "startMs": 1000,
+    "endMs": 1800,
+    "timestampMs": 1400,
+    "confidence": null
+  },
+  {
+    "text": "واقف",
+    "startMs": 1800,
+    "endMs": 2200,
+    "timestampMs": 2000,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قدام",
+    "startMs": 2200,
+    "endMs": 2680,
+    "timestampMs": 2440,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ثلاثة",
+    "startMs": 2680,
+    "endMs": 3040,
+    "timestampMs": 2860,
+    "confidence": null
+  },
+  {
+    "text": "أبواب:",
+    "startMs": 3040,
+    "endMs": 3600,
+    "timestampMs": 3320,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "باب",
+    "startMs": 3980,
+    "endMs": 4340,
+    "timestampMs": 4160,
+    "confidence": null
+  },
+  {
+    "text": "عليه",
+    "startMs": 4340,
+    "endMs": 4560,
+    "timestampMs": 4450,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قمر،",
+    "startMs": 4560,
+    "endMs": 5040,
+    "timestampMs": 4800,
+    "confidence": null
+  },
+  {
+    "text": "باب",
+    "startMs": 5320,
+    "endMs": 5620,
+    "timestampMs": 5470,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وراه",
+    "startMs": 5620,
+    "endMs": 5900,
+    "timestampMs": 5760,
+    "confidence": null
+  },
+  {
+    "text": "ضحكة،",
+    "startMs": 5900,
+    "endMs": 6400,
+    "timestampMs": 6150,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وباب",
+    "startMs": 6720,
+    "endMs": 7380,
+    "timestampMs": 7050,
+    "confidence": null
+  },
+  {
+    "text": "طالع",
+    "startMs": 7380,
+    "endMs": 7800,
+    "timestampMs": 7590,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "من",
+    "startMs": 7800,
+    "endMs": 7980,
+    "timestampMs": 7890,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "تحته",
+    "startMs": 7980,
+    "endMs": 8400,
+    "timestampMs": 8190,
+    "confidence": null
+  },
+  {
+    "text": "نور",
+    "startMs": 8400,
+    "endMs": 8780,
+    "timestampMs": 8590,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ذهبي.",
+    "startMs": 8780,
+    "endMs": 9240,
+    "timestampMs": 9010,
+    "confidence": null
+  },
+  {
+    "text": "كل",
+    "startMs": 9860,
+    "endMs": 9980,
+    "timestampMs": 9920,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "اختيار",
+    "startMs": 9980,
+    "endMs": 10680,
+    "timestampMs": 10330,
+    "confidence": null
+  },
+  {
+    "text": "بيفتح",
+    "startMs": 10680,
+    "endMs": 11220,
+    "timestampMs": 10950,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "حكاية",
+    "startMs": 11220,
+    "endMs": 11600,
+    "timestampMs": 11410,
+    "confidence": null
+  },
+  {
+    "text": "مختلفة.",
+    "startMs": 11600,
+    "endMs": 12240,
+    "timestampMs": 11920,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "إنتو",
+    "startMs": 12700,
+    "endMs": 12880,
+    "timestampMs": 12790,
+    "confidence": null
+  },
+  {
+    "text": "شو",
+    "startMs": 12880,
+    "endMs": 13020,
+    "timestampMs": 12950,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بتختاروا:",
+    "startMs": 13020,
+    "endMs": 13680,
+    "timestampMs": 13350,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "القمر،",
+    "startMs": 14080,
+    "endMs": 14640,
+    "timestampMs": 14360,
+    "confidence": null
+  },
+  {
+    "text": "الضحكة،",
+    "startMs": 15020,
+    "endMs": 15680,
+    "timestampMs": 15350,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ولا النور؟",
+    "startMs": 15906,
+    "endMs": 16571,
+    "timestampMs": 16239,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

@@ -1,0 +1,256 @@
+[
+  {
+    "text": "مش",
+    "startMs": 80,
+    "endMs": 480,
+    "timestampMs": 280,
+    "confidence": null
+  },
+  {
+    "text": " دايماً",
+    "startMs": 480,
+    "endMs": 880,
+    "timestampMs": 680,
+    "confidence": null
+  },
+  {
+    "text": " المغامرة",
+    "startMs": 1080,
+    "endMs": 1480,
+    "timestampMs": 1280,
+    "confidence": null
+  },
+  {
+    "text": " بتبدأ",
+    "startMs": 1480,
+    "endMs": 1880,
+    "timestampMs": 1680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بتنين.",
+    "startMs": 2080,
+    "endMs": 2480,
+    "timestampMs": 2280,
+    "confidence": null
+  },
+  {
+    "text": " مرات",
+    "startMs": 2480,
+    "endMs": 2880,
+    "timestampMs": 2680,
+    "confidence": null
+  },
+  {
+    "text": " بتبدأ",
+    "startMs": 3080,
+    "endMs": 3880,
+    "timestampMs": 3480,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بجزمة",
+    "startMs": 4080,
+    "endMs": 4480,
+    "timestampMs": 4280,
+    "confidence": null
+  },
+  {
+    "text": " مطر",
+    "startMs": 4480,
+    "endMs": 4880,
+    "timestampMs": 4680,
+    "confidence": null
+  },
+  {
+    "text": " صغيرة،",
+    "startMs": 5080,
+    "endMs": 5480,
+    "timestampMs": 5280,
+    "confidence": null
+  },
+  {
+    "text": " أو",
+    "startMs": 5480,
+    "endMs": 5880,
+    "timestampMs": 5680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " حجر",
+    "startMs": 6080,
+    "endMs": 6480,
+    "timestampMs": 6280,
+    "confidence": null
+  },
+  {
+    "text": " احتفظ",
+    "startMs": 6480,
+    "endMs": 6880,
+    "timestampMs": 6680,
+    "confidence": null
+  },
+  {
+    "text": " فيه",
+    "startMs": 7080,
+    "endMs": 7480,
+    "timestampMs": 7280,
+    "confidence": null
+  },
+  {
+    "text": " الطفل،",
+    "startMs": 7480,
+    "endMs": 7880,
+    "timestampMs": 7680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " أو",
+    "startMs": 8080,
+    "endMs": 8480,
+    "timestampMs": 8280,
+    "confidence": null
+  },
+  {
+    "text": " مفتاح",
+    "startMs": 8480,
+    "endMs": 8880,
+    "timestampMs": 8680,
+    "confidence": null
+  },
+  {
+    "text": " بسأل",
+    "startMs": 9080,
+    "endMs": 9880,
+    "timestampMs": 9480,
+    "confidence": null
+  },
+  {
+    "text": " عنه",
+    "startMs": 10080,
+    "endMs": 10480,
+    "timestampMs": 10280,
+    "confidence": null
+  },
+  {
+    "text": " كل",
+    "startMs": 10480,
+    "endMs": 10880,
+    "timestampMs": 10680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " يوم.",
+    "startMs": 11080,
+    "endMs": 11480,
+    "timestampMs": 11280,
+    "confidence": null
+  },
+  {
+    "text": " لما",
+    "startMs": 11480,
+    "endMs": 11880,
+    "timestampMs": 11680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " التفصيلة",
+    "startMs": 12080,
+    "endMs": 12480,
+    "timestampMs": 12280,
+    "confidence": null
+  },
+  {
+    "text": " إلها",
+    "startMs": 12480,
+    "endMs": 12880,
+    "timestampMs": 12680,
+    "confidence": null
+  },
+  {
+    "text": " معنى",
+    "startMs": 13080,
+    "endMs": 13480,
+    "timestampMs": 13280,
+    "confidence": null
+  },
+  {
+    "text": " عنده،",
+    "startMs": 13480,
+    "endMs": 13880,
+    "timestampMs": 13680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بصير",
+    "startMs": 14080,
+    "endMs": 14480,
+    "timestampMs": 14280,
+    "confidence": null
+  },
+  {
+    "text": " إلها",
+    "startMs": 14480,
+    "endMs": 14880,
+    "timestampMs": 14680,
+    "confidence": null
+  },
+  {
+    "text": " مكان",
+    "startMs": 15080,
+    "endMs": 15880,
+    "timestampMs": 15480,
+    "confidence": null
+  },
+  {
+    "text": " بالحكاية.",
+    "startMs": 16080,
+    "endMs": 16480,
+    "timestampMs": 16280,
+    "confidence": null
+  },
+  {
+    "text": " شو",
+    "startMs": 16480,
+    "endMs": 16880,
+    "timestampMs": 16680,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " الغرض",
+    "startMs": 17080,
+    "endMs": 17480,
+    "timestampMs": 17280,
+    "confidence": null
+  },
+  {
+    "text": " اللي",
+    "startMs": 17480,
+    "endMs": 17880,
+    "timestampMs": 17680,
+    "confidence": null
+  },
+  {
+    "text": " بذكّركم",
+    "startMs": 18080,
+    "endMs": 18480,
+    "timestampMs": 18280,
+    "confidence": null
+  },
+  {
+    "text": " بطفلكم؟",
+    "startMs": 18480,
+    "endMs": 18880,
+    "timestampMs": 18680,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

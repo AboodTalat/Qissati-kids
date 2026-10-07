@@ -1,4 +1,4 @@
-import { Cairo } from "next/font/google";
+import { Amiri, Cairo, Noto_Sans_Arabic, Scheherazade_New } from "next/font/google";
 import "../../globals.css";
 
 /**
@@ -23,6 +23,31 @@ const cairo = Cairo({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+// The dashboard chrome stays in Cairo. These extra families are book faces:
+// loading them as CSS variables lets the operator compare fully vocalised copy
+// in the real page preview, while the canvas exporter resolves the same family
+// before flattening a printer file.
+const scheherazade = Scheherazade_New({
+  variable: "--font-scheherazade-new",
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  weight: ["400", "700"],
+});
+
+const notoSansArabic = Noto_Sans_Arabic({
+  variable: "--font-noto-sans-arabic",
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  weight: ["400", "600", "700", "800"],
+});
+
 export const metadata = {
   title: "لوحة تحكم قصتي",
   applicationName: "قصتي",
@@ -43,7 +68,11 @@ export const viewport = {
 
 export default function AdminLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} h-full`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      className={`${cairo.variable} ${scheherazade.variable} ${amiri.variable} ${notoSansArabic.variable} h-full`}
+    >
       <body className="min-h-full bg-cream font-sans text-ink">{children}</body>
     </html>
   );

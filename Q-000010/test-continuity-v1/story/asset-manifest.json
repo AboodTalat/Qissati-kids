@@ -1,0 +1,69 @@
+{
+  "order": "Q-000010",
+  "status": "test draft, not customer approved",
+  "story_author": "Codex using current repository story prompt rules",
+  "image_generator": "built-in image_gen",
+  "missing_photos": "General fictional characters; actual order still requests photo likeness",
+  "artwork_dimensions": [
+    1254,
+    1254
+  ],
+  "dpi_at_210mm": 152,
+  "colour": "RGB palette targets: teal #146466, gold #f4b740, cream #fdf8f0, ink #2e2a26, berry #b84c6e. No CMYK conversion or physical proof performed.",
+  "references": "Cover uses Hashim sheet; page 1 uses cover and Hashim sheet; pages 2-8 each use immediately preceding accepted test illustration and Hashim sheet. References are test drafts, not customer approvals.",
+  "correction": "Page 5 initial ball overlapped text area. Layout corrected with image_gen before page 6 generation; original attempt retained separately.",
+  "review": "All 8 current text beats visually reviewed against images; count/state of ball and foam components checked. Live order book preview shows 9/9 loaded; Arabic text/numbering and sampled page transitions checked. Room/art have minor generative geometry variation; this is not an exact technical drawing.",
+  "assets": [
+    {
+      "file": "references/hashim-reference-v1.png",
+      "sha256": "21ed74d022dbbcbac24255091d13bbf5b8ca210d7e0ad0a5553d56239d731943",
+      "role": "identity-sheet"
+    },
+    {
+      "file": "art/cover-v1.png",
+      "sha256": "e594aac737248c36a7862dfa9d028b1c52184621cf0321a56cc10bee03c6eb28",
+      "role": "cover"
+    },
+    {
+      "file": "art/page-01-v1.png",
+      "sha256": "4cf22d014f4a7b8d2c8aefd0d540c1ff9bd1bbfa53ba7a1a013ab74ff15820f0",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-02-v1.png",
+      "sha256": "449cdaafb390d6cd1c004cf53311453ef40c1fd4b3da59e0cad1dea9c5815546",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-03-v1.png",
+      "sha256": "77a56374a0d314e9e9b933f1b11e5cc663306789f960db449e74f4d65af5e227",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-04-v1.png",
+      "sha256": "2a82f20896a4c4908169124a7a5d10d724dd5ccd729f389cf844558fabd229cd",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-05-v1.png",
+      "sha256": "4a897d38102ceb9471f1712eb8a3e7c6931675fa1347ad34ecfd569218bd927b",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-06-v1.png",
+      "sha256": "855fad501084d3bb1625425704fb572629c5cd378211ed7cb53698dc5cad2de8",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-07-v1.png",
+      "sha256": "2ac99b8f179ee0654b407bd4a30e71e211eec5b34f23b524baa2e4cafa0bdb3b",
+      "role": "story-page"
+    },
+    {
+      "file": "art/page-08-v1.png",
+      "sha256": "830aea1c4a7ab28f5cf96bdf8030de8db777aa6fca65f2e3450cfbf148d47483",
+      "role": "story-page"
+    }
+  ],
+  "browser_persistence": "Verified after reload: story valid, artwork 9/9 restored; parent review gate still pending."
+}

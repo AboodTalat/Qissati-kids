@@ -7,7 +7,7 @@ import { LogoMark } from "./Logo";
 import LangToggle from "./LangToggle";
 import MobileDrawer from "./MobileDrawer";
 import { OrderButton } from "./ui";
-import { NAV_LINKS, NAV_SECTIONS, orderPath } from "@/lib/site";
+import { homePath, NAV_LINKS, NAV_SECTIONS, orderPath } from "@/lib/site";
 import { canAnimate, isLateHydration, prefersReducedMotion } from "@/lib/motion";
 
 const SECTION_IDS = NAV_SECTIONS.map((link) => link.href.slice(1));
@@ -276,7 +276,7 @@ export default function Header({ lang, dict, onLanding = false }) {
 
       <div className="mx-auto flex h-[var(--header-h)] max-w-6xl items-center justify-between gap-3 px-5 sm:px-8">
         <a
-          href="#top"
+          href={onLanding ? "#top" : homePath(lang)}
           aria-label={dict.header.homeLabel}
           className="inline-flex items-center gap-2.5 rounded-2xl"
         >

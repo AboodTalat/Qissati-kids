@@ -1,0 +1,236 @@
+[
+  {
+    "text": "تخيّلوا",
+    "startMs": 0,
+    "endMs": 500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "بطل",
+    "startMs": 500,
+    "endMs": 1000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قصتنا",
+    "startMs": 1000,
+    "endMs": 1500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "واقف",
+    "startMs": 1500,
+    "endMs": 2000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قدام",
+    "startMs": 2000,
+    "endMs": 3000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ثلاثة",
+    "startMs": 3000,
+    "endMs": 3500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "أبواب:",
+    "startMs": 3500,
+    "endMs": 4000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "باب",
+    "startMs": 4000,
+    "endMs": 4500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "عليه",
+    "startMs": 4500,
+    "endMs": 5000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "قمر،",
+    "startMs": 5000,
+    "endMs": 5500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "باب",
+    "startMs": 5500,
+    "endMs": 6000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وراه",
+    "startMs": 6000,
+    "endMs": 6500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "ضحكة،",
+    "startMs": 6500,
+    "endMs": 7000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وباب",
+    "startMs": 7000,
+    "endMs": 7500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "طالع",
+    "startMs": 7500,
+    "endMs": 8000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "من",
+    "startMs": 8000,
+    "endMs": 9000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "تحته",
+    "startMs": 9000,
+    "endMs": 9500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "نور",
+    "startMs": 9500,
+    "endMs": 10000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ذهبي.",
+    "startMs": 10000,
+    "endMs": 10500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "كل",
+    "startMs": 10500,
+    "endMs": 11000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "اختيار",
+    "startMs": 11000,
+    "endMs": 11500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "بيفتح",
+    "startMs": 11500,
+    "endMs": 12000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "حكاية",
+    "startMs": 12000,
+    "endMs": 12500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "مختلفة.",
+    "startMs": 12500,
+    "endMs": 13000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "إنتو",
+    "startMs": 13000,
+    "endMs": 13500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "شو",
+    "startMs": 13500,
+    "endMs": 14000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بتختاروا:",
+    "startMs": 14000,
+    "endMs": 15000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "القمر،",
+    "startMs": 15000,
+    "endMs": 15500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "الضحكة،",
+    "startMs": 15500,
+    "endMs": 16000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ولا",
+    "startMs": 16000,
+    "endMs": 16500,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "النور؟",
+    "startMs": 16500,
+    "endMs": 17000,
+    "timestampMs": null,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

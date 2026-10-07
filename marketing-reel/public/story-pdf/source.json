@@ -1,0 +1,13 @@
+{
+  "source": "kk.pdf",
+  "extraction": "Original embedded artwork extracted with pypdf; RGB JPEG quality 96, no crop or resizing. The PDF's separate text and scrims are not baked into these image assets.",
+  "dimensions": [1254, 1254],
+  "pages": {
+    "cover.jpg": 1,
+    "page-02.jpg": 5,
+    "page-05.jpg": 8,
+    "page-07.jpg": 10,
+    "page-09.jpg": 12,
+    "page-10.jpg": 13
+  }
+}

@@ -25,7 +25,7 @@ operator runs the prompts in the external tools themselves.
 | 3. Human review | **the Qissati operator** | Confirms the facts, language, personalisation, safety and visual continuity before any art prompt unlocks |
 | 4. Parent text approval | **the dashboard** | A branded A4 PDF containing only the title, summary, dedication and page-by-page story text, identified by a stable proof code |
 | 5. Character sheets | **Nano Banana Pro** | The main child from the parent's photographs, plus a separate reference sheet for every recurring sibling, friend or pet |
-| 6. Page art | **Nano Banana Pro**, with the approved sheets attached every time | One square illustration per page, plus the cover |
+| 6. Page art | **Nano Banana Pro**, with the approved sheets and previous approved artwork | Approve the cover, then generate and approve each square story page in reading order |
 | 7. Assembly and preflight | **the dashboard**, `components/admin/BookStudio.jsx` | Drop each illustration into its page, fix the words, complete the final checklist, export |
 
 **Pick the page length before you run step 1.** نص قصير is one sentence a page
@@ -66,19 +66,32 @@ Inside text values the prompt asks for «» or “” and reserves straight `"` 
 JSON's own delimiters, avoiding the most common quoting failure at its source.
 
 The story brief asks for **publication-ready children's writing**, not a usable
-first draft: the model silently plans and revises the complete arc, keeps every
-beat causally connected, uses precise natural language and purposeful sensory
-detail, and removes filler, clichés, repetitive phrasing and decorative lines
-that do not advance action or deepen character. The page-length limits still
-apply; polish cannot be bought by overflowing the printed page.
+first draft: the model silently plans, reads the draft aloud and revises it,
+keeps every beat causally connected, uses precise natural language and
+character-led humour, and removes filler, clichés, lists of interests and
+repetitive phrasing. The page-length limits still apply.
 
-The arc is now planned against the order's **exact page count**, rather than a
-generic beginning/middle/end instruction. Page 1 opens on the child's active
-desire and plants a useful personal detail; page 2 creates the central story
-question; the middle pages contain distinct attempts, consequences and a real
-turn; the third-to-last page is the child-led decisive action; the penultimate
-page shows its concrete consequence; and the final page is reserved for a warm
-emotional landing that echoes the opening. The prompt also requires a
+For a goal-based order, the parent's words describe an intended change, not a
+diagnosis or a lesson to put in the child's mouth. The writer builds a real
+scene around what the child wants, shows the difficulty without naming or
+shaming it, and lets the child make one believable choice. A repeated habit can
+be a tender detail without being the mechanism that solves the plot. The ending
+shows a moment of connection or ease, not a cure. For a role-based order, the
+imagined role must lead to a specific action, not just a costume and praise.
+
+The prompt asks Gemini to look up unfamiliar **public facts** needed by the
+story when its search tool is available: a venue, local custom, rule, animal or
+other specialist detail. It must search the topic rather than the child's
+private name, habit or goal. If it cannot verify a detail, it uses a truthful
+generic scene instead of inventing specifics. The operator still checks any
+fact that matters before approving the story; asking a model to search does not
+guarantee that it did or that a result is accurate.
+
+The arc is planned against the order's **exact page count**, rather than a
+generic beginning/middle/end instruction. The opening gives the child an active
+desire; the middle changes what they understand and choose; the last page gives
+the result room to land. The beat positions are flexible so a quiet relationship
+story is not forced into an artificial chase or crisis. The prompt also requires a
 BECAUSE/THEREFORE chain, setup before payoff, and continuity of place, time,
 knowledge, objects and emotion across page boundaries. It silently
 reverse-outlines the finished draft and rewrites any decorative, repeated,
@@ -193,10 +206,10 @@ defaulted from the order's own format:
 
 | | Page size | Bleed | Blanks | Text |
 |---|---|---|---|---|
-| **نسخة PDF للأهل** | 220 × 220 mm | none | none | live, vector |
-| **ملف الطباعة (Word)** | 226 × 226 mm | 3 mm all round | none in reading order; imposed sheets only are padded | flattened into the page |
+| **نسخة PDF للأهل** | 210 × 210 mm | none | none | live, vector |
+| **ملف الطباعة (PDF/X-4 CMYK)** | 216 × 216 mm | 3 mm all round | none in reading order; imposed sheets only are padded | flattened into the page |
 
-**The print file can come out as imposed sheets** — 446 × 226 mm, two pages a
+**The print file can come out as imposed sheets** — 426 × 216 mm, two pages a
 side, folded and stapled — because Qissati's print partner asks for them. The
 arrangement uses standard 2-up saddle-stitch pairing, mirrored for the binding
 direction. On its first outside face an Arabic book shows page 1/front
@@ -208,8 +221,19 @@ so their content should shift toward the spine, and only a RIP does that. At
 12–16 pages the push-out is under a millimetre. For a thicker book, hand the
 printer reading-order pages and let them impose.
 
-The toggle drives both export buttons, so the PDF and the Word file always
-describe the same object.
+The toggle drives every export button, so the RGB review proof, PDF/X-4 printer
+file and optional Word handoff always describe the same object.
+
+The review and printer files are deliberately separate. Browser **Save as PDF**
+is the RGB proof for family/internal review. The printer button runs
+automatically with the bundled, unmodified
+`Coated_Fogra39L_VIGC_300.icc` standard coated-art profile (FOGRA39, 300% TAC),
+transforms every already-flattened page through LittleCMS, and then directly
+builds PDF/X-4 with that profile embedded as the output intent. If the print
+partner provides their own CMYK output ICC/ICM profile, the operator can select
+it as a more accurate override; the fixed header is validated before use. The
+printer must still confirm PDF/X-4, the paper/coating and the hard proof before
+production—the bundled standard is not a calibration of their exact machine.
 
 **Direction follows the approved story, not a potentially stale order answer.**
 `storyDirection()` counts Arabic and Latin-script characters across the pasted
@@ -254,18 +278,22 @@ Qissati logo and wordmark, followed by client-facing copy that starts
 personalised with the child's name and explains what Qissati creates. The
 operator can rewrite that copy per client; the logo and wordmark remain fixed.
 
-The illustrations are read straight off the operator's disk with
-`URL.createObjectURL` and are **never uploaded**, so the finished artwork never
-leaves the machine it was downloaded to. The panel warns when the sharpest
-illustration works out below **300 dpi** at the printed size — the one thing
-about an image you cannot judge by looking at it on screen.
+The source illustrations are read straight off the operator's disk with
+`URL.createObjectURL` and remain browser-local. Only when the operator explicitly
+exports CMYK does the app send one flattened page at a time to its own origin
+for the ICC transform; the route returns it immediately and retains nothing.
+The panel warns when the sharpest illustration works out below **300 dpi** at
+the printed size — the one thing about an image you cannot judge by looking at
+it on screen.
 
 Your edits are kept in the browser, per order, so closing the tab does not cost
 an hour of typing. The illustrations are not kept — they are files on your disk,
 and you re-pick them if you come back tomorrow.
 
-In Chrome's print dialog: destination **Save as PDF**, margins **None**, and
-**Background graphics** on — without it every page prints white.
+For the RGB review proof, Chrome's print dialog uses destination **Save as
+PDF**, margins **None**, and **Background graphics** on — without it every page
+prints white. The CMYK printer button downloads directly and does not use the
+browser print dialog.
 
 ## The printed page, which is what the image prompts are written against
 
@@ -284,15 +312,15 @@ Taken from the production files (`Layan-storybook-poster-style.docx`,
   area stays calm, uncluttered and low in contrast for the title.
 - **Trim.** Saddle stitch cuts the edges, so the prompts ask for everything that
   matters to stay inside the middle 90% of the square.
-- **Resolution.** 22 cm at 300 dpi is ~2600 px. The prompts ask for Nano Banana
+- **Resolution.** 21.6 cm including bleed at 300 dpi is ~2550 px. The prompts ask for Nano Banana
   Pro's **4K** output; its default is well under what the printer needs.
 
 Three things about the print files that are worth settling with the printer,
 and that nothing in the code depends on:
 
 1. **21.59 cm is an inch measurement** that came from a Letter-width page
-   setup. Every printer in Amman quotes metric; real 22 × 22 cm is one
-   page-setup change away.
+   setup. Qissati standardises the finished trim at a clean metric 21 × 21 cm,
+   with 3 mm bleed on every side for production.
 2. **The imposition is 12 pages, but the order form sells 8 / 10 / 12.** Saddle
    stitch folds in multiples of four *including* covers, so a 10-page story
    does not impose. Check this before that option sells.
@@ -333,6 +361,22 @@ put it back.
 
 **Changing `STYLE_DNA` changes the look of every future book.** That is why it
 is a constant in a reviewed file and not a text box in the dashboard.
+
+Every image prompt, including both character sheets, also carries
+`PRINT_COLOUR_RULES`. Its sRGB anchors share the document's `LAYOUT` values:
+deep teal `#146466`, gold `#f4b740`, cream `#fdf8f0` and warm dark `#2e2a26`,
+with the brand's restrained berry `#b84c6e` accent. They describe the palette,
+not a demand to recolour skin, an approved outfit or a story-critical object.
+The prompts preserve material colours across pages, ask for printable
+saturation and detail in shadows/highlights, and forbid an arbitrary new grade
+on each illustration. A text-supported change of light or place remains valid.
+
+Keep the original approved RGB artwork, preferably tagged sRGB when the image
+tool supports it, and use those same files in the Word and RGB PDF. Do not
+manually desaturate them or ask the model for guessed CMYK percentages. The
+printer PDF's existing ICC conversion owns that transformation. Palette wording
+cannot force exact pixels or make a screen match paper: use the print partner's
+output profile when supplied and approve a physical proof on the actual stock.
 
 ## What the prompts do and do not contain
 
@@ -415,6 +459,14 @@ Generated filenames carry no reliable order, and regenerating one page changes
 its download time. Rename approved files as they are accepted rather than using
 the provider's random names as production identity.
 
+The in-browser story bench is also kept locally, under the versioned key
+`qissati.story-workspace.<reference>`. It restores the Gemini response, selected
+text length, review checks and approval gates when the operator leaves and
+reopens an order in the same browser. That record is deliberately separate from
+the production folder: the JSON file is the durable approved source. Artwork
+stays as named files on disk and is mirrored to browser-local IndexedDB so its
+slots also survive a reload; multi-megabyte images are never put in localStorage.
+
 ## Scene descriptions are English, and self-contained
 
 `illustration_description` is written in English even for an Arabic book,
@@ -424,6 +476,39 @@ Each one has to describe its scene from scratch. The pages are generated in
 separate, independent calls, so *"the same room as page 3"* describes nothing
 at all — and that is the failure mode that produces a book where every bedroom
 is a different bedroom.
+
+The story response now also carries `visual_continuity`, split into characters,
+locations, objects and timeline/state changes. This is the book's visual bible,
+not reader-facing copy: it gives each recurring thing fixed redrawable traits
+such as material, colour, proportions, scale, furniture and distinctive marks.
+`pagePrompts()` repeats the whole block verbatim in every independent image call,
+then adds the page's own scene. The scene still has to restate what is visible;
+the shared block is what prevents a red toy car becoming blue, one rectangular
+stone becoming several paving stones, or a parent changing clothes mid-scene.
+
+**The pages are now generated sequentially from approved artwork.** Generate
+and approve the cover first. Attach it to page 1 as a palette/style reference,
+not as the opening scene. From page 2 onward, attach the immediately previous
+approved, textless story illustration as `PREVIOUS PAGE`, alongside the
+required character sheets. Each copied page prompt names that page and includes
+its actual story text and scene description, followed by the current page's
+actual text and scene. The old page is context; only the current beat is drawn.
+No new story-JSON fields are required, so existing approved stories still work.
+
+Identity sheets control who the characters are; previous art controls the
+compatible geometry, materials, palette and state; the current text controls
+what changes. The prompt asks for a missing reference before generation and
+rejects a reference that contradicts approved facts. It carries forward object
+condition, clothing, geography, direction of travel and emotion while choosing
+a new purposeful frame. A text-supported move or time jump changes the setting
+visibly instead of copying the old scene. These are individual square pages,
+not an invented two-page panorama.
+
+Review each new image beside its text and its predecessor before using it as
+the next reference. If an earlier illustration is replaced, recheck the later
+ones for details or colour inherited from the old version. This remains a
+manual generation/review workflow; the dashboard prepares the reference
+instructions but cannot verify what was attached in the external image tool.
 
 ## Two decisions that look like omissions
 

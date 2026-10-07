@@ -1,0 +1,286 @@
+[
+  {
+    "text": "تخيّلوا",
+    "startMs": 120,
+    "endMs": 720,
+    "timestampMs": 420,
+    "confidence": null
+  },
+  {
+    "text": "لعبة",
+    "startMs": 720,
+    "endMs": 1060,
+    "timestampMs": 890,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "طفلك",
+    "startMs": 1060,
+    "endMs": 1520,
+    "timestampMs": 1290,
+    "confidence": null
+  },
+  {
+    "text": "المفضلة",
+    "startMs": 1520,
+    "endMs": 2000,
+    "timestampMs": 1760,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "صحيت",
+    "startMs": 2319,
+    "endMs": 2900,
+    "timestampMs": 2610,
+    "confidence": null
+  },
+  {
+    "text": "الصبح",
+    "startMs": 2900,
+    "endMs": 3280,
+    "timestampMs": 3090,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وحكت:",
+    "startMs": 3280,
+    "endMs": 3690,
+    "timestampMs": 3485,
+    "confidence": null
+  },
+  {
+    "text": "اليوم",
+    "startMs": 3981,
+    "endMs": 4605,
+    "timestampMs": 4293,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "دوري",
+    "startMs": 4790,
+    "endMs": 5240,
+    "timestampMs": 5015,
+    "confidence": null
+  },
+  {
+    "text": "أروح",
+    "startMs": 5240,
+    "endMs": 5620,
+    "timestampMs": 5430,
+    "confidence": null
+  },
+  {
+    "text": "معك",
+    "startMs": 5620,
+    "endMs": 5900,
+    "timestampMs": 5760,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بالمغامرة.",
+    "startMs": 5900,
+    "endMs": 6435,
+    "timestampMs": 6168,
+    "confidence": null
+  },
+  {
+    "text": "فجأة،",
+    "startMs": 6827,
+    "endMs": 7322,
+    "timestampMs": 7075,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "إشي",
+    "startMs": 7676,
+    "endMs": 8040,
+    "timestampMs": 7858,
+    "confidence": null
+  },
+  {
+    "text": "صغير",
+    "startMs": 8040,
+    "endMs": 8420,
+    "timestampMs": 8230,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "من",
+    "startMs": 8420,
+    "endMs": 8580,
+    "timestampMs": 8500,
+    "confidence": null
+  },
+  {
+    "text": "عالمه",
+    "startMs": 8580,
+    "endMs": 9000,
+    "timestampMs": 8790,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "صار",
+    "startMs": 9200,
+    "endMs": 9480,
+    "timestampMs": 9340,
+    "confidence": null
+  },
+  {
+    "text": "مفتاح",
+    "startMs": 9480,
+    "endMs": 10040,
+    "timestampMs": 9760,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "حكاية",
+    "startMs": 10040,
+    "endMs": 10480,
+    "timestampMs": 10260,
+    "confidence": null
+  },
+  {
+    "text": "كاملة.",
+    "startMs": 10480,
+    "endMs": 10766,
+    "timestampMs": 10623,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "هاي",
+    "startMs": 11132,
+    "endMs": 11540,
+    "timestampMs": 11336,
+    "confidence": null
+  },
+  {
+    "text": "من",
+    "startMs": 11540,
+    "endMs": 11720,
+    "timestampMs": 11630,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "التفاصيل",
+    "startMs": 11720,
+    "endMs": 12280,
+    "timestampMs": 12000,
+    "confidence": null
+  },
+  {
+    "text": "اللي",
+    "startMs": 12280,
+    "endMs": 12420,
+    "timestampMs": 12350,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ممكن",
+    "startMs": 12420,
+    "endMs": 12740,
+    "timestampMs": 12580,
+    "confidence": null
+  },
+  {
+    "text": "نبدأ",
+    "startMs": 12740,
+    "endMs": 13000,
+    "timestampMs": 12870,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "منها",
+    "startMs": 13080,
+    "endMs": 13600,
+    "timestampMs": 13340,
+    "confidence": null
+  },
+  {
+    "text": "قصة",
+    "startMs": 13660,
+    "endMs": 14040,
+    "timestampMs": 13850,
+    "confidence": null
+  },
+  {
+    "text": "مكتوبة",
+    "startMs": 14040,
+    "endMs": 14500,
+    "timestampMs": 14270,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "خصيصاً",
+    "startMs": 14500,
+    "endMs": 15000,
+    "timestampMs": 14750,
+    "confidence": null
+  },
+  {
+    "text": "إله.",
+    "startMs": 15180,
+    "endMs": 15322,
+    "timestampMs": 15251,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "شو",
+    "startMs": 15850,
+    "endMs": 16140,
+    "timestampMs": 15995,
+    "confidence": null
+  },
+  {
+    "text": "اسم",
+    "startMs": 16140,
+    "endMs": 16440,
+    "timestampMs": 16290,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "اللعبة",
+    "startMs": 16440,
+    "endMs": 16840,
+    "timestampMs": 16640,
+    "confidence": null
+  },
+  {
+    "text": "اللي",
+    "startMs": 16840,
+    "endMs": 17060,
+    "timestampMs": 16950,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "ما",
+    "startMs": 17060,
+    "endMs": 17180,
+    "timestampMs": 17120,
+    "confidence": null
+  },
+  {
+    "text": "بفارقها؟",
+    "startMs": 17180,
+    "endMs": 17740,
+    "timestampMs": 17460,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

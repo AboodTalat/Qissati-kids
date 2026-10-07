@@ -1,0 +1,27 @@
+{
+  "reference": "Q-000010",
+  "child": {
+    "childName": "سيف",
+    "childAge": "8",
+    "gender": "boy",
+    "trait1": "حنون مرح خجول",
+    "trait2": "عصبي يحب الضحك و خفة الدم كريم",
+    "favourite": "رونالدو كاس العالم روبلوكس اندومي",
+    "sidekick": "هاشم",
+    "sidekickRelation": "brother",
+    "sidekickAge": "3",
+    "quirk": "قبل المغادرة للمدرسة يجب أن يقول باي كذا مرة ممكن توصل انه يطلع من الباب و يرجع عشان يتأكد انه قال باي ل امه و سمعته"
+  },
+  "story": {
+    "storyType": "goal",
+    "storyChoice": "بيخاف ما ينفهم و بيحب التأكيد على كلامه بشكل وسواسي و بخاف على حاله كتير",
+    "setting": "هو كتير بيحب يروح مكان ألعاب اسمه داز او kids station",
+    "tone": "funny",
+    "language": "ammiya",
+    "pages": 8,
+    "avoid": "ما بدنا تحسسه انه بنحكي عن الوسواس بشكل صريح"
+  },
+  "book": { "format": "pdf", "wantsAvatar": "no" },
+  "photos": [],
+  "test_note": "General-character continuity test only because no reference photos were supplied. The actual customer order still requests wantsAvatar=yes. No parent approval is claimed."
+}

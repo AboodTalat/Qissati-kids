@@ -1,6 +1,8 @@
 import { absoluteUrl, SITE_ORIGIN } from "@/lib/seo";
 
-const PRIVATE_PATHS = ["/admin/", "/api/", "/admin-manifest.webmanifest"];
+// A robots.txt path is a prefix match. Omitting the trailing slash protects
+// both the exact route (`/admin`) and everything nested below it.
+const PRIVATE_PATHS = ["/admin", "/api", "/admin-manifest.webmanifest"];
 
 // These product tokens cover search/retrieval, user-requested fetches and
 // model-development datasets. The wildcard rule already permits them, but an

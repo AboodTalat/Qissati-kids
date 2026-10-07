@@ -14,7 +14,7 @@ import DeviceNotifications from "./DeviceNotifications";
  * leaked had no move at all — the best they could do was ask an admin to
  * delete and re-create their account.
  *
- * It is a tab every role sees, not part of الحسابات, which is admin-only:
+ * It is a page every role sees, not part of الحسابات, which is admin-only:
  * changing *your own* password is not an administrative act, and putting it
  * there would leave staff exactly as stuck as before.
  *

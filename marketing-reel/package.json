@@ -1,0 +1,53 @@
+{
+  "name": "marketing-reel",
+  "version": "1.0.0",
+  "description": "Qissati Arabic marketing reel \u2014 20 seconds, 1080\u00d71920",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@huggingface/transformers": "4.2.0",
+    "@react-three/fiber": "^9.7.0",
+    "@remotion/cli": "4.0.529",
+    "@remotion/fonts": "4.0.529",
+    "@remotion/media": "4.0.529",
+    "@remotion/tailwind-v4": "4.0.529",
+    "@remotion/three": "4.0.529",
+    "@remotion/transitions": "4.0.529",
+    "@remotion/whisper-webgpu": "4.0.529",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.529",
+    "tailwindcss": "4.0.0",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.529",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio --no-open",
+    "build": "remotion bundle --out-dir=out/studio-bundle",
+    "lint": "eslint src",
+    "score": "node scripts/create-score.mjs",
+    "score:r12": "node scripts/create-r12-score.mjs",
+    "score:r13": "node scripts/create-r13-audio.mjs",
+    "score:r14": "node scripts/create-r14-audio.mjs",
+    "voice:r14": "node scripts/prepare-r14-voice.mjs",
+    "score:r15": "node scripts/create-r15-audio.mjs",
+    "render:r12": "remotion render Qissati-R12-Questions out/qissati-r12-instagram.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "render:r14": "remotion render Qissati-R14 out/qissati-r14-instagram.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "render": "remotion render Qissati-Marketing-Reel out/qissati-marketing-reel.mp4 --codec=h264 --crf=18",
+    "render:clean": "remotion render Qissati-Clean-Master out/qissati-clean-master.mp4 --codec=h264 --crf=18",
+    "voice:r15": "node scripts/prepare-r15-voice.mjs",
+    "transcribe:r15": "node scripts/transcribe-r15.mjs",
+    "render:r15": "remotion render Qissati-R15 out/qissati-r15-instagram.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

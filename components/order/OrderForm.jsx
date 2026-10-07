@@ -1055,6 +1055,12 @@ export default function OrderForm({ dict, lang, initialFormat, pricing }) {
                   amount={money(price.format, dict)}
                 />
               ) : null}
+              {values.format === "print" ? (
+                <PriceRow
+                  label={t.price.delivery}
+                  amount={t.price.deliveryIncluded}
+                />
+              ) : null}
               {price.showGift ? (
                 <PriceRow
                   label={t.price.giftPage}
