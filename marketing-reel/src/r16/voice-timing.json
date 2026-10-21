@@ -1,0 +1,14 @@
+{
+  "aligned": true,
+  "status": "Source and final WAV transcriptions checked against approved script. Final WAV intervals retained; attached conjunctions use the union of their measured adjacent intervals.",
+  "alignedWordCount": 36,
+  "captionCount": 36,
+  "voiceDurationMs": 18754,
+  "finalWordEndMs": 18600,
+  "alignmentSource": "Local multilingual Whisper small on final prepared WAV; approved spelling restored",
+  "speed": 1,
+  "sourceSha256": "950315184f03d0c2c067a30f5a2db37446e9ef8ffe15cddf5b11f3cf95a7ee6c",
+  "finalSha256": "ee9df58f99eb244fda99afef8a7912094613e52403d90384f4ec9948a9ce5c8f",
+  "captionPages": 14,
+  "sourceDurationMs": 18756
+}

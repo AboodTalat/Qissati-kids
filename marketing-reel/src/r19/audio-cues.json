@@ -1,0 +1,37 @@
+{
+  "fps": 30,
+  "durationInFrames": 570,
+  "tickFrames": [
+    5,
+    25,
+    45
+  ],
+  "paperHushFrame": 191,
+  "alignment": "Reviewed final WAV; ticks and paper hush follow measured words; steps follow the measured opening phrase after the paper unfolds.",
+  "voiceFinalSha256": "03ff4515e720873316450408ca41c80b44b2af550d10d8e86bfea76a71be4589",
+  "voiceWordFrames": {
+    "rain": 80,
+    "window": 97,
+    "steps": 140,
+    "corridor": 171,
+    "paper": 191,
+    "sound": 216,
+    "opening": 239,
+    "imagination": 326,
+    "listen": 373,
+    "together": 386,
+    "ask": 400,
+    "question": 429,
+    "see": 442,
+    "ticks": [
+      5,
+      25,
+      45
+    ]
+  },
+  "stepFrames": [
+    249,
+    270,
+    291
+  ]
+}

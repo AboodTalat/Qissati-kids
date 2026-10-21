@@ -1,0 +1,13 @@
+R21 · a small detail becomes a whole adventure · 20 seconds
+
+Prepared script only. No voice recording or measured captions are included.
+Read the complete voiceover.txt in warm, conversational Jordanian Arabic.
+Open with gentle wonder; brighten on «مغامرة كبيرة». Give «نجمة، لون» a light,
+playful rhythm. Land «اكتشفوا قصتي» confidently without an announcer voice.
+Target 16.5–17 seconds of speech, then leave the final three seconds to the
+original music and stable CTA. Keep every word and natural pacing.
+
+Future integration: preserve the supplied source recording, prepare a separate
+48kHz WAV, measure and review every word against that exact final WAV. Only then
+add narration and captions or adjust flexible action/SFX cues. Never present the
+authored scene schedule as measured speech timing.

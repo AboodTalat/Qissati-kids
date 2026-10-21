@@ -1,0 +1,59 @@
+{
+  "reel": "R26",
+  "music": "Original deterministic oscillator composition authored in scripts/create-r26-audio.mjs (D-major marimba theme, rolled piano chords, soft pad). No third-party audio or samples.",
+  "sfx": "Original deterministic synthesis: key ticks, paper whoosh/rustle, rounded chimes. No external samples.",
+  "voice": "Pending: house voice not chosen and no ElevenLabs take yet. Captions in src/r26/captions-planned.json are a planned cadence for layout only.",
+  "sampleRate": 48000,
+  "durationSeconds": 20,
+  "frameRate": 30,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "bpm": 96,
+  "key": "D major",
+  "mixing": {
+    "previewWithoutVoice": {
+      "music": 0.85,
+      "sfx": 0.9
+    },
+    "withAlignedVoice": {
+      "music": 0.3,
+      "sfx": 0.9,
+      "voice": 1
+    }
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -4.282,
+      "rmsDbfs": -23.075
+    },
+    "sfx": {
+      "peakDbfs": -19.524,
+      "rmsDbfs": -43.584
+    }
+  },
+  "measuredLoudness": {
+    "method": "ffmpeg loudnorm input measurements; processed output discarded",
+    "music": {
+      "status": "measured",
+      "integratedLufs": -21.05,
+      "truePeakDbtp": -4.28,
+      "loudnessRangeLu": 3.5
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -34.95,
+      "truePeakDbtp": -19.52,
+      "loudnessRangeLu": 6.9
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -22.37,
+      "truePeakDbtp": -5.69,
+      "loudnessRangeLu": 3.4
+    }
+  },
+  "sha256": {
+    "music": "d02b64e9c6b36fbf601b6bd514c93bba2d6040a9b802fb821e1fca3fe733e7b9",
+    "sfx": "230337316ec6ebdd0afe6e6ec544ab7e37aaf8543cd2f30615cd19e20b0304e7"
+  }
+}

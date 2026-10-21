@@ -1,0 +1,23 @@
+{
+  "aligned": true,
+  "status": "Reviewed word alignment measured on the final normalized WAV; approved spelling retained.",
+  "approvedWordCount": 30,
+  "alignedWordCount": 30,
+  "captionCount": 30,
+  "sourceDurationMs": 15386,
+  "voiceDurationMs": 15386,
+  "finalWordEndMs": 15252,
+  "alignmentSource": "Measured and reviewed final WAV",
+  "speed": 1,
+  "pitchPreserved": true,
+  "preparation": "Complete recording; no cuts or time stretch. Two-pass EBU loudness normalization, mono 48kHz PCM.",
+  "targetIntegratedLufs": -18,
+  "targetTruePeakDbtp": -2,
+  "preparedIntegratedLufs": -17.89,
+  "preparedTruePeakDbtp": -2,
+  "sourceSha256": "31d2063a4e69c1e1cc76b2cc9953c8130908d2f486ec48231f379428f85b1dd1",
+  "finalSha256": "03ff4515e720873316450408ca41c80b44b2af550d10d8e86bfea76a71be4589",
+  "normalizationOutputIntegratedLufs": -18.01,
+  "normalizationOutputTruePeakDbtp": -2,
+  "captionPages": 10
+}

@@ -1,0 +1,91 @@
+{
+  "reel": "R24",
+  "music": "Original deterministic oscillator composition authored in scripts/create-r24-audio.mjs: a new E-minor marimba melody, softly rolled piano, rounded bass and crossfading low pad. No third-party audio, samples or recordings.",
+  "sfx": "Original deterministic synthesis authored in scripts/create-r24-audio.mjs: brass compass clicks, rounded world-reveal chimes, soft water/paper movement and a three-note choice motif. No external samples or recordings.",
+  "voice": "Pending complete user-supplied narration and reviewed final-WAV measured word alignment. voiceover.txt is approved script text only. No substitute voice or invented measured captions.",
+  "sampleRate": 48000,
+  "durationSeconds": 20,
+  "frameRate": 30,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "bpm": 108,
+  "key": "E minor / C major / G major / A minor",
+  "cues": {
+    "compassClicks": [
+      0.55,
+      1.38,
+      2.3
+    ],
+    "seaReveal": 3.2,
+    "forestReveal": 5.2,
+    "spaceReveal": 7.2,
+    "choiceLights": [
+      9,
+      9.8,
+      10.6
+    ],
+    "invitation": 12,
+    "comment": 15.5,
+    "quietFinalHold": [
+      16,
+      20
+    ]
+  },
+  "mixing": {
+    "previewWithoutVoice": {
+      "music": 0.85,
+      "sfx": 0.92
+    },
+    "withAlignedVoice": {
+      "musicDuringSpeech": 0.22,
+      "sfxDuringSpeech": 0.35,
+      "voice": 1,
+      "recoverOverSeconds": 0.6
+    },
+    "sourceMasterGain": {
+      "music": 4.445698525097307,
+      "sfx": 1.4125375446227544,
+      "changeFromInitialSourceDb": {
+        "music": 5,
+        "sfx": 3
+      }
+    },
+    "note": "Music and SFX are independent tracks. Future voice should finish before 18s. Recover the score after the measured last word; do not derive narration timing from these planned cues."
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -4.642,
+      "rmsDbfs": -21.934
+    },
+    "sfx": {
+      "peakDbfs": -14.731,
+      "rmsDbfs": -39.084
+    }
+  },
+  "measuredLoudness": {
+    "method": "ffmpeg loudnorm input measurements; processed output discarded",
+    "music": {
+      "status": "measured",
+      "integratedLufs": -20.05,
+      "truePeakDbtp": -4.64,
+      "loudnessRangeLu": 6.5
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -31.65,
+      "truePeakDbtp": -14.65,
+      "loudnessRangeLu": 19.5
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -21.41,
+      "truePeakDbtp": -6.05,
+      "loudnessRangeLu": 6.6
+    }
+  },
+  "sha256": {
+    "music": "229d3960679482709cc9045a9fd9155cb554afd32036bc3f5e4ba1dda4d5b169",
+    "sfx": "09d994912d3d9ceb3e61d5f52b6e163695c0a640e40688a5a401bddec13b7ed8"
+  },
+  "tileTapBufferSha256": "85400fd4fad465b6592b3596b3508e562c24470014b1a4de3d2e62d05206275d"
+}

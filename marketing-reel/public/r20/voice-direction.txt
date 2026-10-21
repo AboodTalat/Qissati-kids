@@ -1,0 +1,11 @@
+R20 — 20-second three-word community game for Qissati / قصتي
+
+Recording status: PENDING. No narration has been generated, supplied or aligned for R20. The current preview has original instrumental music and independent SFX only. Do not reuse another reel's voice or show planned cadence as measured subtitles.
+
+Read the exact complete script in voiceover.txt, without introductory words, substitutions, omissions or a spoken brand tag. Delivery: natural colloquial Jordanian Arabic, warm, playful and curious; a small smile and clear invitation rather than an announcer voice. Keep “مكان، غرض، وشعور” distinct and give the example “حديقة، مفتاح، فضول” a little space. The final privacy phrase should remain easy to hear.
+
+Target the complete take to finish by 17.8 seconds, leaving the final two seconds of the 20-second / 600-frame / 30fps reel narration-free. The attached one-second cells are a planned cadence, not recorded timing. Natural phrasing takes priority over forcing one word into each cell. Keep the soundtrack out of the recording; supply the uncut original MP3/WAV separately.
+
+Planned visual/SFX beats: three paper tiles land at 1, 2 and 3 seconds; align at 4 seconds; garden/key/curiosity reveals at 5, 6 and 7 seconds; camera arc at 8 seconds; paper doorway forms at 9–12 seconds; the example clears and the doorway is gone by 13.9 seconds; three blanks land at 14, 14.24 and 14.48 seconds; the question enters at 15 seconds; the pauseable comment template holds at 16–20 seconds.
+
+When the actual take exists, preserve the full source, normalize a separate mono 48kHz WAV, and measure word timing against that exact final WAV. Review every word and phrase edge, record the final WAV hash and alignment provenance, then enable voice and connected RTL phrase captions together at frame zero. Adjust flexible model/SFX cues to the measured take while retaining the fixed A/B/C title windows and the 20-second total length. Never claim these planned seconds as measured alignment.

@@ -1,5 +1,6 @@
-import { useLayoutEffect, useMemo, useRef } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { ThreeCanvas } from '@remotion/three';
+import { useRemotionEnvironment } from 'remotion';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -35,8 +36,9 @@ export function cameraPose(frame) {
   return wide;
 }
 
-function Lens({ frame }) {
-  const { camera, gl, scene, size } = useThree();
+function Lens({ frame, contentScale }) {
+  const { camera, gl, scene, size, advance } = useThree();
+  const { isRendering } = useRemotionEnvironment();
   const lens = useRef(null);
   const { position: [x, y, z], target: [tx, ty, tz] } = cameraPose(frame);
   useLayoutEffect(() => {
@@ -44,7 +46,8 @@ function Lens({ frame }) {
     // autonomous useFrame animation. Export and backwards seeking use the same
     // render path; composer time is fixed at zero.
     const render = gl.render.bind(gl);
-    const composer = new EffectComposer(gl);
+    const target = new THREE.WebGLRenderTarget(size.width, size.height, { type: THREE.HalfFloatType, samples: 4 });
+    const composer = new EffectComposer(gl, target);
     const bokeh = new BokehPass(scene, camera, { focus: 7, aperture: 0.0035, maxblur: 0.009 });
     // Preserve transparent canvas edges while using the genuine depth buffer.
     bokeh.materialBokeh.fragmentShader = bokeh.materialBokeh.fragmentShader.replace('gl_FragColor.a = 1.0;', '');
@@ -77,12 +80,28 @@ function Lens({ frame }) {
     };
   }, [gl, scene, camera, size.width, size.height]);
   useLayoutEffect(() => {
+    // Expand the authored 720×660 stage into the entire vertical canvas before
+    // applying the editorial framing scale. The plinth can bleed naturally
+    // during the macro shots instead of ending at a smaller canvas rectangle.
+    // Zoom the projection, rather than shrinking a clipped WebGL rectangle.
+    // Shift its principal point so 3D and DOM scale around the same 540,960
+    // frame centre, leaving real scene pixels available beyond the old crop.
+    const centreY = 960 + (848 - 960) * contentScale;
+    camera.zoom = contentScale;
+    camera.setViewOffset(720, 660, -180, 330 - centreY, 1080, 1920);
     camera.position.set(x, y, z); camera.lookAt(tx, ty, tz); camera.updateProjectionMatrix();
     if (lens.current) {
       lens.current.uniforms.focus.value = camera.position.distanceTo(new THREE.Vector3(tx, ty, tz));
-      lens.current.uniforms.aperture.value = frame < 300 ? 0.0035 : 0.0013;
+      lens.current.uniforms.aperture.value = (frame < 300 ? 0.0035 : 0.0013) * contentScale;
+      lens.current.uniforms.maxblur.value = 0.009 * contentScale;
     }
-  }, [camera, frame, x, y, z, tx, ty, tz]);
+  }, [camera, frame, contentScale, x, y, z, tx, ty, tz]);
+  useEffect(() => {
+    // Studio can pause requestAnimationFrame in an unfocused preview. Render
+    // each authored frame explicitly so a seek never leaves stale 3D pixels.
+    // Export is already advanced by ThreeCanvas's ManualFrameRenderer.
+    if (!isRendering) advance(0);
+  }, [advance, frame, isRendering]);
   return null;
 }
 
@@ -115,10 +134,37 @@ function objectPose(frame, index, initial) {
   };
 }
 
+function ContactShadows({ frame }) {
+  const texture = useMemo(() => {
+    const pixels = new Uint8Array(128 * 128 * 4);
+    for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) {
+      const r = ((x - 63.5) / 32) ** 2 + ((y - 63.5) / 32) ** 2;
+      const i = (y * 128 + x) * 4;
+      pixels[i] = 18; pixels[i + 1] = 46; pixels[i + 2] = 44;
+      pixels[i + 3] = Math.round(Math.max(0, Math.exp(-r * 1.6) - 0.002) * 255);
+    }
+    const t = new THREE.DataTexture(pixels, 128, 128);
+    t.colorSpace = THREE.SRGBColorSpace; t.needsUpdate = true; return t;
+  }, []);
+  useLayoutEffect(() => () => texture.dispose(), [texture]);
+  const stone = enter(frame, Math.min(cues.stone - 30, 150), 28);
+  const key = enter(frame, Math.min(cues.key - 30, 210), 25);
+  const initial = [[-1.45, 0, 0.22], [mix(-2.65, 0, stone), 0.28, 0.12], [mix(2.5, 1.4, key), -0.12, 0.13]];
+  return <>{initial.map((position, index) => {
+    const p = objectPose(frame, index, position);
+    const height = Math.max(0, p.position[1] - position[1]);
+    const show = [1, stone, key][index];
+    return <mesh key={index} position={[p.position[0] + (index === 1 ? 0 : 0.14 * p.scale), 0.007, p.position[2] + (index === 0 ? 0.18 : 0.06)]} rotation={[-Math.PI / 2, 0, 0]} scale={p.scale * (1 + height * 0.35)}>
+      <planeGeometry args={[[1.65, 1.18], [1.85, 1.3], [0.78, 0.75]][index]} />
+      <meshBasicMaterial map={texture} transparent opacity={show * 0.38 * Math.exp(-height * 2.5)} depthWrite={false} />
+    </mesh>;
+  })}</>;
+}
+
 function RainBoot({ frame }) {
   const shape = useMemo(bootShape, []);
   const p = objectPose(frame, 0, [-1.45, 0, 0.22]);
-  const show = mix(0.82, 1, enter(frame, 30, 22));
+  const show = enter(frame, 30, 22);
   return <group position={p.position} scale={p.scale * show} rotation={[0, mix(-0.56, 0.28, enter(frame, 90, 30)) + p.rotation, 0]}>
     <mesh castShadow receiveShadow>
       <extrudeGeometry args={[shape, { depth: 0.36, bevelEnabled: true, bevelSize: 0.06, bevelThickness: 0.06, bevelSegments: 5, curveSegments: 28 }]} />
@@ -192,10 +238,10 @@ function Morph({ from, to, progress, color, opacity }) {
 }
 
 function ShadowStories({ frame }) {
-  const overlap = enter(frame, 270, 42), fold = enter(frame, 360, 30);
+  const overlap = enter(frame, 270, 42), fold = enter(frame, 360, 54);
   const puddle = enter(frame, cues.boot, 27), hill = enter(frame, cues.stone, 27), door = enter(frame, cues.key, 27);
-  const shadows = 1 - fold;
-  return <group position={[0, 0.81, -0.66]} scale={[1, 1 - fold * 0.98, 1]} rotation={[fold * -Math.PI / 2, 0, 0]}>
+  const shadows = 1 - enter(frame, 432, 22);
+  return <group position={[0, mix(0.81, 0.27, fold), mix(-0.66, 0.46, fold)]} scale={mix(1, 0.62, fold)} rotation={[fold * -Math.PI / 2, 0, 0]}>
     <group position={[mix(-0.66, -0.48, overlap), -puddle * 0.25, 0.004]}>
       <Morph from={bootOutline} to={ellipse(0.71, 0.25)} progress={puddle} color={TEAL} opacity={enter(frame, 64, 26) * shadows * 0.48} />
       {[0.32, 0.57].map((r, i) => <mesh key={i} position={[0, 0, 0.008]} scale={[1, 0.34, 1]}><ringGeometry args={[r - 0.014, r, 64]} /><meshBasicMaterial color="#bad2ca" transparent opacity={puddle * shadows * 0.85} depthWrite={false} /></mesh>)}
@@ -212,6 +258,31 @@ function ShadowStories({ frame }) {
   </group>;
 }
 
+function PaperIllustration({ side, frame }) {
+  const opacity = enter(frame, 432, 24);
+  return <group position={[side * 0.59, 0.107, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+    {side === -1 ? <>
+      <group position={[0, 0.09, 0]} scale={0.58}>
+        <Morph from={mountain} to={mountain} progress={1} color={TEAL} opacity={opacity} />
+      </group>
+      <group position={[0.02, -0.32, 0.006]} scale={0.54}>
+        <Morph from={ellipse(0.71, 0.25)} to={ellipse(0.71, 0.25)} progress={1} color="#a1c1b1" opacity={opacity} />
+        <mesh scale={[1, 0.34, 1]}><ringGeometry args={[0.41, 0.426, 64]} /><meshBasicMaterial color={CREAM} transparent opacity={opacity} depthWrite={false} /></mesh>
+      </group>
+      <mesh position={[-0.31, 0.43, 0.007]}><circleGeometry args={[0.075, 32]} /><meshBasicMaterial color={GOLD} transparent opacity={opacity} depthWrite={false} /></mesh>
+    </> : <>
+      <group position={[0.06, 0.07, 0]} scale={0.66}>
+        <Morph from={arch} to={arch} progress={1} color={TEAL} opacity={opacity} />
+        <group position={[0, -0.04, 0.008]} scale={[0.74, 0.86, 1]}><Morph from={arch} to={arch} progress={1} color={GOLD} opacity={opacity} /></group>
+      </group>
+      <group position={[-0.27, -0.37, 0.016]} scale={0.24}>
+        <Morph from={bootOutline} to={bootOutline} progress={1} color={INK} opacity={opacity} />
+      </group>
+      <mesh position={[0.1, -0.42, 0.009]}><planeGeometry args={[0.48, 0.018]} /><meshBasicMaterial color={GOLD} transparent opacity={opacity} depthWrite={false} /></mesh>
+    </>}
+  </group>;
+}
+
 function Book({ frame }) {
   const rise = enter(frame, cues.book, 30);
   const close = enter(frame, cues.halfClose, 30);
@@ -221,6 +292,7 @@ function Book({ frame }) {
     {[-1, 1].map((side) => <group key={side} rotation={[0, 0, side * angle]}>
       <Rounded dimensions={[1.23, 0.07, 1.39]} color={TEAL} position={[side * 0.61, 0, 0]} radius={0.025} />
       <Rounded dimensions={[1.17, 0.06, 1.32]} color={CREAM} position={[side * 0.59, 0.06, 0]} radius={0.02} />
+      <PaperIllustration side={side} frame={frame} />
       {[0, 1, 2].map((i) => <mesh key={i} position={[side * 0.59, 0.046 + i * 0.016, 0.662]}><boxGeometry args={[1.1, 0.003, 0.003]} /><meshBasicMaterial color="#c5bfae" /></mesh>)}
       <mesh position={[side * 1.205, 0.089, 0]}><boxGeometry args={[0.016, 0.006, 1.25]} /><meshStandardMaterial color={GOLD} metalness={0.4} roughness={0.5} /></mesh>
     </group>)}
@@ -228,13 +300,13 @@ function Book({ frame }) {
   </group>;
 }
 
-export function Museum({ frame }) {
+export function Museum({ frame, contentScale = 1 }) {
   const reset = enter(frame, 600, 29);
   // Return only the small boot in the last second, beneath a held end card.
-  const objectFrame = mix(frame, 32, reset);
-  const stageOpacity = mix(1, 0.12, enter(frame, 548, 40));
-  return <ThreeCanvas name="Museum · camera · shadow stories" width={720} height={660} style={{ position: 'absolute', left: 180, top: 518, opacity: stageOpacity }} shadows={{ type: THREE.PCFSoftShadowMap }} camera={{ fov: 39, near: 0.1, far: 40, position: [0, 2.9, 7.7] }} gl={{ antialias: true, alpha: true, toneMapping: THREE.NeutralToneMapping }} dpr={1}>
-    <Lens frame={frame} />
+  const objectFrame = mix(frame, 52, reset);
+  const stageOpacity = enter(frame, 0, 24) * mix(1, 0.12, enter(frame, 548, 40));
+  return <ThreeCanvas name="Museum · camera · shadow stories" width={1080} height={1920} frameloop="never" style={{ position: 'absolute', inset: 0, opacity: stageOpacity }} shadows={{ type: THREE.PCFShadowMap }} camera={{ fov: 39, near: 0.1, far: 40, position: [0, 2.9, 7.7] }} gl={{ antialias: true, alpha: true, toneMapping: THREE.NeutralToneMapping }} dpr={1}>
+    <Lens frame={frame} contentScale={contentScale} />
     <ambientLight color={CREAM} intensity={0.55} />
     <directionalLight position={[-3.6 + enter(frame, 330, 60) * 0.65, 5.8, 5]} intensity={2.7} color="#fff4dd" castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={4} shadow-camera-bottom={-3} shadow-normalBias={0.02} shadow-bias={-0.00015} />
     <pointLight position={[3, 2.8, 1.7]} color="#f5d5a0" intensity={1.7 + enter(frame, cues.key - 20, 20) * 0.6} distance={9} />
@@ -244,6 +316,7 @@ export function Museum({ frame }) {
     <Rounded dimensions={[4.71, 0.62, 2.01]} color={TEAL} position={[0, -0.58, -0.02]} radius={0.09} />
     <Rounded dimensions={[4.92, 2.3, 0.052]} color={CREAM} position={[0, 1.15, -0.72]} radius={0.02} />
     <ShadowStories frame={objectFrame} />
+    <ContactShadows frame={objectFrame} />
     <RainBoot frame={objectFrame} />
     <Stone frame={objectFrame} />
     <BrassKey frame={objectFrame} />

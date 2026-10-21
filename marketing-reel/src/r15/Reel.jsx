@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import { Audio } from '@remotion/media';
-import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame, interpolateColors } from 'remotion';
+import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame } from 'remotion';
 import { Museum, INK, CREAM, GOLD, TEAL } from './Scene';
+import { MuseumBackdrop } from './Backdrop';
 import { aligned, captions, cues, enter, ease } from './timing';
 import { brand } from '../brand';
 
@@ -21,7 +22,7 @@ function Headline({ frame }) {
     : frame < 300 ? { text: 'جزمة / حجر / مفتاح', start: 90, size: 57 }
       : frame < 510 ? { text: 'التفصيلة\nبتصير مشهد', start: 300, size: 73 }
         : { text: 'شو غرضه\nالمفضل؟', start: 510, size: 74 };
-  return <div data-r15-essential="headline" style={{ position: 'absolute', left: 200, top: frame < 510 ? 351 : 445, width: 680 }}>
+  return <div data-r15-essential="headline" style={{ position: 'absolute', left: 200, top: 445, width: 680 }}>
     <Words {...line} frame={frame} color={frame < 14 ? CREAM : INK} />
     {frame >= 90 && frame < 300 && <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16, gap: 10 }}>
       {[cues.boot, cues.stone, cues.key].map((cue, i) => <div key={cue} style={{ width: 31, height: 2, background: frame >= cue ? GOLD : '#cabfac', opacity: frame >= cue && frame < [cues.stone, cues.key, 300][i] ? 1 : 0.45 }} />)}
@@ -35,41 +36,46 @@ function Subtitles({ frame }) {
   let page = [];
   captions.forEach((word) => { page.push(word); if (word.pageBreakAfter) { pages.push(page); page = []; } });
   if (page.length) pages.push(page);
-  const current = pages.find((p) => time >= p[0].startMs && time < p.at(-1).endMs + 100);
+  const current = pages.find((p, i) => time >= p[0].startMs && time < Math.min(p.at(-1).endMs + 100, pages[i + 1]?.[0].startMs ?? Infinity));
   if (!current) return null;
-  return <div data-r15-essential="subtitles" dir="rtl" lang="ar" style={{ position: 'absolute', left: 200, top: 1032, width: 680, minHeight: 76, textAlign: 'center', fontSize: 42, fontWeight: 650, lineHeight: 1.55, color: INK }}>
+  return <div data-r15-essential="subtitles" dir="rtl" lang="ar" style={{ position: 'absolute', left: 200, top: 1130, width: 680, minHeight: 76, boxSizing: 'border-box', padding: '8px 18px', border: '1px solid #c69b5647', borderRadius: 16, backgroundColor: '#fdf8f0ee', boxShadow: '0 6px 26px #0b303315', textAlign: 'center', whiteSpace: 'nowrap', fontSize: 42, fontWeight: 650, lineHeight: 1.55, color: INK }}>
     {current.map((word, i) => <Fragment key={word.startMs}><span style={{ display: 'inline-block', opacity: enter(frame, word.startMs / 1000 * 30, 3), color: time >= word.startMs && time <= word.endMs ? TEAL : INK }}>{word.text.trim()}</span>{i < current.length - 1 ? ' ' : ''}</Fragment>)}
   </div>;
 }
 
+function BrandMark({ frame }) {
+  return <div data-r15-essential="logo" dir="rtl" style={{ position: 'absolute', left: 340, top: 313, width: 400, height: 104, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20 }}>
+    <Img src={staticFile('brand/logo.png')} style={{ width: 105, height: 100, objectFit: 'contain' }} />
+    <span style={{ fontSize: 58, fontWeight: 800, color: frame < 14 ? CREAM : TEAL }}>قصتي</span>
+  </div>;
+}
+
 function EndCard({ frame }) {
-  return <>
-    <div data-r15-essential="logo" dir="rtl" style={{ position: 'absolute', left: 340, top: 313, width: 400, height: 104, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20, opacity: enter(frame, cues.brand, 20) }}>
-      <Img src={staticFile('brand/logo.png')} style={{ width: 105, height: 100, objectFit: 'contain' }} />
-      <span style={{ fontSize: 58, fontWeight: 800, color: TEAL }}>قصتي</span>
-    </div>
-    <div data-r15-essential="cta" dir="rtl" style={{ position: 'absolute', left: 210, top: 1115, width: 660, textAlign: 'center', opacity: enter(frame, cues.cta, 18), color: INK }}>
-      <div style={{ width: 64, height: 2, background: GOLD, margin: '0 auto 12px' }} />
-      <div style={{ fontSize: 38, lineHeight: 1.5, fontWeight: 700 }}>رابط الطلب في البايو</div>
-      <div dir="ltr" style={{ fontSize: 24, lineHeight: 1.6, color: TEAL }}>{brand.instagram}</div>
-    </div>
-  </>;
+  return <div data-r15-essential="cta" dir="rtl" style={{ position: 'absolute', left: 210, top: 1115, width: 660, textAlign: 'center', opacity: enter(frame, cues.cta, 18), color: INK }}>
+    <div style={{ width: 64, height: 2, background: GOLD, margin: '0 auto 12px' }} />
+    <div style={{ fontSize: 38, lineHeight: 1.5, fontWeight: 700 }}>رابط الطلب في البايو</div>
+    <div dir="ltr" style={{ fontSize: 24, lineHeight: 1.6, color: TEAL }}>{brand.instagram}</div>
+  </div>;
 }
 
 function Grain() {
   return <AbsoluteFill style={{ pointerEvents: 'none', opacity: 0.032, mixBlendMode: 'multiply', backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 180 180\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'.72\' numOctaves=\'3\' seed=\'15\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }} />;
 }
 
-export function R15Reel({ voice = false, safeAreaPreview = false }) {
+export function R15Reel({ voice = false, safeAreaPreview = false, contentScale = 0.8 }) {
   const frame = useCurrentFrame();
+  const scale = Math.max(0.65, Math.min(1, contentScale));
   if (voice && !aligned) throw new Error('R15 needs its final ElevenLabs recording and measured captions. Run npm run voice:r15 -- /absolute/final.wav /absolute/alignment.json.');
-  const bg = interpolateColors(frame, [0, 30, 570, 600], ['#0b3033', CREAM, CREAM, '#fffdf8']);
-  return <AbsoluteFill style={{ backgroundColor: bg, fontFamily: 'Cairo', overflow: 'hidden' }}>
-    <Museum frame={frame} />
+  return <AbsoluteFill data-r15-canvas style={{ backgroundColor: CREAM, fontFamily: 'Cairo', overflow: 'hidden' }}>
+    <MuseumBackdrop frame={frame} contentScale={scale} />
+    <Museum frame={frame} contentScale={scale} />
     <Grain />
-    <Headline frame={frame} />
-    {voice && <Subtitles frame={frame} />}
-    <EndCard frame={frame} />
+    <AbsoluteFill name="Editorial framing · extra room for zoom" data-r15-framing style={{ scale, transformOrigin: '540px 960px' }}>
+      <Headline frame={frame} />
+      {voice && <Subtitles frame={frame} />}
+      <BrandMark frame={frame} />
+      <EndCard frame={frame} />
+    </AbsoluteFill>
     <Sequence name="Music · original museum score" layout="none" durationInFrames={630}>
       <Audio src={staticFile('r15/music.wav')} volume={(f) => (voice && f < 570 ? 0.2 : 0.43) * (1 - ease((f - 607) / 22))} />
     </Sequence>
@@ -78,5 +84,19 @@ export function R15Reel({ voice = false, safeAreaPreview = false }) {
     </Sequence>
     {voice && <Sequence name="Voice · final ElevenLabs WAV" layout="none" durationInFrames={570}><Audio src={staticFile('r15/voice.wav')} volume={1} /></Sequence>}
     {safeAreaPreview && <div style={{ position: 'absolute', left: 180, top: 300, width: 720, height: 930, border: '2px dashed #ae683c', pointerEvents: 'none' }} />}
+  </AbsoluteFill>;
+}
+
+export function R15Cover() {
+  return <AbsoluteFill style={{ backgroundColor: CREAM, fontFamily: 'Cairo', overflow: 'hidden' }}>
+    <MuseumBackdrop frame={315} />
+    <Museum frame={315} />
+    <Grain />
+    <div dir="rtl" style={{ position: 'absolute', left: 340, top: 313, width: 400, height: 104, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20 }}>
+      <Img src={staticFile('brand/logo.png')} style={{ width: 105, height: 100, objectFit: 'contain' }} />
+      <span style={{ fontSize: 58, fontWeight: 800, color: TEAL }}>قصتي</span>
+    </div>
+    <div dir="rtl" lang="ar" style={{ position: 'absolute', left: 200, top: 445, width: 680, textAlign: 'center', fontSize: 56, fontWeight: 800, lineHeight: 1.5, color: INK }}>ليش هاي الجزمة الصغيرة<br />مهمة بالقصة؟</div>
+    <div dir="rtl" lang="ar" style={{ position: 'absolute', left: 210, top: 1142, width: 660, textAlign: 'center', fontSize: 38, fontWeight: 700, color: TEAL }}>جزمة / حجر / مفتاح</div>
   </AbsoluteFill>;
 }

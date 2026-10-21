@@ -1,0 +1,186 @@
+{
+  "source": "/Users/abood/Downloads/ElevenLabs_2026-10-10T18_26_39_Mazen Lawand - Deep & Professional_pvc_sp114_s40_sb50_v4.mp3",
+  "review": "Arabic recognition spelling reconciled to the supplied approved script. Fused recognition tokens retain shared measured intervals; no invented word boundaries.",
+  "captions": [
+    {
+      "text": "قبل",
+      "startMs": 100,
+      "endMs": 380,
+      "sourceRecognition": "كبل"
+    },
+    {
+      "text": "ما تطفّوا",
+      "startMs": 380,
+      "endMs": 960,
+      "sourceRecognition": "نتطفض"
+    },
+    {
+      "text": "الضو،",
+      "startMs": 960,
+      "endMs": 1400,
+      "sourceRecognition": "دو"
+    },
+    {
+      "text": "جرّبوا",
+      "startMs": 1640,
+      "endMs": 1960,
+      "sourceRecognition": "جرب"
+    },
+    {
+      "text": "تسألوا",
+      "startMs": 1960,
+      "endMs": 2380,
+      "sourceRecognition": "تسألو"
+    },
+    {
+      "text": "طفلكم:",
+      "startMs": 2380,
+      "endMs": 3040,
+      "sourceRecognition": "طفلكون"
+    },
+    {
+      "text": "لو",
+      "startMs": 3300,
+      "endMs": 3520,
+      "sourceRecognition": "لو"
+    },
+    {
+      "text": "في",
+      "startMs": 3520,
+      "endMs": 3640,
+      "sourceRecognition": "فيه"
+    },
+    {
+      "text": "باب",
+      "startMs": 3640,
+      "endMs": 3940,
+      "sourceRecognition": "باب"
+    },
+    {
+      "text": "سري",
+      "startMs": 3940,
+      "endMs": 4160,
+      "sourceRecognition": "سر"
+    },
+    {
+      "text": "بغرفتك،",
+      "startMs": 4160,
+      "endMs": 4960,
+      "sourceRecognition": "بغرفتك"
+    },
+    {
+      "text": "وين بودّيك؟",
+      "startMs": 5120,
+      "endMs": 6100,
+      "sourceRecognition": "وينبوا ديك ؟"
+    },
+    {
+      "text": "اسمعوا",
+      "startMs": 6320,
+      "endMs": 6740,
+      "sourceRecognition": "اسمعوا"
+    },
+    {
+      "text": "الجواب",
+      "startMs": 6740,
+      "endMs": 7140,
+      "sourceRecognition": "الجواب"
+    },
+    {
+      "text": "من",
+      "startMs": 7140,
+      "endMs": 7260,
+      "sourceRecognition": "من"
+    },
+    {
+      "text": "غير",
+      "startMs": 7260,
+      "endMs": 7460,
+      "sourceRecognition": "غير"
+    },
+    {
+      "text": "ما",
+      "startMs": 7460,
+      "endMs": 7560,
+      "sourceRecognition": "ما"
+    },
+    {
+      "text": "تصحّحوه.",
+      "startMs": 7560,
+      "endMs": 8320,
+      "sourceRecognition": "تصححوه"
+    },
+    {
+      "text": "يمكن",
+      "startMs": 8540,
+      "endMs": 8860,
+      "sourceRecognition": "يمكن"
+    },
+    {
+      "text": "يطلع",
+      "startMs": 8860,
+      "endMs": 9200,
+      "sourceRecognition": "يطلع"
+    },
+    {
+      "text": "منه",
+      "startMs": 9200,
+      "endMs": 9580,
+      "sourceRecognition": "منه"
+    },
+    {
+      "text": "عالم",
+      "startMs": 9580,
+      "endMs": 10020,
+      "sourceRecognition": "عالم"
+    },
+    {
+      "text": "كامل.",
+      "startMs": 10020,
+      "endMs": 10600,
+      "sourceRecognition": "كامل"
+    },
+    {
+      "text": "احفظوا",
+      "startMs": 10760,
+      "endMs": 11200,
+      "sourceRecognition": "احفظوا"
+    },
+    {
+      "text": "السؤال",
+      "startMs": 11200,
+      "endMs": 11800,
+      "sourceRecognition": "السؤال"
+    },
+    {
+      "text": "لليلة اللي",
+      "startMs": 11800,
+      "endMs": 12300,
+      "sourceRecognition": "لليلي"
+    },
+    {
+      "text": "بدكم",
+      "startMs": 12300,
+      "endMs": 12720,
+      "sourceRecognition": "بيتكم"
+    },
+    {
+      "text": "فيها",
+      "startMs": 12720,
+      "endMs": 13000,
+      "sourceRecognition": "فيها"
+    },
+    {
+      "text": "حكاية",
+      "startMs": 13000,
+      "endMs": 13380,
+      "sourceRecognition": "حكاية"
+    },
+    {
+      "text": "جديدة.",
+      "startMs": 13380,
+      "endMs": 14000,
+      "sourceRecognition": "جديدة"
+    }
+  ]
+}

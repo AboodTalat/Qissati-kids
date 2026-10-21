@@ -1,0 +1,201 @@
+[
+  {
+    "text": "وصل",
+    "startMs": 160,
+    "endMs": 580,
+    "timestampMs": 370,
+    "confidence": null
+  },
+  {
+    "text": " البطل",
+    "startMs": 580,
+    "endMs": 960,
+    "timestampMs": 770,
+    "confidence": null
+  },
+  {
+    "text": " للمفترق.",
+    "startMs": 960,
+    "endMs": 1664,
+    "timestampMs": 1312,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " قدّامه",
+    "startMs": 2260,
+    "endMs": 2600,
+    "timestampMs": 2430,
+    "confidence": null
+  },
+  {
+    "text": " جسر",
+    "startMs": 2600,
+    "endMs": 3120,
+    "timestampMs": 2860,
+    "confidence": null
+  },
+  {
+    "text": " يودّيه",
+    "startMs": 3120,
+    "endMs": 3480,
+    "timestampMs": 3300,
+    "confidence": null
+  },
+  {
+    "text": " لصديقه،",
+    "startMs": 3480,
+    "endMs": 4046,
+    "timestampMs": 3763,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " وطريق",
+    "startMs": 4500,
+    "endMs": 5100,
+    "timestampMs": 4800,
+    "confidence": null
+  },
+  {
+    "text": " يرجّعه",
+    "startMs": 5100,
+    "endMs": 5600,
+    "timestampMs": 5350,
+    "confidence": null
+  },
+  {
+    "text": " يجيب",
+    "startMs": 5600,
+    "endMs": 5960,
+    "timestampMs": 5780,
+    "confidence": null
+  },
+  {
+    "text": " مساعدة.",
+    "startMs": 5960,
+    "endMs": 6375,
+    "timestampMs": 6168,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " أي",
+    "startMs": 6940,
+    "endMs": 7120,
+    "timestampMs": 7030,
+    "confidence": null
+  },
+  {
+    "text": " نهاية",
+    "startMs": 7120,
+    "endMs": 7520,
+    "timestampMs": 7320,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بتختاروا له؟",
+    "startMs": 7520,
+    "endMs": 8160,
+    "timestampMs": 7840,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " الأولى",
+    "startMs": 8680,
+    "endMs": 9073,
+    "timestampMs": 8877,
+    "confidence": null
+  },
+  {
+    "text": " ولا الثانية؟",
+    "startMs": 9420,
+    "endMs": 10003,
+    "timestampMs": 9712,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " الأجمل",
+    "startMs": 10620,
+    "endMs": 11060,
+    "timestampMs": 10840,
+    "confidence": null
+  },
+  {
+    "text": " بالحكايات",
+    "startMs": 11060,
+    "endMs": 12020,
+    "timestampMs": 11540,
+    "confidence": null
+  },
+  {
+    "text": " إن",
+    "startMs": 12020,
+    "endMs": 12240,
+    "timestampMs": 12130,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " السؤال",
+    "startMs": 12240,
+    "endMs": 12640,
+    "timestampMs": 12440,
+    "confidence": null
+  },
+  {
+    "text": " نفسه",
+    "startMs": 12640,
+    "endMs": 13180,
+    "timestampMs": 12910,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " يفتح",
+    "startMs": 13180,
+    "endMs": 13560,
+    "timestampMs": 13370,
+    "confidence": null
+  },
+  {
+    "text": " نقاش",
+    "startMs": 13560,
+    "endMs": 14040,
+    "timestampMs": 13800,
+    "confidence": null
+  },
+  {
+    "text": " صغير",
+    "startMs": 14040,
+    "endMs": 14480,
+    "timestampMs": 14260,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بينكم",
+    "startMs": 14480,
+    "endMs": 15040,
+    "timestampMs": 14760,
+    "confidence": null
+  },
+  {
+    "text": " وبين",
+    "startMs": 15040,
+    "endMs": 15260,
+    "timestampMs": 15150,
+    "confidence": null
+  },
+  {
+    "text": " أطفالكم.",
+    "startMs": 15260,
+    "endMs": 15824,
+    "timestampMs": 15542,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

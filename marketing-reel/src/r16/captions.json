@@ -1,0 +1,268 @@
+[
+  {
+    "text": "من",
+    "startMs": 200,
+    "endMs": 400,
+    "timestampMs": 300,
+    "confidence": null
+  },
+  {
+    "text": " فوق،",
+    "startMs": 400,
+    "endMs": 1100,
+    "timestampMs": 750,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " عمّان",
+    "startMs": 1100,
+    "endMs": 1680,
+    "timestampMs": 1390,
+    "confidence": null
+  },
+  {
+    "text": " شوارع",
+    "startMs": 1680,
+    "endMs": 2280,
+    "timestampMs": 1980,
+    "confidence": null
+  },
+  {
+    "text": " وبيوت.",
+    "startMs": 2280,
+    "endMs": 2800,
+    "timestampMs": 2540,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بس",
+    "startMs": 3240,
+    "endMs": 3480,
+    "timestampMs": 3360,
+    "confidence": null
+  },
+  {
+    "text": " من",
+    "startMs": 3480,
+    "endMs": 3580,
+    "timestampMs": 3530,
+    "confidence": null
+  },
+  {
+    "text": " عيون",
+    "startMs": 3580,
+    "endMs": 3940,
+    "timestampMs": 3760,
+    "confidence": null
+  },
+  {
+    "text": " طفل؟",
+    "startMs": 3940,
+    "endMs": 4300,
+    "timestampMs": 4120,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " درج",
+    "startMs": 4760,
+    "endMs": 5140,
+    "timestampMs": 4950,
+    "confidence": null
+  },
+  {
+    "text": " طويل",
+    "startMs": 5140,
+    "endMs": 5580,
+    "timestampMs": 5360,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بصير",
+    "startMs": 5580,
+    "endMs": 6060,
+    "timestampMs": 5820,
+    "confidence": null
+  },
+  {
+    "text": " طريق",
+    "startMs": 6060,
+    "endMs": 6500,
+    "timestampMs": 6280,
+    "confidence": null
+  },
+  {
+    "text": " كنز،",
+    "startMs": 6500,
+    "endMs": 6800,
+    "timestampMs": 6650,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " وشجرة",
+    "startMs": 7120,
+    "endMs": 7720,
+    "timestampMs": 7420,
+    "confidence": null
+  },
+  {
+    "text": " الحارة",
+    "startMs": 7720,
+    "endMs": 8280,
+    "timestampMs": 8000,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بتصير",
+    "startMs": 8280,
+    "endMs": 8820,
+    "timestampMs": 8550,
+    "confidence": null
+  },
+  {
+    "text": " قلعة،",
+    "startMs": 8820,
+    "endMs": 9200,
+    "timestampMs": 9010,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " وضوّ",
+    "startMs": 9500,
+    "endMs": 9920,
+    "timestampMs": 9710,
+    "confidence": null
+  },
+  {
+    "text": " الشباك",
+    "startMs": 9920,
+    "endMs": 10660,
+    "timestampMs": 10290,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بصير",
+    "startMs": 10660,
+    "endMs": 11040,
+    "timestampMs": 10850,
+    "confidence": null
+  },
+  {
+    "text": " إشارة",
+    "startMs": 11040,
+    "endMs": 11500,
+    "timestampMs": 11270,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " لبداية",
+    "startMs": 11500,
+    "endMs": 12160,
+    "timestampMs": 11830,
+    "confidence": null
+  },
+  {
+    "text": " المغامرة.",
+    "startMs": 12160,
+    "endMs": 12700,
+    "timestampMs": 12430,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " تخيّلوا",
+    "startMs": 13200,
+    "endMs": 13680,
+    "timestampMs": 13440,
+    "confidence": null
+  },
+  {
+    "text": " مدينتكم",
+    "startMs": 13680,
+    "endMs": 14380,
+    "timestampMs": 14030,
+    "confidence": null
+  },
+  {
+    "text": " مرسومة",
+    "startMs": 14380,
+    "endMs": 14940,
+    "timestampMs": 14660,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " على",
+    "startMs": 14940,
+    "endMs": 15120,
+    "timestampMs": 15030,
+    "confidence": null
+  },
+  {
+    "text": " مقاس",
+    "startMs": 15120,
+    "endMs": 15560,
+    "timestampMs": 15340,
+    "confidence": null
+  },
+  {
+    "text": " خياله.",
+    "startMs": 15560,
+    "endMs": 16000,
+    "timestampMs": 15780,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " أي",
+    "startMs": 16560,
+    "endMs": 16740,
+    "timestampMs": 16650,
+    "confidence": null
+  },
+  {
+    "text": " مكان",
+    "startMs": 16740,
+    "endMs": 17120,
+    "timestampMs": 16930,
+    "confidence": null
+  },
+  {
+    "text": " فيها",
+    "startMs": 17120,
+    "endMs": 17500,
+    "timestampMs": 17310,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بتحبّوا",
+    "startMs": 17500,
+    "endMs": 17900,
+    "timestampMs": 17700,
+    "confidence": null
+  },
+  {
+    "text": " يدخل",
+    "startMs": 17900,
+    "endMs": 18320,
+    "timestampMs": 18110,
+    "confidence": null
+  },
+  {
+    "text": " قصته؟",
+    "startMs": 18320,
+    "endMs": 18600,
+    "timestampMs": 18460,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

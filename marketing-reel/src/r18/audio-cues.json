@@ -1,0 +1,35 @@
+{
+  "alignment": "Reviewed final WAV; fixed schedule retained and measured voice word cues available",
+  "fps": 30,
+  "durationInFrames": 600,
+  "bridgeFrame": 90,
+  "lanternFrame": 120,
+  "beaconFrame": 150,
+  "returnFrame": 180,
+  "leftSelectionFrame": 240,
+  "rightSelectionFrame": 270,
+  "splitStartFrame": 270,
+  "splitEndFrame": 330,
+  "choiceFrame": 360,
+  "commentFrame": 420,
+  "curlFrame": 480,
+  "rewindFrame": 588,
+  "rewindDurationFrames": 12,
+  "choiceTapFrames": [
+    301,
+    309
+  ],
+  "voiceFinalSha256": "9a1bac739b38daa9eb96a58b5a5b5fd5c41b268ea003b02ed2503f660d6cd4d6",
+  "voiceWordFrames": {
+    "fork": 29,
+    "bridge": 78,
+    "lantern": 104,
+    "beacon": 179,
+    "question": 208,
+    "firstChoice": 260,
+    "secondChoice": 283,
+    "discussion": 319,
+    "comment": 395,
+    "together": 434
+  }
+}

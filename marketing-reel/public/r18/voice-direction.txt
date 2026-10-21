@@ -1,0 +1,19 @@
+Generate the exact script in voiceover.txt in ElevenLabs.
+Warm, calm Jordanian Arabic storytelling; clear, caring, conversational delivery.
+Complete all words by 17.8 seconds; keep the two choices and closing discussion question easy to understand.
+Do not read this direction file aloud, add introductory words, remove words or add music/SFX to the voice take.
+Supply the original MP3/WAV recording. The Reel is fixed at 20 seconds / 600 frames / 30 fps.
+
+The one-second reference cadence is a plan; measured timings must come from the final normalized WAV.
+1. npm run transcribe:r18 -- /absolute/source.mp3 out/r18-source-transcription.json
+2. Review/reconcile every recognized word to voiceover.txt; retain genuine measured spans for fused recognition tokens.
+3. npm run voice:r18 -- /absolute/source.mp3 /absolute/reviewed-source-alignment.json
+4. npm run transcribe:r18
+5. Review/reconcile the final-WAV transcription and add the WAV SHA-256 recorded in src/r18/voice-timing.json to the alignment JSON.
+6. npm run align:r18 -- /absolute/reviewed-final-alignment.json
+7. npm run score:r18 regenerates the separate SFX to follow measured bridge/beacon/choice onsets.
+8. Enable the voice prop in Studio and review camera/copy beats against the take. Word-level RTL subtitles now share the voice track's zero point.
+
+The preparation step normalizes to a mono 48kHz WAV and retains the complete original take.
+It allows at most 25% pitch-preserving acceleration and rejects narration entering the final two seconds.
+Never enable voice or captions using captions-planned.json; it contains only the supplied planned cadence.

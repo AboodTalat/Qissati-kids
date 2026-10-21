@@ -1,5 +1,15 @@
 {
-  "aligned": false,
-  "status": "Awaiting the final R15 ElevenLabs take. Planned cadence is a visual reference, not audio alignment.",
-  "finalWordEndMs": null
+  "aligned": true,
+  "status": "Final WAV transcribed and approved-script spelling restored; measured captions and noun cues enabled in Studio",
+  "voiceDurationMs": 15880,
+  "finalWordEndMs": 15800,
+  "alignedWordCount": 35,
+  "captionCount": 35,
+  "alignmentSource": "Measured intervals from final WAV, locally transcribed with Arabic Whisper small",
+  "speed": 1,
+  "sourceSha256": "add1aeaea674a75ee9b001f4dd07756fd13fc08e01d1fa0b1e767748d6aaceba",
+  "finalSha256": "3f76578d6969aeb15c768da3275182aa0ecf905e1a662d2b5e560d2a179cba28",
+  "finalAlignmentPath": "public/r15/voice-final-alignment.json",
+  "sourceAlignmentPath": "public/r15/voice-alignment.json",
+  "finalTranscriptionCompared": true
 }

@@ -24,8 +24,9 @@ operator runs the prompts in the external tools themselves.
 | 2. Paste and validation | **the dashboard** | Rejects missing fields, wrong page counts or numbering, empty text/art descriptions and pages outside the chosen word range |
 | 3. Human review | **the Qissati operator** | Confirms the facts, language, personalisation, safety and visual continuity before any art prompt unlocks |
 | 4. Parent text approval | **the dashboard** | A branded A4 PDF containing only the title, summary, dedication and page-by-page story text, identified by a stable proof code |
-| 5. Character sheets | **Nano Banana Pro** | The main child from the parent's photographs, plus a separate reference sheet for every recurring sibling, friend or pet |
-| 6. Page art | **Nano Banana Pro**, with the approved sheets and previous approved artwork | Approve the cover, then generate and approve each square story page in reading order |
+| 5a. Likeness lock | **Google Gemini**, with the child's photographs attached | One precise English paragraph describing the child's face and hair, pasted back into the panel and repeated on the sheet and on every page |
+| 5b. Reference sheets | **Nano Banana Pro** | The main child from the photographs and the likeness lock; a sheet for every recurring sibling, friend or pet; a **cast sheet** for every other recurring person; a **props and places sheet** for every recurring object and landmark; a **set master** — the whole location painted once, empty, in the book's colour grade |
+| 6. Page art | **Nano Banana Pro**, with every approved sheet and the previous approved artwork | Approve the cover, then generate and approve each square story page in reading order |
 | 7. Assembly and preflight | **the dashboard**, `components/admin/BookStudio.jsx` | Drop each illustration into its page, fix the words, complete the final checklist, export |
 
 **Pick the page length before you run step 1.** نص قصير is one sentence a page
@@ -421,16 +422,82 @@ nobody goes looking for photographs that were never asked for. A recurring
 supporting character still gets their own sheet from the approved
 `supporting_character_brief`.
 
+## Likeness and continuity: what the first book taught
+
+Q-000001 was the first book run end to end, and every page looked fine alone
+while the book did not hold together. Each fix below answers a drift that
+actually happened; do not remove one without replacing what it does.
+
+- **The child did not look like the photograph.** The sheet prompt said "use
+  the photographs as the likeness reference", `STYLE_DNA` asked for "large
+  dark expressive eyes, small soft features", and the outfit put a cap over the
+  boy's most recognisable feature, a thick straight fringe. The model drew a
+  generic cartoon boy who also aged and changed expression from page to page.
+  Now: a vision model writes a **likeness lock** from the photographs
+  (`likenessBriefPrompt`), the sheet puts **likeness before style** and draws
+  three large bare-headed head views above the full-body outfit row, and the
+  lock is repeated on every page. `STYLE_DNA` no longer prescribes eye or
+  feature shape. The story prompt prefers no headwear, and any hat sits pushed
+  back so the hairline stays visible.
+- **Recurring adults changed identity.** The father existed only as a sentence
+  in `visual_continuity.characters` and became a bald older man on one
+  regeneration. Every recurring person beyond the child and sidekick now gets a
+  **cast sheet** (`castSheetPrompt`), attached to every page.
+- **Props and landmarks drifted.** The cap badge was a star or a shield,
+  sneakers white or berry, the bench wooden-legged or iron, the fountain a wall
+  basin or a pedestal, the stroller frame bronze or silver, the ball changed
+  size, and one page drew two strollers. The story prompt now asks for an
+  exact specification (part colours, construction, emblem shape, size relative
+  to the child, adults' hair and facial hair), and a **props and places sheet**
+  (`propsSheetPrompt`) draws each item once, with a grey child-height
+  silhouette as the scale guide.
+- **The sidekick sheet invented its own props.** The infant sister was
+  "propped in a stroller", so her sheet drew a cream-and-gold stroller that
+  disagreed with the bible. Character sheets now draw the character alone.
+- **Sheets on teal grounds.** `STYLE_DNA`'s teal ground made sheets read as
+  scenery. Sheets now use a plain light ground (`SHEET_GROUND`).
+- **A blank band at the bottom.** "Keep the bottom 30% clear" was read as
+  "paint nothing there". `CONTINUOUS_GROUND_RULE` asks for calm, continuous
+  scenery to every edge.
+- **Every page prompt now ends with a self-check** listing exactly these
+  drifts, and names the role of each attachment.
+
+The second pass on the same book exposed two more drifts, and they needed a
+reference of their own, because no sheet showed the *place* or the *grade*:
+
+- **The pages did not read as one street.** Page 4 was a fountain on a bare
+  wall: no arch, shutter, cart or paving tied it to pages 1-3, and several
+  pages faded their backgrounds into white haze. The story JSON now carries
+  `visual_continuity.set_map` (the location as a floor plan: landmarks in
+  order, spacing, sides, direction of travel, sun direction) and a per-page
+  `staging` field (camera position and direction on that map, where each
+  character stands, and the two or more landmarks that must be in frame —
+  close-ups included). `setMasterPrompt` paints the set once, empty, wide
+  enough to show every landmark in order, and that painting is attached to
+  every page as the map. `CONTINUOUS_GROUND_RULE` now also forbids haze,
+  fade-to-paper and vignettes.
+- **The colour grade changed page to page** — teal, then gold, then washed
+  cream. `STYLE_DNA` called teal "the ground colour", so each page chose how
+  much teal to wash over sunlit stone. Teal now lives in shade, shadow and
+  recurring accents in the proportion set by `visual_continuity.colour_script`
+  — one written grade for the whole book — and the set master is painted in
+  it, so it doubles as the colour key every page matches.
+
+Both new bible fields and `staging` are optional in the validator, so stories
+approved before they existed still pass; the prompts simply fall back to
+"keep two landmarks in frame" and "match the previous page's grade".
+
 ## Why the reference sheet exists at all
 
-The raw photographs are attached **once**, when the main-child sheet is made,
-and never again. Two
+The raw photographs are attached **twice** — once to the vision model that writes
+the likeness lock, once when the main-child sheet is made — and never again. Two
 reasons, and both matter:
 
 - One stylised sheet gives a far steadier likeness across a dozen generations
   than the same three photographs re-interpreted a dozen times.
-- A real child's photographs are handed to a third-party image model exactly
-  once instead of twelve times.
+- A real child's photographs are handed to third-party models twice instead of
+  thirteen times. The likeness lock that travels with every page is a
+  description of features only — no name, clothing, background or writing.
 
 A sibling, friend or pet gets a separate sheet made from the approved
 supporting-character brief. For a pet, the order form collects a required

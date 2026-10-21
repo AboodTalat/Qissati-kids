@@ -8,8 +8,12 @@ import {
   LENGTH_HINT,
   LENGTH_LABEL,
   TEXT_LENGTHS,
+  castSheetPrompt,
   characterSheetPrompt,
+  likenessBriefPrompt,
   pagePrompts,
+  propsSheetPrompt,
+  setMasterPrompt,
   storyPrompt,
   supportingCharacterSheetPrompt,
 } from "@/lib/prompts";
@@ -92,6 +96,9 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
   const [downloadedProofId, setDownloadedProofId] = useState("");
   const [parentApproved, setParentApproved] = useState(false);
   const [referencesApproved, setReferencesApproved] = useState(false);
+  // The written likeness lock read from the photographs. It belongs to the
+  // photographs, not the story, so pasting a new story does not clear it.
+  const [likenessBrief, setLikenessBrief] = useState("");
   const [workspaceReference, setWorkspaceReference] = useState("");
 
   useEffect(() => {
@@ -106,6 +113,7 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
       setDownloadedProofId(workflow.downloadedProofId);
       setParentApproved(workflow.parentApproved);
       setReferencesApproved(workflow.referencesApproved);
+      setLikenessBrief(workflow.likenessBrief);
       setWorkspaceReference(reference);
     });
     return () => {
@@ -124,12 +132,14 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
         downloadedProofId,
         parentApproved,
         referencesApproved,
+        likenessBrief,
       },
     });
   }, [
     conceptApproved,
     downloadedProofId,
     legacyPetDescription,
+    likenessBrief,
     order?.reference,
     parentApproved,
     referencesApproved,
@@ -160,7 +170,11 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
   const petDescription = storedPetDescription || legacyPetDescription.trim();
   const photoCount = order.photos?.length ?? 0;
   const written = story?.pages?.length ?? 0;
-  const prompts = story ? pagePrompts(order, story, length) : [];
+  const prompts = story ? pagePrompts(order, story, length, { likeness: likenessBrief }) : [];
+  const castPrompt = story ? castSheetPrompt(order, story) : null;
+  const propsPrompt = story ? propsSheetPrompt(order, story) : null;
+  const setPrompt = story ? setMasterPrompt(order, story) : null;
+  const likenessReady = !withLikeness || Boolean(likenessBrief.trim());
   const currentProofId = story ? storyProofId(story) : "";
   const proofDownloaded = Boolean(currentProofId && downloadedProofId === currentProofId);
   const reviewItems = isPet
@@ -176,18 +190,13 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
   const reviewReady =
     Boolean(story) && storyReady && reviewItems.every((item) => reviewChecks[item.id]);
   const parentReviewReady = Boolean(reviewReady && proofDownloaded && parentApproved);
-  const needsReferenceSheet = withLikeness || hasSidekick;
+  const needsReferenceSheet = withLikeness || hasSidekick || Boolean(castPrompt || propsPrompt || setPrompt);
   const referenceReady =
     parentReviewReady &&
     (!withLikeness || photoCount > 0) &&
+    likenessReady &&
     (!needsReferenceSheet || referencesApproved);
-  const attachmentHint = withLikeness
-    ? hasSidekick
-      ? "، وبكل مرة أرفقوا ورقة الطفل وورقة رفيق القصة"
-      : "، وبكل مرة أرفقوا نفس ورقة الطفل"
-    : hasSidekick
-      ? "، وبكل مرة أرفقوا ورقة رفيق القصة"
-      : "";
+  const attachmentHint = needsReferenceSheet ? "، وبكل مرة أرفقوا كل أوراق المراجع المعتمدة من الخطوة ٥" : "";
 
   const changeRaw = (value) => {
     onRawChange(value);
@@ -528,7 +537,7 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
         <Step
           number="٥"
           title="أوراق الشخصيات"
-          hint="كل شخصية متكررة إلها مرجع ثابت. صور الطفل بتنرفع مرة وحدة هون، وبعدها منستعمل أوراق الشخصيات فقط."
+          hint="كل شخصية وكل غرض متكرر إله مرجع مرسوم ثابت. صور الطفل بتنرفع مرتين بس هون (وصف الملامح وورقة الطفل)، وبعدها منستعمل الأوراق فقط."
         >
           {!parentReviewReady ? (
             <Notice>نزّلوا نسخة النص وخذوا موافقة الأهل بالخطوة ٤ أول.</Notice>
@@ -541,13 +550,52 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
                     من الأهل بالمحادثة.
                   </Notice>
                 ) : (
-                  <PromptBlock
-                    id="sheet-main"
-                    text={characterSheetPrompt(order, story)}
-                    copiedKey={copiedKey}
-                    onCopy={copy}
-                    buttonLabel={`انسخوا برومبت ورقة الطفل (${photosLabel(photoCount)})`}
-                  />
+                  <div className="flex flex-col gap-4">
+                    {/* The likeness lock comes first. On Q-000001 a sheet made
+                        from the photograph alone drew a generic cartoon boy;
+                        precise words, repeated on every page, hold a face far
+                        better than an attached image does. */}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm font-bold text-ink">أ. ملامح الطفل من الصور</span>
+                      <span className="text-xs leading-relaxed text-muted">
+                        الصقوا البرومبت بـ Gemini وأرفقوا معه صور الطفل
+                        ({photosLabel(photoCount)})، وبعدين الصقوا الفقرة اللي بيرجعها هون. بتنضاف
+                        لورقة الطفل ولكل صفحة عشان يضل الوجه نفسه.
+                      </span>
+                      <PromptBlock
+                        id="likeness-brief"
+                        text={likenessBriefPrompt(order)}
+                        copiedKey={copiedKey}
+                        onCopy={copy}
+                        buttonLabel="انسخوا برومبت وصف الملامح"
+                      />
+                      <textarea
+                        rows={4}
+                        dir="ltr"
+                        value={likenessBrief}
+                        aria-label="وصف ملامح الطفل"
+                        onChange={(e) => {
+                          setLikenessBrief(e.target.value);
+                          setReferencesApproved(false);
+                        }}
+                        className="control-text w-full rounded-xl border-2 border-brand-deep/25 bg-surface px-4 py-3 text-start leading-relaxed text-ink outline-none transition-colors focus:border-brand-deep"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm font-bold text-ink">ب. ورقة الطفل</span>
+                      {likenessReady ? (
+                        <PromptBlock
+                          id="sheet-main"
+                          text={characterSheetPrompt(order, story, likenessBrief)}
+                          copiedKey={copiedKey}
+                          onCopy={copy}
+                          buttonLabel={`انسخوا برومبت ورقة الطفل (أرفقوا ${photosLabel(photoCount)})`}
+                        />
+                      ) : (
+                        <Notice>الصقوا وصف الملامح فوق أول، وبعدها بينفتح برومبت ورقة الطفل.</Notice>
+                      )}
+                    </div>
+                  </div>
                 )
               ) : (
                 <div className="border-s-[3px] border-gold ps-5">
@@ -571,7 +619,41 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
                 />
               ) : null}
 
-              {(!withLikeness || photoCount > 0) && needsReferenceSheet ? (
+              {/* Recurring adults and props get drawn references too. Prose
+                  alone let Q-000001's father, stroller, bench, fountain and
+                  cap badge change from page to page. */}
+              {castPrompt ? (
+                <PromptBlock
+                  id="sheet-cast"
+                  text={castPrompt}
+                  copiedKey={copiedKey}
+                  onCopy={copy}
+                  buttonLabel="انسخوا برومبت ورقة الشخصيات المتكررة"
+                />
+              ) : null}
+              {propsPrompt ? (
+                <PromptBlock
+                  id="sheet-props"
+                  text={propsPrompt}
+                  copiedKey={copiedKey}
+                  onCopy={copy}
+                  buttonLabel="انسخوا برومبت ورقة الأغراض والأماكن"
+                />
+              ) : null}
+              {/* The place and the colour grade, painted once. Without it each
+                  page invented its own street and its own grade (Q-000001's
+                  page 4 belonged to no street at all). */}
+              {setPrompt ? (
+                <PromptBlock
+                  id="sheet-set"
+                  text={setPrompt}
+                  copiedKey={copiedKey}
+                  onCopy={copy}
+                  buttonLabel="انسخوا برومبت لوحة المكان (أرفقوا ورقة الأغراض والأماكن)"
+                />
+              ) : null}
+
+              {(!withLikeness || photoCount > 0) && likenessReady && needsReferenceSheet ? (
                 <label className="flex min-h-[24px] cursor-pointer items-start gap-3 text-sm leading-relaxed text-ink">
                   <input
                     type="checkbox"
@@ -580,8 +662,9 @@ export default function PromptStudio({ order, raw, onRawChange, parsed, length, 
                     className="mt-1 h-4 w-4 shrink-0 accent-brand-deep"
                   />
                   <span>
-                    ولّدنا أوراق الشخصيات وراجعنا العمر والشكل واللبس والعلامات، واعتمدنا
-                    النسخ النهائية.
+                    ولّدنا كل الأوراق وقارنّا وجه الطفل بصوره (الشعر والغرة والعيون والوجه)،
+                    وراجعنا العمر واللبس والأحذية والشعارات وألوان الأغراض، وإن لوحة المكان
+                    فيها كل المعالم بترتيبها وبألوان الكتاب، واعتمدنا النسخ النهائية.
                   </span>
                 </label>
               ) : null}

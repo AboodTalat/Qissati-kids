@@ -959,6 +959,31 @@ the page's own scene and its framing/print instructions — so the operator can
 paste the pages into Nano Banana Pro one at a time without selecting text or
 accidentally carrying the neighbouring page's scene.
 
+**Likeness and continuity are enforced by references, not by prose.** Q-000001,
+the first book generated end to end, drifted on every axis: a generic cartoon
+face instead of the child's (the sheet obeyed `STYLE_DNA`'s "large eyes, small
+features" over the photograph, and a cap hid his fringe), a father who became a
+different man on a regeneration, a cap badge that was a star or a shield, and a
+bench, fountain and stroller that changed design between pages. So step 5 now
+has, in order: a **likeness lock** written by Gemini from the photographs
+(`likenessBriefPrompt`, pasted back and stored in the order's workspace as
+`likenessBrief`, required before the child's sheet unlocks); the child's sheet
+with large bare-headed head views and likeness ranked above style; the
+sidekick sheet drawn without props; a **cast sheet** for every other recurring
+person (`castSheetPrompt`); and a **props and places sheet**
+(`propsSheetPrompt`). Every page prompt repeats the likeness lock, names each
+attachment's role and ends with a self-check against those drifts. A second
+pass showed the place and the grade drifting too (a page-4 close-up that
+belonged to no street; teal, gold and washed-cream pages in a row), so the
+story JSON now also carries `visual_continuity.set_map`, `visual_continuity.colour_script`
+and a per-page `staging` (camera position plus two or more landmarks in
+frame), all optional for older stories; `setMasterPrompt` paints the empty
+location once in that grade and it is attached to every page as the map and
+colour key. `STYLE_DNA` no longer calls teal the ground colour — it lives in
+shade and accents, in the colour script's proportion. Sheets use
+a plain light ground, never `STYLE_DNA`'s teal. The full account is in
+`docs/ai-prompts.md` → "Likeness and continuity".
+
 **`wantsAvatar: no` skips only the main-child photo sheet** and the panel says
 so rather than showing an empty photo step. No photographs were collected, so
 `character_brief` is asked to be a *complete* description and is repeated
@@ -1418,9 +1443,37 @@ the RTL DOM and follows the exact A/B/C/D schedule with word-level reveals.
 The final question, complete mark and CTA hold within x=180–900, y=300–1230
 through frame 629, including the faint object-stage reset in the final second.
 Its `safeAreaPreview` prop shows the boundary.
-The exact voiceover script is `public/r15/voiceover.txt`; the final R15 recording
-is still needed and `voice` remains false. `captions-planned.json` is a cadence
-reference, never claimed as measured alignment. `npm run transcribe:r15` runs
+The Qissati logo and wordmark stay visible for all 630 frames at authored y=313;
+headlines sit at authored y=445 throughout so they cannot overlap the mark.
+R15 uses a full-frame canvas with the authored stage scale preserved by a
+camera view offset; only the background plinth bleeds beyond the content area.
+Multisampled HDR targets smooth the outlines. The three shadow scenes travel
+onto the book and persist as matching page illustrations. Studio renders each
+requested frame explicitly to avoid stale 3D pixels during background seeking.
+`Backdrop.jsx` gives the reel and cover a shared SVG museum alcove: cream
+plaster, teal framing, fine brass trim, fixed grain and soft window light.
+Its opening illumination, restrained light drift and end-card softening are
+derived from the current frame; the pale perspective floor sits below the CTA.
+R15 defaults to `contentScale: 0.8`, pulling architecture, 3D projection and
+DOM copy back by 20% around (540,960). The full-frame wall and an extended
+floor provide continuous background. Camera zoom and a corrected view offset
+match the DOM scale, with depth-of-field radii scaled too. Centred editing zoom
+from 100% to 125% returns to the previous composition while keeping copy safe.
+The prop is clamped to 0.65–1; the separate cover keeps scale 1.
+`Qissati-R15-Cover` is the separate three-object Still, exported to
+`out/qissati-r15-cover.png`; `public/r15/post-caption.txt` carries the caption.
+The exact voiceover script is `public/r15/voiceover.txt`; the supplied ElevenLabs
+Abdullah take is preserved as `voice-source.mp3`. Its normalized 48kHz mono WAV
+is 15.880s, with no acceleration or word cuts, and `voice` is enabled. Source
+and final WAV were transcribed locally; `captions.json` retains 35 measured
+final-WAV intervals with approved spelling, grouped into 13 short RTL pages.
+The cream caption plate at authored x=200, y=1130 (framed x=268, y=1096)
+stays inside the safe area, and page
+ends are capped at the next page's start. The final word ends at 15.800s.
+Measured noun starts are 3.620s, 5.420s and 7.280s (frames 109, 163 and 218);
+the camera/morphs use these frames and SFX follow their onsets by 40ms.
+Source/final alignment JSONs preserve timing provenance. `captions-planned.json`
+is a cadence reference, never claimed as measured alignment. `npm run transcribe:r15` runs
 local Arabic Whisper small. `npm run voice:r15 -- /absolute/take.wav
 /absolute/alignment.json` checks every approved word, preserves the original,
 prepares the 48kHz mono WAV and measured timestamps, and rejects narration
@@ -1429,6 +1482,389 @@ then enable voice. `npm run score:r15` generates separate original music/SFX
 and aligns the three accents to the measured nouns; the camera and morphs use
 the same cues. First/middle/last checks are under `out/r15-checks/`; Studio is
 `/Qissati-R15` and `npm run render:r15` exports the MP4 when requested.
+
+`Qissati-R16` (`marketing-reel/src/r16/`) is the separate 22-second,
+660-frame, 1080×1920 local-reach Reel at 30 fps. It uses the existing matching
+`@remotion/three` 4.0.529 for an original stylized Amman hillside: warm stone
+blocks, terraces and stairs, a frame-driven descent to child-eye height, a gold
+treasure path, and an original SVG tree folding into a layered paper castle.
+No geographic map, photoreal landmark, filmed family footage or customer proof
+is used. `art.js` owns the original castle, tree, treasure trail and city SVGs;
+`npm run score:r16` exports them to `public/r16/` and generates separate
+original 22-second 48kHz music and SFX WAVs. At the user's subsequent request,
+the final cream book spread now develops from the simple city motif into an
+original generated painterly story illustration at 13–13.8s: an imaginary
+Amman treasure route and paper castle, with a fictional child and nearby adult.
+`public/r16/story-illustration.png` is the source asset; its exact generation
+prompt and provenance are stored beside it. ThreeCanvas's Suspense wrapper
+waits for the sRGB texture before capture. It is sample story art with no
+customer claim; all Arabic text remains in the separate RTL DOM layer.
+Camera, geometry, lights, particles, folds and transitions derive from the
+current frame. The book remains fixed in the final hold while the last second
+faintly returns the background to the high hillside view.
+The supplied detailed schedule is A at 0–3s, B at 3–15s, C at 15–22s; the
+complete Qissati mark and public-place CTA enter at 18s. Arabic is RTL DOM
+with word-level reveals. Essential copy and logo remain inside
+x=180–900, y=300–1230; `safeAreaPreview` shows the boundary.
+R16 defaults to `contentScale: 0.8`, pulling the camera projection, DOM copy and
+brass framing back by 20% around (540,960). The paper background stays full
+bleed. Centered editing zoom up to 125% restores the authored layout while
+keeping essential copy within the safe rectangle. The prop is clamped to
+0.65–1; its separate cover stays at scale 1. The full-frame WebGL lens uses
+matching camera zoom and view offset, avoiding a clipped canvas edge.
+The exact ElevenLabs text is `public/r16/voiceover.txt`. The supplied Abdullah
+MP3 is preserved as `voice-source.mp3`; the normalized 48kHz mono `voice.wav`
+lasts 18.754s without acceleration or word cuts. R16 now defaults to `voice: true`.
+All 36 approved script words are aligned to the final WAV with local Arabic
+Whisper small and grouped into 14 short RTL caption pages. Recognition spelling
+is reconciled to the script; attached conjunctions retain the union of measured
+adjacent intervals. Voice and captions share one Sequence and time zero.
+The last word ends at 18.600s, leaving the final two seconds clear. The fixed
+title area is authored x=200, y=410, width=680, height=240, with larger teal
+Cairo type and a gold rule. Captions sit above the artwork at authored x=200,
+y=662 (framed x=268, y=721.6) in a cream plate that fits the phrase, using
+54px type, dim upcoming words and a gold active-word highlight. Word reveals
+retain the measured WAV timing. The lower camera projection clears this text
+stack; the book settles between it and the CTA at authored y=1178. The logo
+has a separate y=310–386 band. All three title states use the same reserved
+area so the text never jumps between scenes. Music and SFX stay separate and
+are lowered under voice.
+Source/final alignment JSONs preserve timing provenance beside the WAV;
+`voice-timing.json` stores alignment status, measured times and source/final hashes.
+`npm run voice:r16 -- /absolute/take.wav /absolute/alignment.json` checks every
+approved script word, preserves the source, prepares the normalized mono WAV,
+maps measured source timestamps through pitch-preserving preparation and
+rejects narration entering the final two seconds or needing over 25% speedup.
+`npm run transcribe:r16` downloads official model weights when needed and runs
+local Arabic Whisper small; review against
+the final WAV before enabling voice. The question/CTA hold through frame 659.
+`npm run checks:r16` saves first/middle/last stills (0/330/659) under
+`out/r16-checks/` and the recommended question cover at
+`out/qissati-r16-cover.png`. Studio is `/Qissati-R16`; `npm run render:r16`
+exports H.264 when requested. Earlier compositions are preserved.
+
+`Qissati-R17` (`marketing-reel/src/r17/`) is the separate 18-second,
+540-frame, 1080×1920 bedtime-question Reel at 30 fps. Matching
+`@remotion/three` 4.0.529 renders an original generic teal room with a small
+moonlit hinged door, cream paper stars, paper landscape ribbons and gold
+accents. It contains no people, likenesses, filmed footage or customer proof.
+Camera, door, stars, lights and transitions are deterministic functions of
+`useCurrentFrame()`; the room, lens and closed door return to their opening
+state at frame 539. The closing CTA remains visible. The camera zoom is 0.66
+with a 100px full-frame view offset: the door fits between the question and
+the subtitle band at y=1040, above the fixed save cue at y=1133.
+Arabic stays in the RTL DOM, split into complete words. The full question
+shares one phrase reveal and holds from 3–12s. The exact on-screen schedule is
+`سؤال الليلة` at 0–3s, `لو في باب سري بغرفتك... وين بودّيك؟` at 3–12s,
+and `احفظوا السؤال` from 11–18s. The bookmark enters at 13s, then a subtle
+pointer press, gold fill and expanding ripple mark the save action at frame
+432 (14.4s), after narration. `interaction.json` shares that hit frame with
+the audio generator; `bookmark-click.wav` is a separate original 0.22s SFX
+asset on the same frame. The full mark
+stays small until it grows at 14–15s. Essential copy and logo fit
+x=180–900, y=300–1230; `safeAreaPreview` shows that boundary.
+`Qissati-R17-Cover` uses the supplied recommended first-frame hook,
+`جرّبوا هالسؤال الليلة قبل النوم`, without changing the reel's exact A/B/C copy.
+`npm run score:r17` generates separate original 18-second 48kHz music,
+room-tone and SFX WAVs plus the short bookmark click;
+`public/r17/audio-provenance.json` records their origin.
+Latch and chime accents follow the supplied cadence. The exact
+voiceover text is `public/r17/voiceover.txt`. R17 defaults to `voice: true`
+with the user's ElevenLabs Mazen Lawand take (2026-10-10T18:26:39), preserved
+as `voice-source.mp3` and normalized to the separate mono 48kHz `voice.wav`.
+The 14.026s WAV runs at its original speed. `captions.json` contains 30
+measured intervals covering all 33 approved words in 11 readable Arabic
+phrase pages; fused recognition tokens retain shared measured intervals.
+The final word ends at 14.000s, leaving the final two seconds free of
+narration. `voice-timing.json` records alignment, duration and source/final
+SHA-256 hashes. Raw transcriptions remain under `out/`; source and final
+reconciled alignments are preserved alongside the audio.
+For replacement takes, do not enable voice or invent measured subtitles
+before final-WAV alignment exists.
+`npm run voice:r17 -- /absolute/take.wav /absolute/source-alignment.json`
+validates every script word, preserves the source, normalizes the mono WAV and
+prepares it to finish before 16s, without word cuts or over 25% acceleration.
+Source timings remain in `captions-prepared.json` and cannot enable subtitles.
+`npm run transcribe:r17` measures the final WAV locally with Arabic Whisper;
+review and reconcile those words against the recording, then use
+`npm run align:r17 -- /absolute/reviewed-final-alignment.json`. This checks
+the prepared WAV hash, complete script and all measured intervals before
+enabling captions. Voice and subtitles share a Sequence and time zero;
+the final two seconds remain clear. `npm run checks:r17` creates first,
+middle and last stills (0/270/539), save/click checks (438/434), and the separate cover
+under `out/r17-checks/` and `out/qissati-r17-cover.png`.
+Studio is `/Qissati-R17`; `npm run render:r17` exports H.264 when requested.
+Earlier compositions are preserved. Run the separate project's build/lint
+and the main site's gates. If this machine's Turbopack build worker fails with
+a local port permission error, `npm run build -- --webpack` verifies the main
+site successfully without changing its code or build script.
+
+`Qissati-R18` (`marketing-reel/src/r18/`) is the separate 20-second,
+600-frame, 1080×1920 two-ending Reel at 30 fps. Existing matching
+`@remotion/three` 4.0.529 renders an original papercraft garden with one
+cream Y path: a gentle left bridge toward a friendly lantern and a right
+route toward a helper beacon. Both choices sit on safe teal ground; there
+are no people, filmed footage or claims of customer proof. Camera, geometry,
+lighting, transitions and gold selection light derive from `useCurrentFrame()`.
+The split view lasts exactly 9–11s, the camera returns to the central fork
+at 11–12s and freezes for choice at 12–15s. A slight lift and paper curl
+follow; the final 0.4s (frames 588–599) rewind the miniature to its opening
+state while the CTA remains readable.
+`Backdrop.jsx` is the full-frame SVG paper theatre behind an alpha ThreeCanvas:
+layered teal arches with brass scores, slowly unfolding landscape folds,
+creased edge foliage, small paper motes and a moving window-light beam. The
+floor receives real transparent shadows so the miniature sits in the scenery.
+Backdrop and garden clocks ease their velocity into the 12–15s choice hold,
+then resume without a phase jump. Background motion remains frame-driven and
+returns to its opening state at frame 599.
+The camera uses time-aware Hermite interpolation; the two real 3D split views
+blend through multisampled HDR render targets, with eased pane movement and
+rounded edges, during the same 9–11s window. Independent gold branch lights
+settle and ignite rather than teleporting between paths. The compositor hooks
+the renderer's requested frame to preserve paused/backward Studio seeks.
+Three's ShaderMaterial injects the tone-mapping and colour-space declarations;
+do not include their `*_pars_fragment` chunks again or the shader fails silently
+from the composition's perspective. Check actual WebGL pixels and browser
+console output, since an empty canvas can still pass build/lint.
+The exact RTL DOM copy is A `النهاية ١ أو ٢؟` at 0–3s, B
+`جسر للصديق / طريق للمساعدة` at 3–12s and C `اختاروا النهاية` at 12–20s,
+with complete-word reveals and short outgoing title fades inside their
+scheduled windows. The full mark and essential copy remain in
+x=180–900, y=300–1230; `safeAreaPreview` displays that boundary. The separate
+`Qissati-R18-Cover` uses the recommended `النهاية الأولى ولا الثانية؟` hook,
+without replacing the reel's A copy.
+R18 defaults to `voice: true` with the user's ElevenLabs Layla take
+(2026-10-12T21:53:12), preserved in `public/r18/voice-source.mp3`. The
+normalized mono 48kHz `voice.wav` lasts 16.033s at its original speed, with
+no word cuts. Its exact 29-word script is `public/r18/voiceover.txt` and
+replacement directions are `public/r18/voice-direction.txt`. Local Arabic
+Whisper small measured both the source and final WAV; `captions.json`
+contains 27 reviewed intervals in 10 RTL phrase pages covering all 29 words.
+Fused recognition phrases `بتختاروا له؟` and `ولا الثانية؟` keep shared
+measured spans. Final WAV phrase edges were checked against waveform pauses;
+the last spoken word ends at 15.824s. `voice-timing.json` records source/final
+hashes and alignment; source/final reviewed JSONs are preserved beside the
+audio. `captions-planned.json` is only the supplied cadence and must never be
+presented as measured subtitles. The final two seconds remain narration-free.
+`npm run score:r18` generates separate original 20-second 48kHz stereo music
+and SFX WAVs, with provenance beside them. `npm run transcribe:r18 --
+/absolute/source.mp3 out/r18-source-transcription.json` measures a supplied take
+locally; review its recognition against the approved script before
+`npm run voice:r18 -- /absolute/source.mp3 /absolute/reviewed-source-alignment.json`.
+Preparation preserves the complete original, normalizes the mono 48kHz WAV,
+targets 17.8s and rejects over 25% pitch-preserving acceleration or a WAV reaching
+18s. Then transcribe/review the final WAV and import it with `npm run align:r18 --
+/absolute/reviewed-final-alignment.json`. The import verifies the WAV hash and
+all words, stores measured subtitles and exposes voice word onsets in
+`audio-cues.json`. Regenerate the score with `score:r18` so the separate SFX
+follow the measured bridge, beacon and choice onsets. Only then enable voice
+and review motion/SFX against the take. The current take's measured frames
+are fork 29, bridge 78, lantern 104, beacon 179, question 208, first choice
+260, second choice 283 and comment 395. The camera's early keys follow those
+onsets with eased destination arrival; DOM choice/comment cues and gold
+selection lights share the measured timings. Fixed copy, split, freeze and
+rewind windows remain as specified.
+Voice and subtitles share a Sequence and time zero. `npm run checks:r18` saves
+first/middle/last frames (0/300/599) plus bridge, beacon, split entry/exit,
+choice/freeze and rewind midpoint
+checks under `out/r18-checks/`. Studio is `/Qissati-R18`; `npm run render:r18`
+exports H.264 when requested. Earlier compositions remain separate. The
+Remotion ESLint preset does not discover JSX by default; `eslint.config.mjs`
+explicitly includes `src/r18/**/*.jsx` so the new reel is actually linted,
+without changing the earlier reels' lint scope.
+
+**Local R18 preview recovery.** On this machine the running user-session
+service is `codex.qissati-r18-preview` (managed by `launchctl submit`), serving
+`http://127.0.0.1:3001/Qissati-R18`; its stdout/stderr logs are
+`/private/tmp/qissati-r18-studio.log` and
+`/private/tmp/qissati-r18-studio-errors.log`. It is independent of a chat's
+shell session and lasts for the current login session. Inspect that exact job
+and listener before starting another server; `launchctl remove
+codex.qissati-r18-preview` stops this job when requested. A cached service
+worker from another local app intercepted `localhost:3001` with its offline
+page; the loopback-address origin avoids that cache. Programmatic Studio play
+can report `playing: true` while frame 0 remains stuck on this browser. Clicking
+the visible Studio Play button starts the clock; verify actual frame progress
+and rendered motion before reporting playback success.
+
+`Qissati-R19` (`marketing-reel/src/r19/`) is the separate 19-second,
+570-frame, 1080×1920 listening-game Reel at 30 fps. Matching
+`@remotion/three` renders three sculpted brass sound ripples, a bevelled rain
+window, and a folded paper corridor with raised sole/toe impressions. The window
+has inset glass, narrow brass casing, miniature hinges and reflective rain beads;
+its panes swing clear and recede as three vaulted paper arches, sidewalls, curved
+roof folds and a curled floor ribbon unfold. A static RoomEnvironment/PMREM
+reflection map supports the glass and metal, with neutral cream lighting and
+real receiving shadows on the paper floor. The quiet full-frame backdrop uses
+teal paper folds, grain and motivated window light. The sound rings morph into
+the window; the window shadow continues across the corridor floor. At the final
+question the two miniatures shift apart so both readings remain visible.
+Both interpretations remain possible through the final
+question. All camera, geometry, rain, lighting and motion derive from the frame;
+paused and backward Studio seeks explicitly render the requested WebGL frame.
+Arabic stays in connected RTL DOM words. The detailed supplied copy schedule is
+A `تك... تك... تك` at 0–3s, B `مطر؟ خطوات؟` at 3–11s and C
+`إنت شو شايف؟` at 11–19s. The full mark, copy and closing save cue fit the
+existing x=180–900, y=300–1230 safe rectangle; `safeAreaPreview` shows it.
+The separate `Qissati-R19-Cover` uses the recommended
+`اسمعوا هالصوت... وين بودّيكم؟` hook over a gold ripple.
+Its explicit `stillFrame` refers to the 30fps Reel clock; Remotion Stills supply
+1fps, so the backdrop and scene convert cover frames using 30 rather than
+the Still's context rate. Otherwise the cover silently samples the end state.
+`npm run score:r19` creates separate original 19-second, 48kHz stereo music
+and SFX. Three sample-identical ticks at frames 5, 25 and 45 share the measured
+opening voice words and visual wave onsets. Rain follows frame 80; the paper
+unfolds on the measured corridor cue at frame 171, with its hush at frame 191
+and steps at frames 249, 270 and 291. These SFX remain independent of the music.
+Music and SFX are ducked through narration and recover for the closing tail.
+`public/r19/audio-provenance.json` records sources, cues, hashes and levels;
+`post-caption.txt` contains the caption and save-the-listening-game CTA.
+The complete user-supplied ElevenLabs Mona Saudi Arabic take is enabled by
+default through the `voice` prop; the approved script is colloquial Jordanian
+Arabic. `voice-source.mp3` preserves the original recording. Its mono 48kHz
+`voice.wav` lasts 15.386s at original speed, with no cuts or time stretch,
+and measures −17.89 LUFS / −2 dBTP after two-pass normalization. All 30 approved
+words are measured against that exact final WAV and reviewed for spelling
+and waveform phrase ends. The last word ends at 15.252s. Voice and captions
+share one Sequence and frame zero; title A represents the opening ticks and
+the nine narrative pages use connected RTL words in a lower band at
+y=1078–1150, clearing at 15.372s before the 15.7s save cue. The fixed A/B/C
+main-copy schedule and 570-frame composition remain intact. `voice-timing.json`
+records source/final hashes and alignment; `audio-cues.json` binds the motion
+and SFX to the same take. To replace it, run `npm run voice:r19 --
+/absolute/take.mp3`, then `npm run transcribe:r19`, review the final-WAV
+recognition and phrase edges against `voiceover.txt`, and import the reviewed
+JSON with `npm run align:r19 -- /absolute/reviewed-final-alignment.json`.
+The importer verifies the exact WAV hash and every approved word; regenerate
+the score with `npm run score:r19` before reviewing the preview. Replacement
+speech must finish before 17s and retain every word. Run the Remotion
+package's build/lint and the main site's gates. `npm run checks:r19` captures
+ten first/transition/hold/last stills under `out/r19-checks/`, the cover at
+`out/qissati-r19-cover.png`, and a 2×5 contact sheet at
+`out/qissati-r19-contact-sheet.png`. Studio is `/Qissati-R19`;
+`npm run render:r19` exports H.264 when requested. Earlier reels are preserved.
+
+`Qissati-R20` (`marketing-reel/src/r20/`) is the separate 20-second,
+600-frame, 1080×1920 three-word community-game Reel at 30fps. Existing
+matching `@remotion/three` renders original thick paper tiles, a growing
+miniature garden, a sculpted brass key and curiosity mark, and a layered
+arched doorway containing the example story world. The tiles land at 1/2/3s;
+models emerge at 5/6/7s, the camera arcs at 8s, and the paper tiles hinge and
+slide into the doorway at 9–12s. The doorway clears before the blank answer
+slots enter at 14/14.24/14.48s. The complete question and comment template hold
+from 16–20s. The full-frame cream paper set has folded botanical decorations,
+sculptural paper terrain and brass accents; background geometry may bleed
+outside the protected content rectangle.
+All camera, geometry, materials, light and motion use Remotion's requested
+frame. `FrameCommit` explicitly renders paused and backward Studio seeks;
+`projectTileLabels()` shares the Three camera matrix with the RTL DOM labels.
+Arabic stays connected at the word level. The complete logo and essential
+copy remain within x=180–900, y=300–1230; `safeAreaPreview` displays the boundary.
+The exact main-copy schedule is A `٣ كلمات = بداية حكاية` at 0–3s, B
+`مكان + غرض + شعور` at 3–12s, and C `اكتبوا ٣ كلمات` at 12–20s. The separate
+`Qissati-R20-Cover` uses `عطونا ٣ كلمات، نفتح فيهم حكاية` above three blank
+paper tiles. Its explicit `stillFrame=135` uses the reel's 30fps clock,
+independently of the Still context's 1fps.
+
+R20 currently has original instrumental music and SFX, with no supplied
+narration. `public/r20/voiceover.txt` preserves the complete planned Jordanian
+script; `voice-direction.txt` contains recording/alignment directions. Do not
+present its planned cadence as measured subtitles. A later complete voice
+take must finish before 18s, preserve every word and receive reviewed final-WAV
+alignment before captions and flexible action/SFX cues are synchronised.
+`npm run score:r20` regenerates separate original 20-second 48kHz stereo WAVs;
+`audio-provenance.json` records synthesis, cues, source gains, hashes and
+measured levels. Preview gains are music 0.85 and SFX 0.92; the combined mix
+measures about −21.08 LUFS / −5.06 dBTP. `post-caption.txt` contains the
+three-word comment game. `npm run checks:r20` captures twelve visual checks,
+the separate cover and a 3×4 contact sheet under `out/`. Studio is
+`/Qissati-R20`; `npm run render:r20` exports H.264 when requested. R20 JSX is
+explicitly included in the separate project's ESLint scope. Run that project's
+build/lint and the main site's gates; the documented webpack fallback remains
+available for the sandboxed main-site build. Earlier reels remain separate.
+
+### Four additional Qissati reels — R21 through R24
+
+`marketing-reel/src/Root.jsx` registers these separately inside the explicit
+`Qissati-New-Reels` folder, each with its own cover Still. All are 1080×1920
+at 30fps; R21/R23/R24 are 20s/600 frames and R22 is 18s/540 frames. The
+earlier compositions remain independent. Their `music`, `sfx` and
+`safeAreaPreview` props default to true, true and false respectively.
+
+- **R21, a little detail becomes an adventure:** a folded paper pocket,
+  sculpted brass star, eight curved balloon panels, woven basket/rigging,
+  flight through a paper garden and a hinged illustrated book. Hook 0–4s,
+  wonder 4–13s, payoff 13–20s; CTA settles at 17s. The book rises after
+  unfolding to y≈839–1063, clearing the CTA at y1100. The complete logo has
+  an explicit stacking layer, including on the cover. Its page art is an
+  original procedural sample, with no customer-book claim.
+- **R22, one question opens a world:** a dark teal paper observatory with
+  brass orbits, moon and opening cream window. Garden/steps unfold at
+  4.1–6.3s; a paper boat folds at 7.4s and sails through stars. Window and
+  garden fold into a keepsake book at 12–14s, then the question/save cue
+  holds through 18s. A 0.74 miniature scale and camera view offset clear
+  the connected single-line hook/question; the book rises during the
+  final fold to leave the closing save cue unobstructed.
+- **R23, a gift opens a story:** an ivory gift box with a curved fabric-like
+  teal ribbon, independent lifting lid, rising book, real spine hinge and
+  page leaves, followed by a folded terrace/palms/castle pop-up world.
+  Ribbon 1–4s, lid 4–6s, book 6–9s, cover 9–12s, pop-up 12–15s. The
+  final gift and invitation hold through 20s. Inspect the cover's near-
+  vertical phase around frames 300–315 as well as the final open spread;
+  checking only the final pose can miss headline overlap during the hinge.
+  The camera projects the conservative solid geometry bounds and fits the
+  complete gift/book into x210–870/y710–1080 on each requested frame. Side
+  background ribbons sit farther out so the pullback preserves headline contrast.
+- **R24, choose an adventure:** a brass compass becomes three original
+  paper miniatures in RTL order: sea/boat at 3.2s, forest at 5.2s and
+  moon/rocket at 7.2s. Selection lights and a short camera arc lead to
+  `اختاروا المغامرة`; all three worlds remain visible for the final choice.
+  The final comment line ends at y1228. The dark teal atlas and paper
+  landscape are full bleed, while the three plinths and labels fit safely.
+
+Each reel owns its procedural Three.js geometry, lighting/reflections and
+frame-driven animation. Explicit frame commits paint paused/backward Studio
+seeks. Explicit Still poses use the reel's 30fps clock, independently of a
+Still's 1fps context. Arabic remains connected complete words in Cairo; the
+complete logo and essential content stay within x180–900/y300–1230. All four
+JSX directories are explicitly included in the separate ESLint configuration.
+
+`npm run score:r21` (and r22/r23/r24) regenerates separate original music and
+SFX PCM WAVs under each `public/rNN/` directory, with provenance, hashes and
+measured levels. No narration recording is included. Each `voiceover.txt`
+contains the complete planned Jordanian script; recording directions and
+post captions sit beside it. `public/new-reels/voiceovers.txt` combines R20
+and the four new scripts. Planned visual cadence must never be represented
+as measured speech alignment; a supplied take requires final-WAV review.
+
+Run both projects' build/lint gates, using the documented webpack fallback
+for the main site when needed. `npm run checks:new-reels` captures all four
+in one bundle/ANGLE browser, including near-vertical R23 hinge checks, their
+separate covers, per-reel contact sheets and `out/qissati-four-reels-preview.png`.
+`npm run checks:r21` (and r22/r23/r24) can repeat only a changed reel.
+These are renderer captures for visual review, not a new test framework.
+Also drive each actual Studio preview at `/Qissati-R21` through
+`/Qissati-R24` and verify frame progress/backward seeking and WebGL pixels.
+`npm run render:r21` (and r22/r23/r24) exports H.264 when requested.
+
+**MP4 delivery colour settings.** This project's Remotion 4.0.529 defaults to
+`colorSpace: 'default'`, and its configured JPEG capture can yield full-range
+BT.601/JPEG signalling (`ffprobe`: `yuvj420p`, `pc`, `bt470bg`) even when the
+CLI requests `--pixel-format=yuv420p`. For future delivery renders, also pass
+`--color-space=bt709 --image-format=png` so the renderer converts and tags
+limited-range BT.709 directly from the captured frames. Check the finished
+file's actual probe values rather than inferring them from the CLI argument.
+An already rendered full-range file can be standardised with a real sample
+range/matrix conversion (`scale=in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`),
+BT.709/tv output tags, AAC copy and `+faststart`; changing tags alone does
+not convert the samples. FFmpeg 9 can carry the source JPEG ICC profile through
+that filter: remove the ICC frame side data before conversion and explicitly
+set the output frame's colour parameters when that happens. Verify the matrix,
+transfer and primaries all read `bt709`, as well as `yuv420p` and `tv` range.
+Preserve the original, validate the staged MP4 and inspect its decoded frames
+before replacing the delivery file. The four canonical MP4s under `out/` are
+the checked delivery files; `out/qissati-four-reels-mp4.zip` contains those
+same four files with descriptive download names.
 
 ### 20-second marketing reel and Instagram safe areas
 

@@ -1,0 +1,7 @@
+R22 · 18 seconds · 30 fps · 29 Jordanian Arabic whitespace-separated words.
+
+Performance: warm, curious Jordanian storyteller, intimate bedtime tone; natural colloquial pronunciation. Give the opening question a smile, a brief curious pause after «باب», and a small lift on «وين بتحبّوا يودّيكم؟». Make «مركب ورق» light and playful. Finish «مع قصتي» softly rather than as a sales shout.
+
+Read every approved word from voiceover.txt. Aim for a complete, unhurried take ending before 16 seconds, leaving the last two seconds for the music tail and save cue. Do not remove words or compress speech beyond intelligibility.
+
+No recording has been supplied or generated. The current composition plays separate original music/SFX only. Its visual cue schedule is planned cadence, never measured voice alignment. Once a full take exists, preserve the source, normalize a mono 48kHz final WAV and measure/review that final WAV's complete Arabic words before adding subtitles or synchronizing flexible motion/SFX. Do not enable voice or claim timed captions from this script alone.

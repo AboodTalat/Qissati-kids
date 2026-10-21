@@ -1,0 +1,77 @@
+{
+  "reel": "R21",
+  "sources": "All samples synthesized by this script. Original composition, instruments and effects. No third-party sources or voice recording.",
+  "music": "D-major star voyage, 112 BPM: bell and rolled-piano melody, softly sustained chord pad, rounded bass; original notes and dynamics.",
+  "sfx": "Paper pocket fold, brass-star lift chime, golden-route notes, eight paper gores assembling, book folios opening, gentle star landing.",
+  "voice": "No narration recording exists. voiceover.txt is a prepared script only; planned cues are not measured subtitles.",
+  "durationSeconds": 20,
+  "sampleRate": 48000,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "frameRate": 30,
+  "bpm": 112,
+  "key": "D major",
+  "cues": {
+    "pocketFlap": 0.3,
+    "starLift": 0.65,
+    "goldenRoute": 2.6,
+    "balloonGores": [
+      4.2,
+      4.34,
+      4.48,
+      4.62,
+      4.76,
+      4.9,
+      5.04,
+      5.18
+    ],
+    "balloonFlight": 6.2,
+    "bookArrival": 10.95,
+    "foliosOpening": 11.4,
+    "starLanding": 14.6,
+    "cta": 16.5,
+    "quietHold": [
+      17,
+      20
+    ]
+  },
+  "mixing": {
+    "music": 0.85,
+    "sfx": 0.92,
+    "futureNarration": "After an actual complete take is supplied and aligned, duck music to .22 and SFX to .35 during measured speech. Keep original speed and preserve all approved words."
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -8.052,
+      "rmsDbfs": -23.841
+    },
+    "sfx": {
+      "peakDbfs": -11.857,
+      "rmsDbfs": -34.51
+    }
+  },
+  "measuredLoudness": {
+    "music": {
+      "status": "measured",
+      "integratedLufs": -21.56,
+      "truePeakDbtp": -8.05,
+      "loudnessRangeLu": 3.7
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -27.48,
+      "truePeakDbtp": -11.82,
+      "loudnessRangeLu": 15.9
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -22.45,
+      "truePeakDbtp": -9.46,
+      "loudnessRangeLu": 4.1
+    }
+  },
+  "sha256": {
+    "music": "3bb90192347282b5c30833aafe0654012fc5e203da411e0a586265da4cbeb4f2",
+    "sfx": "fb94714d7e098000cd56f6a1ecd7547fd6a93d96edb9f9f35c33aa9a8dbf7c84"
+  }
+}

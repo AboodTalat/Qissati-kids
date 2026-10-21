@@ -1,0 +1,223 @@
+[
+  {
+    "text": "قبل",
+    "startMs": 120,
+    "endMs": 360,
+    "timestampMs": 240,
+    "confidence": null
+  },
+  {
+    "text": " ما تطفّوا",
+    "startMs": 360,
+    "endMs": 960,
+    "timestampMs": 660,
+    "confidence": null
+  },
+  {
+    "text": " الضو،",
+    "startMs": 960,
+    "endMs": 1400,
+    "timestampMs": 1180,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " جرّبوا",
+    "startMs": 1640,
+    "endMs": 1960,
+    "timestampMs": 1800,
+    "confidence": null
+  },
+  {
+    "text": " تسألوا",
+    "startMs": 1960,
+    "endMs": 2400,
+    "timestampMs": 2180,
+    "confidence": null
+  },
+  {
+    "text": " طفلكم:",
+    "startMs": 2400,
+    "endMs": 3040,
+    "timestampMs": 2720,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " لو",
+    "startMs": 3280,
+    "endMs": 3500,
+    "timestampMs": 3390,
+    "confidence": null
+  },
+  {
+    "text": " في",
+    "startMs": 3500,
+    "endMs": 3640,
+    "timestampMs": 3570,
+    "confidence": null
+  },
+  {
+    "text": " باب",
+    "startMs": 3640,
+    "endMs": 3940,
+    "timestampMs": 3790,
+    "confidence": null
+  },
+  {
+    "text": " سري",
+    "startMs": 3940,
+    "endMs": 4160,
+    "timestampMs": 4050,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بغرفتك،",
+    "startMs": 4160,
+    "endMs": 4960,
+    "timestampMs": 4560,
+    "confidence": null
+  },
+  {
+    "text": " وين بودّيك؟",
+    "startMs": 5120,
+    "endMs": 6100,
+    "timestampMs": 5610,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " اسمعوا",
+    "startMs": 6320,
+    "endMs": 6740,
+    "timestampMs": 6530,
+    "confidence": null
+  },
+  {
+    "text": " الجواب",
+    "startMs": 6740,
+    "endMs": 7120,
+    "timestampMs": 6930,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " من",
+    "startMs": 7120,
+    "endMs": 7260,
+    "timestampMs": 7190,
+    "confidence": null
+  },
+  {
+    "text": " غير",
+    "startMs": 7260,
+    "endMs": 7460,
+    "timestampMs": 7360,
+    "confidence": null
+  },
+  {
+    "text": " ما",
+    "startMs": 7460,
+    "endMs": 7540,
+    "timestampMs": 7500,
+    "confidence": null
+  },
+  {
+    "text": " تصحّحوه.",
+    "startMs": 7540,
+    "endMs": 8360,
+    "timestampMs": 7950,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " يمكن",
+    "startMs": 8520,
+    "endMs": 8840,
+    "timestampMs": 8680,
+    "confidence": null
+  },
+  {
+    "text": " يطلع",
+    "startMs": 8840,
+    "endMs": 9200,
+    "timestampMs": 9020,
+    "confidence": null
+  },
+  {
+    "text": " منه",
+    "startMs": 9200,
+    "endMs": 9560,
+    "timestampMs": 9380,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " عالم",
+    "startMs": 9560,
+    "endMs": 10000,
+    "timestampMs": 9780,
+    "confidence": null
+  },
+  {
+    "text": " كامل.",
+    "startMs": 10000,
+    "endMs": 10600,
+    "timestampMs": 10300,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " احفظوا",
+    "startMs": 10740,
+    "endMs": 11200,
+    "timestampMs": 10970,
+    "confidence": null
+  },
+  {
+    "text": " السؤال",
+    "startMs": 11200,
+    "endMs": 11800,
+    "timestampMs": 11500,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " لليلة اللي",
+    "startMs": 11800,
+    "endMs": 12320,
+    "timestampMs": 12060,
+    "confidence": null
+  },
+  {
+    "text": " بدكم",
+    "startMs": 12320,
+    "endMs": 12720,
+    "timestampMs": 12520,
+    "confidence": null
+  },
+  {
+    "text": " فيها",
+    "startMs": 12720,
+    "endMs": 13000,
+    "timestampMs": 12860,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " حكاية",
+    "startMs": 13000,
+    "endMs": 13380,
+    "timestampMs": 13190,
+    "confidence": null
+  },
+  {
+    "text": " جديدة.",
+    "startMs": 13380,
+    "endMs": 14000,
+    "timestampMs": 13690,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

@@ -1,0 +1,383 @@
+{
+  "method": "Local Arabic Whisper small; approved spelling and punctuation restored without altering measured intervals",
+  "sourceSha256": "add1aeaea674a75ee9b001f4dd07756fd13fc08e01d1fa0b1e767748d6aaceba",
+  "review": [
+    {
+      "recognized": "بتنين",
+      "approved": "بتنين.",
+      "startMs": 1820,
+      "endMs": 2400
+    },
+    {
+      "recognized": "صغيرة",
+      "approved": "صغيرة،",
+      "startMs": 4440,
+      "endMs": 4880
+    },
+    {
+      "recognized": "الطفل",
+      "approved": "الطفل،",
+      "startMs": 6440,
+      "endMs": 6840
+    },
+    {
+      "recognized": "يوم",
+      "approved": "يوم.",
+      "startMs": 8700,
+      "endMs": 9000
+    },
+    {
+      "recognized": "التفصيل",
+      "approved": "التفصيلة",
+      "startMs": 9760,
+      "endMs": 10240
+    },
+    {
+      "recognized": "معنا",
+      "approved": "معنى",
+      "startMs": 10620,
+      "endMs": 11000
+    },
+    {
+      "recognized": "عنده",
+      "approved": "عنده،",
+      "startMs": 11000,
+      "endMs": 11280
+    },
+    {
+      "recognized": "بالحكاي",
+      "approved": "بالحكاية.",
+      "startMs": 12660,
+      "endMs": 13320
+    },
+    {
+      "recognized": "بزكركم",
+      "approved": "بذكّركم",
+      "startMs": 14540,
+      "endMs": 15120
+    },
+    {
+      "recognized": "بطفلكم",
+      "approved": "بطفلكم؟",
+      "startMs": 15120,
+      "endMs": 15800
+    }
+  ],
+  "words": [
+    {
+      "text": "مش",
+      "startMs": 260,
+      "endMs": 440,
+      "timestampMs": 350,
+      "confidence": null,
+      "sourceText": "مش",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "دايماً",
+      "startMs": 440,
+      "endMs": 840,
+      "timestampMs": 640,
+      "confidence": null,
+      "sourceText": "دايماً",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "المغامرة",
+      "startMs": 840,
+      "endMs": 1420,
+      "timestampMs": 1130,
+      "confidence": null,
+      "sourceText": "المغامرة",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "بتبدأ",
+      "startMs": 1420,
+      "endMs": 1820,
+      "timestampMs": 1620,
+      "confidence": null,
+      "sourceText": "بتبدأ",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "بتنين.",
+      "startMs": 1820,
+      "endMs": 2400,
+      "timestampMs": 2110,
+      "confidence": null,
+      "sourceText": "بتنين",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "مرات",
+      "startMs": 2720,
+      "endMs": 3220,
+      "timestampMs": 2970,
+      "confidence": null,
+      "sourceText": "مرات",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "بتبدأ",
+      "startMs": 3220,
+      "endMs": 3620,
+      "timestampMs": 3420,
+      "confidence": null,
+      "sourceText": "بتبدأ",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "بجزمة",
+      "startMs": 3620,
+      "endMs": 4140,
+      "timestampMs": 3880,
+      "confidence": null,
+      "sourceText": "بجزمة",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "مطر",
+      "startMs": 4140,
+      "endMs": 4440,
+      "timestampMs": 4290,
+      "confidence": null,
+      "sourceText": "مطر",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "صغيرة،",
+      "startMs": 4440,
+      "endMs": 4880,
+      "timestampMs": 4660,
+      "confidence": null,
+      "sourceText": "صغيرة",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "أو",
+      "startMs": 5240,
+      "endMs": 5420,
+      "timestampMs": 5330,
+      "confidence": null,
+      "sourceText": "أو",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "حجر",
+      "startMs": 5420,
+      "endMs": 5680,
+      "timestampMs": 5550,
+      "confidence": null,
+      "sourceText": "حجر",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "احتفظ",
+      "startMs": 5680,
+      "endMs": 6160,
+      "timestampMs": 5920,
+      "confidence": null,
+      "sourceText": "احتفظ",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "فيه",
+      "startMs": 6160,
+      "endMs": 6440,
+      "timestampMs": 6300,
+      "confidence": null,
+      "sourceText": "فيه",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "الطفل،",
+      "startMs": 6440,
+      "endMs": 6840,
+      "timestampMs": 6640,
+      "confidence": null,
+      "sourceText": "الطفل",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "أو",
+      "startMs": 7160,
+      "endMs": 7280,
+      "timestampMs": 7220,
+      "confidence": null,
+      "sourceText": "أو",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "مفتاح",
+      "startMs": 7280,
+      "endMs": 7840,
+      "timestampMs": 7560,
+      "confidence": null,
+      "sourceText": "مفتاح",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "بسأل",
+      "startMs": 7840,
+      "endMs": 8220,
+      "timestampMs": 8030,
+      "confidence": null,
+      "sourceText": "بسأل",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "عنه",
+      "startMs": 8220,
+      "endMs": 8520,
+      "timestampMs": 8370,
+      "confidence": null,
+      "sourceText": "عنه",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "كل",
+      "startMs": 8520,
+      "endMs": 8700,
+      "timestampMs": 8610,
+      "confidence": null,
+      "sourceText": "كل",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "يوم.",
+      "startMs": 8700,
+      "endMs": 9000,
+      "timestampMs": 8850,
+      "confidence": null,
+      "sourceText": "يوم",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "لما",
+      "startMs": 9500,
+      "endMs": 9760,
+      "timestampMs": 9630,
+      "confidence": null,
+      "sourceText": "لما",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "التفصيلة",
+      "startMs": 9760,
+      "endMs": 10240,
+      "timestampMs": 10000,
+      "confidence": null,
+      "sourceText": "التفصيل",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "إلها",
+      "startMs": 10240,
+      "endMs": 10620,
+      "timestampMs": 10430,
+      "confidence": null,
+      "sourceText": "إلها",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "معنى",
+      "startMs": 10620,
+      "endMs": 11000,
+      "timestampMs": 10810,
+      "confidence": null,
+      "sourceText": "معنا",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "عنده،",
+      "startMs": 11000,
+      "endMs": 11280,
+      "timestampMs": 11140,
+      "confidence": null,
+      "sourceText": "عنده",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "بصير",
+      "startMs": 11580,
+      "endMs": 12000,
+      "timestampMs": 11790,
+      "confidence": null,
+      "sourceText": "بصير",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "إلها",
+      "startMs": 12000,
+      "endMs": 12280,
+      "timestampMs": 12140,
+      "confidence": null,
+      "sourceText": "إلها",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "مكان",
+      "startMs": 12280,
+      "endMs": 12660,
+      "timestampMs": 12470,
+      "confidence": null,
+      "sourceText": "مكان",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "بالحكاية.",
+      "startMs": 12660,
+      "endMs": 13320,
+      "timestampMs": 12990,
+      "confidence": null,
+      "sourceText": "بالحكاي",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "شو",
+      "startMs": 13860,
+      "endMs": 13980,
+      "timestampMs": 13920,
+      "confidence": null,
+      "sourceText": "شو",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "الغرض",
+      "startMs": 13980,
+      "endMs": 14420,
+      "timestampMs": 14200,
+      "confidence": null,
+      "sourceText": "الغرض",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "اللي",
+      "startMs": 14420,
+      "endMs": 14540,
+      "timestampMs": 14480,
+      "confidence": null,
+      "sourceText": "اللي",
+      "pageBreakAfter": true
+    },
+    {
+      "text": "بذكّركم",
+      "startMs": 14540,
+      "endMs": 15120,
+      "timestampMs": 14830,
+      "confidence": null,
+      "sourceText": "بزكركم",
+      "pageBreakAfter": false
+    },
+    {
+      "text": "بطفلكم؟",
+      "startMs": 15120,
+      "endMs": 15800,
+      "timestampMs": 15460,
+      "confidence": null,
+      "sourceText": "بطفلكم",
+      "pageBreakAfter": true
+    }
+  ]
+}

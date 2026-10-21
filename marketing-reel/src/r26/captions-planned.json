@@ -1,0 +1,219 @@
+[
+  {
+    "text": "هاد",
+    "startMs": 150,
+    "endMs": 550,
+    "timestampMs": 350,
+    "confidence": null
+  },
+  {
+    "text": " جواب",
+    "startMs": 550,
+    "endMs": 1050,
+    "timestampMs": 800,
+    "confidence": null
+  },
+  {
+    "text": " من",
+    "startMs": 1050,
+    "endMs": 1350,
+    "timestampMs": 1200,
+    "confidence": null
+  },
+  {
+    "text": " استمارة",
+    "startMs": 1350,
+    "endMs": 2100,
+    "timestampMs": 1725,
+    "confidence": null
+  },
+  {
+    "text": " الطلب:",
+    "startMs": 2100,
+    "endMs": 2960,
+    "timestampMs": 2530,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بتلبس",
+    "startMs": 3000,
+    "endMs": 3500,
+    "timestampMs": 3250,
+    "confidence": null
+  },
+  {
+    "text": " جرابين",
+    "startMs": 3500,
+    "endMs": 4050,
+    "timestampMs": 3775,
+    "confidence": null
+  },
+  {
+    "text": " بلونين،",
+    "startMs": 4050,
+    "endMs": 5000,
+    "timestampMs": 4525,
+    "confidence": null
+  },
+  {
+    "text": " وبتعطي",
+    "startMs": 5000,
+    "endMs": 5550,
+    "timestampMs": 5275,
+    "confidence": null
+  },
+  {
+    "text": " كل",
+    "startMs": 5550,
+    "endMs": 6000,
+    "timestampMs": 5775,
+    "confidence": null
+  },
+  {
+    "text": " لون",
+    "startMs": 6000,
+    "endMs": 6400,
+    "timestampMs": 6200,
+    "confidence": null
+  },
+  {
+    "text": " اسم.",
+    "startMs": 6400,
+    "endMs": 7140,
+    "timestampMs": 6770,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " وبالقصة؟",
+    "startMs": 7200,
+    "endMs": 8180,
+    "timestampMs": 7690,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " صار",
+    "startMs": 9000,
+    "endMs": 9400,
+    "timestampMs": 9200,
+    "confidence": null
+  },
+  {
+    "text": " الجراب",
+    "startMs": 9400,
+    "endMs": 10000,
+    "timestampMs": 9700,
+    "confidence": null
+  },
+  {
+    "text": " الأصفر",
+    "startMs": 10000,
+    "endMs": 10550,
+    "timestampMs": 10275,
+    "confidence": null
+  },
+  {
+    "text": " هو",
+    "startMs": 10550,
+    "endMs": 10800,
+    "timestampMs": 10675,
+    "confidence": null
+  },
+  {
+    "text": " اللي",
+    "startMs": 10800,
+    "endMs": 11540,
+    "timestampMs": 11170,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " طمّن",
+    "startMs": 11200,
+    "endMs": 11700,
+    "timestampMs": 11450,
+    "confidence": null
+  },
+  {
+    "text": " قطة",
+    "startMs": 11700,
+    "endMs": 12100,
+    "timestampMs": 11900,
+    "confidence": null
+  },
+  {
+    "text": " صغيرة",
+    "startMs": 12100,
+    "endMs": 12650,
+    "timestampMs": 12375,
+    "confidence": null
+  },
+  {
+    "text": " خايفة.",
+    "startMs": 12650,
+    "endMs": 13510,
+    "timestampMs": 13080,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " مش",
+    "startMs": 14000,
+    "endMs": 14300,
+    "timestampMs": 14150,
+    "confidence": null
+  },
+  {
+    "text": " اسم",
+    "startMs": 14300,
+    "endMs": 14600,
+    "timestampMs": 14450,
+    "confidence": null
+  },
+  {
+    "text": " منبدّله…",
+    "startMs": 14600,
+    "endMs": 15300,
+    "timestampMs": 14950,
+    "confidence": null
+  },
+  {
+    "text": " تفصيلة",
+    "startMs": 15300,
+    "endMs": 15850,
+    "timestampMs": 15575,
+    "confidence": null
+  },
+  {
+    "text": " منكتب",
+    "startMs": 15850,
+    "endMs": 16300,
+    "timestampMs": 16075,
+    "confidence": null
+  },
+  {
+    "text": " حولها.",
+    "startMs": 16300,
+    "endMs": 17160,
+    "timestampMs": 16730,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " الرابط",
+    "startMs": 16500,
+    "endMs": 16900,
+    "timestampMs": 16700,
+    "confidence": null
+  },
+  {
+    "text": " بالبايو.",
+    "startMs": 16900,
+    "endMs": 17700,
+    "timestampMs": 17300,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

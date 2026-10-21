@@ -1,0 +1,222 @@
+[
+  {
+    "text": "تك...",
+    "startMs": 160,
+    "endMs": 820,
+    "timestampMs": 490,
+    "confidence": null
+  },
+  {
+    "text": " تك...",
+    "startMs": 820,
+    "endMs": 1500,
+    "timestampMs": 1160,
+    "confidence": null
+  },
+  {
+    "text": " تك.",
+    "startMs": 1500,
+    "endMs": 1816,
+    "timestampMs": 1658,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " يمكن",
+    "startMs": 2300,
+    "endMs": 2680,
+    "timestampMs": 2490,
+    "confidence": null
+  },
+  {
+    "text": " مطر",
+    "startMs": 2680,
+    "endMs": 3040,
+    "timestampMs": 2860,
+    "confidence": null
+  },
+  {
+    "text": " على",
+    "startMs": 3040,
+    "endMs": 3240,
+    "timestampMs": 3140,
+    "confidence": null
+  },
+  {
+    "text": " الشباك.",
+    "startMs": 3240,
+    "endMs": 3799,
+    "timestampMs": 3520,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " ويمكن",
+    "startMs": 4160,
+    "endMs": 4660,
+    "timestampMs": 4410,
+    "confidence": null
+  },
+  {
+    "text": " خطوات",
+    "startMs": 4660,
+    "endMs": 5240,
+    "timestampMs": 4950,
+    "confidence": null
+  },
+  {
+    "text": " صغيرة",
+    "startMs": 5240,
+    "endMs": 5700,
+    "timestampMs": 5470,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " بممر",
+    "startMs": 5700,
+    "endMs": 6200,
+    "timestampMs": 5950,
+    "confidence": null
+  },
+  {
+    "text": " من",
+    "startMs": 6200,
+    "endMs": 6360,
+    "timestampMs": 6280,
+    "confidence": null
+  },
+  {
+    "text": " ورق.",
+    "startMs": 6360,
+    "endMs": 6694,
+    "timestampMs": 6527,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " صوت",
+    "startMs": 7200,
+    "endMs": 7560,
+    "timestampMs": 7380,
+    "confidence": null
+  },
+  {
+    "text": " واحد",
+    "startMs": 7560,
+    "endMs": 7980,
+    "timestampMs": 7770,
+    "confidence": null
+  },
+  {
+    "text": " بيفتح",
+    "startMs": 7980,
+    "endMs": 8560,
+    "timestampMs": 8270,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " أكثر",
+    "startMs": 8560,
+    "endMs": 8900,
+    "timestampMs": 8730,
+    "confidence": null
+  },
+  {
+    "text": " من",
+    "startMs": 8900,
+    "endMs": 9160,
+    "timestampMs": 9030,
+    "confidence": null
+  },
+  {
+    "text": " مشهد،",
+    "startMs": 9160,
+    "endMs": 9428,
+    "timestampMs": 9294,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " وكل",
+    "startMs": 9880,
+    "endMs": 10240,
+    "timestampMs": 10060,
+    "confidence": null
+  },
+  {
+    "text": " طفل",
+    "startMs": 10240,
+    "endMs": 10700,
+    "timestampMs": 10470,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " رح",
+    "startMs": 10700,
+    "endMs": 10860,
+    "timestampMs": 10780,
+    "confidence": null
+  },
+  {
+    "text": " يتخيله",
+    "startMs": 10860,
+    "endMs": 11400,
+    "timestampMs": 11130,
+    "confidence": null
+  },
+  {
+    "text": " بطريقة.",
+    "startMs": 11400,
+    "endMs": 11930,
+    "timestampMs": 11665,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " اسمعوا",
+    "startMs": 12440,
+    "endMs": 12880,
+    "timestampMs": 12660,
+    "confidence": null
+  },
+  {
+    "text": " معه،",
+    "startMs": 12880,
+    "endMs": 13039,
+    "timestampMs": 12960,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": " واسألوه:",
+    "startMs": 13340,
+    "endMs": 13818,
+    "timestampMs": 13579,
+    "confidence": null
+  },
+  {
+    "text": " إنت",
+    "startMs": 14300,
+    "endMs": 14520,
+    "timestampMs": 14410,
+    "confidence": null
+  },
+  {
+    "text": " شو",
+    "startMs": 14520,
+    "endMs": 14740,
+    "timestampMs": 14630,
+    "confidence": null
+  },
+  {
+    "text": " شايف؟",
+    "startMs": 14740,
+    "endMs": 15252,
+    "timestampMs": 14996,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

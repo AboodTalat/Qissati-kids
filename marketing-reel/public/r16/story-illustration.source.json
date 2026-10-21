@@ -1,0 +1,14 @@
+{
+  "asset": "story-illustration.png",
+  "generatedAt": "2026-10-10",
+  "generator": "built-in image_gen.imagegen",
+  "workflow": "original generation; no fallback or image editing",
+  "prompt": "story-illustration.prompt.txt",
+  "source": "/Users/abood/.codex/generated_images/01a1265d-d446-79a1-9438-99607ba7a154/exec-ad33d951-758c-454a-a98e-a9406f713964.png",
+  "width": 1536,
+  "height": 1024,
+  "sha256": "6e94606b916f9dfed5797097ef53f44db06a0709118d0b4f31ee9dab6e819a94",
+  "content": "Fictional Amman-inspired story illustration with a child, nearby adult, gold treasure stairs and paper castle.",
+  "usage": "Qissati-R16 book spread, revealed at frames 390–414 and held through frame 659.",
+  "customerProof": false
+}

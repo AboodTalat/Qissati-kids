@@ -1,0 +1,14 @@
+{
+  "aligned": true,
+  "status": "Reviewed word alignment measured on the final prepared WAV; approved spelling retained.",
+  "alignedWordCount": 29,
+  "captionCount": 27,
+  "sourceDurationMs": 16039,
+  "voiceDurationMs": 16033,
+  "finalWordEndMs": 15824,
+  "alignmentSource": "Measured and reviewed final WAV",
+  "speed": 1,
+  "sourceSha256": "1b81bcf815517302f125e7e5b2e1cb92a60062ea04f5a044ade1ca916f35dd85",
+  "finalSha256": "9a1bac739b38daa9eb96a58b5a5b5fd5c41b268ea003b02ed2503f660d6cd4d6",
+  "captionPages": 10
+}

@@ -32,6 +32,7 @@ const words = measured.filter((word) => normalize(word.text ?? '').length).map((
   text: word.text,
   startMs: word.startMs ?? word.start * 1000,
   endMs: word.endMs ?? word.end * 1000,
+  ...(typeof word.pageBreakAfter === 'boolean' ? { pageBreakAfter: word.pageBreakAfter } : {}),
 }));
 const measuredScript = words.flatMap((word) => word.text.trim().split(/\s+/u));
 if (measuredScript.length !== script.length || measuredScript.some((word, i) => normalize(word) !== normalize(script[i]))) {
@@ -58,7 +59,7 @@ const captions = words.map((word) => {
   endMs: Math.round(word.endMs / speed),
   timestampMs: Math.round((word.startMs + word.endMs) / speed / 2),
   confidence: null,
-  ...(plan[scriptOffset - 1].pageBreakAfter ? { pageBreakAfter: true } : {}),
+  ...((word.pageBreakAfter ?? plan[scriptOffset - 1].pageBreakAfter) ? { pageBreakAfter: true } : {}),
   };
 });
 if (captions.at(-1).endMs >= 19000) throw new Error('Narration reaches the final two seconds');

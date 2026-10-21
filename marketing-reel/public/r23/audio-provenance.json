@@ -1,0 +1,96 @@
+{
+  "reel": "R23",
+  "music": "Original deterministic oscillator composition authored in scripts/create-r23-audio.mjs: plucked harp over a G-major motif, softly rolled piano, rounded bass and crossfading low pad. No third-party audio, samples or recordings.",
+  "sfx": "Original deterministic synthesis authored in scripts/create-r23-audio.mjs: woven-ribbon draws, a muted solid lid lift, thick book hinges, folded paper swishes and a G-major garden reveal chord. No external samples or recordings.",
+  "voice": "Pending complete user-supplied narration and reviewed final-WAV measured word alignment. voiceover.txt is approved script text only. No substitute voice or invented measured captions.",
+  "sampleRate": 48000,
+  "durationSeconds": 20,
+  "frameRate": 30,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "bpm": 96,
+  "key": "G major with C major / E minor / D major colours",
+  "cues": {
+    "ribbonPull": [
+      1,
+      2.05,
+      3.25
+    ],
+    "lidLift": {
+      "seconds": 4,
+      "frame": 120
+    },
+    "bookRise": {
+      "seconds": 6,
+      "frame": 180
+    },
+    "coverHinge": {
+      "seconds": 9,
+      "frame": 270
+    },
+    "paperWorld": [
+      12.12,
+      12.43,
+      12.74
+    ],
+    "settle": 15.15,
+    "quietFinalHold": [
+      16,
+      20
+    ],
+    "cta": 17
+  },
+  "mixing": {
+    "previewWithoutVoice": {
+      "music": 0.85,
+      "sfx": 0.92
+    },
+    "withAlignedVoice": {
+      "musicDuringSpeech": 0.22,
+      "sfxDuringSpeech": 0.35,
+      "voice": 1,
+      "recoverOverSeconds": 0.6
+    },
+    "sourceMasterGain": {
+      "music": 3.5,
+      "sfx": 1.15,
+      "authoredFixedGains": true
+    },
+    "note": "Music and SFX are independent tracks. Future voice should finish before 18s. Recover the score after the measured last word; do not derive narration timing from these planned cues."
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -6.276,
+      "rmsDbfs": -23.874
+    },
+    "sfx": {
+      "peakDbfs": -17.556,
+      "rmsDbfs": -39.076
+    }
+  },
+  "measuredLoudness": {
+    "method": "ffmpeg loudnorm input measurements; processed output discarded",
+    "music": {
+      "status": "measured",
+      "integratedLufs": -21.64,
+      "truePeakDbtp": -6.27,
+      "loudnessRangeLu": 6.5
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -32.09,
+      "truePeakDbtp": -17.32,
+      "loudnessRangeLu": 7.6
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -22.81,
+      "truePeakDbtp": -7.69,
+      "loudnessRangeLu": 6.9
+    }
+  },
+  "sha256": {
+    "music": "429f3cd76733e98b9e17e850246974479c0f450f0350fd738709884a75ebf3ef",
+    "sfx": "63d69625bc1d3add93a1ff8d6b460dd9f18c0156d140ff0c287620647f09035c"
+  }
+}

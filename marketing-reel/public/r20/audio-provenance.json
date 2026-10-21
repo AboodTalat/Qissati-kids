@@ -1,0 +1,129 @@
+{
+  "reel": "R20",
+  "music": "Original deterministic oscillator composition authored in scripts/create-r20-audio.mjs: warm marimba, softly rolled piano, rounded bass and crossfading low pad. No third-party audio, samples or recordings.",
+  "sfx": "Original deterministic synthesis authored in scripts/create-r20-audio.mjs: identical tactile paper-tile taps, rounded reveal chimes, paper swishes and a gently rising doorway chord. No external samples or recordings.",
+  "voice": "Pending complete user-supplied narration and reviewed final-WAV measured word alignment. voiceover.txt is approved script text only. No substitute voice or invented measured captions.",
+  "sampleRate": 48000,
+  "durationSeconds": 20,
+  "frameRate": 30,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "bpm": 120,
+  "key": "D major / B minor colour",
+  "cues": {
+    "tileLandings": [
+      {
+        "seconds": 1,
+        "frame": 30
+      },
+      {
+        "seconds": 2,
+        "frame": 60
+      },
+      {
+        "seconds": 3,
+        "frame": 90
+      }
+    ],
+    "triptychAlignment": {
+      "seconds": 4,
+      "frame": 120
+    },
+    "gardenKeyCuriosity": [
+      {
+        "seconds": 5,
+        "frame": 150
+      },
+      {
+        "seconds": 6,
+        "frame": 180
+      },
+      {
+        "seconds": 7,
+        "frame": 210
+      }
+    ],
+    "cameraArc": {
+      "seconds": 7.85,
+      "frame": 236
+    },
+    "doorwayPaperSwishes": [
+      9.05,
+      9.9,
+      10.9
+    ],
+    "doorwayChord": [
+      11.45,
+      11.62,
+      11.8
+    ],
+    "exampleClear": 12.8,
+    "blankSlotLandings": [
+      14,
+      14.24,
+      14.48
+    ],
+    "questionSettle": 15,
+    "quietFinalHold": [
+      16,
+      20
+    ]
+  },
+  "mixing": {
+    "previewWithoutVoice": {
+      "music": 0.85,
+      "sfx": 0.92
+    },
+    "withAlignedVoice": {
+      "musicDuringSpeech": 0.22,
+      "sfxDuringSpeech": 0.35,
+      "voice": 1,
+      "recoverOverSeconds": 0.6
+    },
+    "sourceMasterGain": {
+      "music": 4.445698525097307,
+      "sfx": 1.4125375446227544,
+      "changeFromInitialSourceDb": {
+        "music": 5,
+        "sfx": 3
+      }
+    },
+    "note": "Music and SFX are independent tracks. Future voice should finish before 18s. Recover the score after the measured last word; do not derive narration timing from these planned cues."
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -3.656,
+      "rmsDbfs": -21.682
+    },
+    "sfx": {
+      "peakDbfs": -9.689,
+      "rmsDbfs": -37.749
+    }
+  },
+  "measuredLoudness": {
+    "method": "ffmpeg loudnorm input measurements; processed output discarded",
+    "music": {
+      "status": "measured",
+      "integratedLufs": -19.87,
+      "truePeakDbtp": -3.65,
+      "loudnessRangeLu": 6.9
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -31.09,
+      "truePeakDbtp": -9.59,
+      "loudnessRangeLu": 8.2
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -21.08,
+      "truePeakDbtp": -5.06,
+      "loudnessRangeLu": 7.1
+    }
+  },
+  "sha256": {
+    "music": "dda5c35e6722bf3e38c575d50ee339239c1d0ca26127cfaae77dfb9bc1483180",
+    "sfx": "941d48361101273ee568695fbdd6df76f551fb5090ad3834237649e2941b3861"
+  },
+  "tileTapBufferSha256": "85400fd4fad465b6592b3596b3508e562c24470014b1a4de3d2e62d05206275d"
+}

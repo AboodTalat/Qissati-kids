@@ -1,0 +1,23 @@
+{
+  "music": "Original deterministic oscillator composition by scripts/create-r18-audio.mjs; no samples, filmed audio or third-party music.",
+  "sfx": "Original deterministic synthesis: gentle bridge creak, welcoming helper beacon, two soft choice taps and a 0.4-second paper rewind flourish.",
+  "voice": "Complete user-supplied ElevenLabs recording, original preserved. Normalized 48kHz mono PCM WAV with pitch-preserving preparation. Every approved script word aligned to this final WAV; no word cuts.",
+  "sampleRate": 48000,
+  "durationSeconds": 20,
+  "channels": 2,
+  "sfxCueSeconds": {
+    "bridge": 2.6,
+    "beacon": 5.966666666666667,
+    "choiceTaps": [
+      8.666666666666666,
+      9.433333333333334
+    ],
+    "rewind": 19.6,
+    "rewindDuration": 0.4
+  },
+  "voiceDurationSeconds": 16.032792,
+  "finalSpokenWordEndSeconds": 15.824,
+  "voiceSpeed": 1,
+  "sourceSha256": "1b81bcf815517302f125e7e5b2e1cb92a60062ea04f5a044ade1ca916f35dd85",
+  "finalSha256": "9a1bac739b38daa9eb96a58b5a5b5fd5c41b268ea003b02ed2503f660d6cd4d6"
+}

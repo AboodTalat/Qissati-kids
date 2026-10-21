@@ -1,0 +1,74 @@
+{
+  "reel": "R22",
+  "origin": "Original deterministic synthesis in scripts/create-r22-audio.mjs, adapted from the local R20 synthesis engine; no external recordings, samples or paid services.",
+  "music": "100 BPM A-minor/add9 celestial lullaby: sparse celesta, softly rolled piano and low common-tone sine pad.",
+  "sfx": "Original oscillator/noise latch click, paired paper shutters, garden folds, star chimes, folding starboat, book settle and bookmark click.",
+  "voice": "No recording exists. voiceover.txt is planned copy only; no synthetic substitute or invented measured alignment.",
+  "sampleRate": 48000,
+  "durationSeconds": 18,
+  "channels": 2,
+  "encoding": "16-bit PCM WAV",
+  "frameRate": 30,
+  "bpm": 100,
+  "key": "A minor / add9",
+  "previewGains": {
+    "music": 0.85,
+    "sfx": 0.92
+  },
+  "cues": {
+    "latch": 2.25,
+    "shutters": [
+      3,
+      3.18
+    ],
+    "garden": 4.1,
+    "stars": [
+      5.1,
+      5.5,
+      5.9
+    ],
+    "boatFold": 7.4,
+    "sail": 8.2,
+    "bookFold": 12,
+    "bookSettle": 13.3,
+    "save": 15.2,
+    "finalHold": [
+      14,
+      18
+    ]
+  },
+  "analysis": {
+    "music": {
+      "peakDbfs": -7.224,
+      "rmsDbfs": -24.156
+    },
+    "sfx": {
+      "peakDbfs": -10.417,
+      "rmsDbfs": -32.145
+    }
+  },
+  "measuredLoudness": {
+    "music": {
+      "status": "measured",
+      "integratedLufs": -22.02,
+      "truePeakDbtp": -7.22,
+      "loudnessRangeLu": 4.5
+    },
+    "sfx": {
+      "status": "measured",
+      "integratedLufs": -24.79,
+      "truePeakDbtp": -10.17,
+      "loudnessRangeLu": 15.4
+    },
+    "previewMix": {
+      "status": "measured",
+      "integratedLufs": -22.2,
+      "truePeakDbtp": -8.63,
+      "loudnessRangeLu": 6.4
+    }
+  },
+  "sha256": {
+    "music": "ee563e4bcb80e007324db176881b1b75440e78baefdb3b317e5c850d602659e2",
+    "sfx": "1764375d06a5f8a142896dd571eb846d62e8fd7043160db26f1607537151de58"
+  }
+}

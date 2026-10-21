@@ -1,0 +1,13 @@
+R19 — 19-second listening game for Qissati / قصتي
+
+Script: colloquial Jordanian Arabic. Delivery: warm, intimate, curious and tender, as a parent inviting a child to listen. Keep the performance natural and quiet, with a small smile rather than an announcer voice. The question should feel open; neither rain nor footsteps is the correct answer.
+
+Use every word in voiceover.txt without substitutions or cuts. Give the three opening “تك” words short space so the three identical synthesized taps remain audible. For the current take, taps and visual ripples follow the measured opening word onsets at frames 5, 25 and 45 on the 30fps reel clock. Rain begins at frame 80, the corridor transition follows frame 171, the paper hush lands at frame 191, and footsteps land at frames 249, 270 and 291.
+
+The whole script must finish by 17.0 seconds, leaving 17–19 seconds clear for the music tail, final question and loop. Treat the supplied one-second cells as a planned cadence only. Preserve natural phrase breaks, especially before “ويمكن خطوات”, “صوت واحد”, “اسمعوا معه” and the final “إنت شو شايف؟”.
+
+Recording status: SUPPLIED AND ALIGNED. The user supplied the ElevenLabs Mona – Saudi Arabic take generated on 2026-10-13 at 17:49:06. The recording is Saudi Arabic voice delivery of the approved colloquial Jordanian script. voice-source.mp3 preserves the original file; the separate mono 48kHz PCM voice.wav keeps the complete 15.386-second take at speed 1 with no cuts or time stretch. Two-pass normalization targets −18 LUFS / −2 dBTP; the final WAV measures −17.89 LUFS integrated and −2.00 dBTP.
+
+Local Arabic Whisper small measured the final WAV, then recognition and waveform review reconciled recognition spellings to all 30 approved words. The reviewed alignment contains 30 measured intervals in 10 RTL caption pages, with final speech ending at 15.252 seconds. Narration and captions share a Sequence and time zero. Music and SFX duck during speech and recover for the closing tail; the 19-second reel retains its final narration-free two seconds.
+
+Replacement flow: npm run voice:r19 -- /absolute/complete-take.mp3 prepares and preserves the complete source, without cuts or acceleration, and resets alignment to pending. The take must finish before 17 seconds at original speed. Run npm run transcribe:r19 to measure the final WAV locally. Review every word, spelling and phrase edge, then run npm run align:r19 -- /absolute/reviewed-final-wav-alignment.json using reviewed:true and the exact finalSha256. Run npm run score:r19 to regenerate the separate soundtrack cues, then review voice, captions, motion and SFX together in Studio.

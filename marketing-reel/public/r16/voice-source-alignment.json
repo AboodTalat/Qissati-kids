@@ -1,0 +1,290 @@
+[
+  {
+    "text": "من",
+    "startMs": 200,
+    "endMs": 400,
+    "timestampMs": 300,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "فوق،",
+    "startMs": 400,
+    "endMs": 1100,
+    "timestampMs": 750,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "عمّان",
+    "startMs": 1100,
+    "endMs": 1680,
+    "timestampMs": 1390,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "شوارع",
+    "startMs": 1680,
+    "endMs": 2280,
+    "timestampMs": 1980,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "وبيوت.",
+    "startMs": 2280,
+    "endMs": 2800,
+    "timestampMs": 2540,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بس",
+    "startMs": 3240,
+    "endMs": 3480,
+    "timestampMs": 3360,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "من",
+    "startMs": 3480,
+    "endMs": 3580,
+    "timestampMs": 3530,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "عيون",
+    "startMs": 3580,
+    "endMs": 3940,
+    "timestampMs": 3760,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "طفل؟",
+    "startMs": 3940,
+    "endMs": 4200,
+    "timestampMs": 4070,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "درج",
+    "startMs": 4760,
+    "endMs": 5140,
+    "timestampMs": 4950,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "طويل",
+    "startMs": 5140,
+    "endMs": 5600,
+    "timestampMs": 5370,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بصير",
+    "startMs": 5600,
+    "endMs": 6080,
+    "timestampMs": 5840,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "طريق",
+    "startMs": 6080,
+    "endMs": 6500,
+    "timestampMs": 6290,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "كنز،",
+    "startMs": 6500,
+    "endMs": 6800,
+    "timestampMs": 6650,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وشجرة",
+    "startMs": 7120,
+    "endMs": 7720,
+    "timestampMs": 7420,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "الحارة",
+    "startMs": 7720,
+    "endMs": 8280,
+    "timestampMs": 8000,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بتصير",
+    "startMs": 8280,
+    "endMs": 8820,
+    "timestampMs": 8550,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "قلعة،",
+    "startMs": 8820,
+    "endMs": 9120,
+    "timestampMs": 8970,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "وضوّ",
+    "startMs": 9520,
+    "endMs": 9900,
+    "timestampMs": 9710,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "الشباك",
+    "startMs": 9900,
+    "endMs": 10660,
+    "timestampMs": 10280,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بصير",
+    "startMs": 10660,
+    "endMs": 11040,
+    "timestampMs": 10850,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "إشارة",
+    "startMs": 11040,
+    "endMs": 11500,
+    "timestampMs": 11270,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "لبداية",
+    "startMs": 11500,
+    "endMs": 12180,
+    "timestampMs": 11840,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "المغامرة.",
+    "startMs": 12180,
+    "endMs": 12680,
+    "timestampMs": 12430,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "تخيّلوا",
+    "startMs": 13200,
+    "endMs": 13680,
+    "timestampMs": 13440,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "مدينتكم",
+    "startMs": 13680,
+    "endMs": 14380,
+    "timestampMs": 14030,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "مرسومة",
+    "startMs": 14380,
+    "endMs": 14940,
+    "timestampMs": 14660,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "على",
+    "startMs": 14940,
+    "endMs": 15140,
+    "timestampMs": 15040,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "مقاس",
+    "startMs": 15140,
+    "endMs": 15560,
+    "timestampMs": 15350,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "خياله.",
+    "startMs": 15560,
+    "endMs": 15960,
+    "timestampMs": 15760,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "أي",
+    "startMs": 16560,
+    "endMs": 16740,
+    "timestampMs": 16650,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "مكان",
+    "startMs": 16740,
+    "endMs": 17120,
+    "timestampMs": 16930,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "فيها",
+    "startMs": 17120,
+    "endMs": 17500,
+    "timestampMs": 17310,
+    "confidence": null,
+    "pageBreakAfter": true
+  },
+  {
+    "text": "بتحبّوا",
+    "startMs": 17500,
+    "endMs": 17920,
+    "timestampMs": 17710,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "يدخل",
+    "startMs": 17920,
+    "endMs": 18360,
+    "timestampMs": 18140,
+    "confidence": null,
+    "pageBreakAfter": false
+  },
+  {
+    "text": "قصته؟",
+    "startMs": 18360,
+    "endMs": 18560,
+    "timestampMs": 18460,
+    "confidence": null,
+    "pageBreakAfter": true
+  }
+]

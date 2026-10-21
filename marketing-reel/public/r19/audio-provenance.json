@@ -1,0 +1,56 @@
+{
+  "music": "Original deterministic oscillator composition authored in scripts/create-r19-audio.mjs: suspended warm pad, sparse tender music-box melody and diffuse echoes. No external samples, recordings or third-party music.",
+  "sfx": "Original deterministic synthesis authored in scripts/create-r19-audio.mjs: three identical micro-taps, delicate rain, a paper match-cut hush, three light paper steps with quiet echoes and a final paper breath.",
+  "voice": "Complete user-supplied ElevenLabs recording at original speed. Untouched voice-source.mp3, normalized mono48k voice.wav, reviewed final-WAV word alignment; no words removed.",
+  "sampleRate": 48000,
+  "durationSeconds": 19,
+  "channels": 2,
+  "encoding": "16-bit signed PCM WAV",
+  "sfxCueSeconds": {
+    "identicalTicks": [
+      0.16666666666666666,
+      0.8333333333333334,
+      1.5
+    ],
+    "rain": [
+      2.7866666666666666,
+      6.766666666666667
+    ],
+    "paperHush": {
+      "start": 6.016666666666667,
+      "peak": 6.366666666666666,
+      "duration": 0.7
+    },
+    "paperSteps": [
+      8.3,
+      9,
+      9.7
+    ],
+    "paperStepEchoDelay": 0.135,
+    "loopBreath": [
+      17.8,
+      19
+    ]
+  },
+  "identicalTickBufferSha256": "29ea21c47698a8ca6882de19d5e50df69fe94f7d29747de52f69f8de6ca9ec8e",
+  "musicalDirection": "Tender, spacious and curious; sound leads. Music recedes from 15–16s, with a restrained 17–19s tail. Zero-valued endpoints give a clean loop breath.",
+  "analysis": {
+    "music": {
+      "peakDbfs": -15.962,
+      "rmsDbfs": -30.782
+    },
+    "sfx": {
+      "peakDbfs": -9.836,
+      "rmsDbfs": -42.798
+    }
+  },
+  "sha256": {
+    "music": "a20ea9170477f0b4c6f21db7f7796097294fa553c842890e350808230776a807",
+    "sfx": "80e36a6077e94b7da692366e7666334660df8f10eea103df5b3aac7732a6699b"
+  },
+  "voiceSourceSha256": "31d2063a4e69c1e1cc76b2cc9953c8130908d2f486ec48231f379428f85b1dd1",
+  "voiceFinalSha256": "03ff4515e720873316450408ca41c80b44b2af550d10d8e86bfea76a71be4589",
+  "voiceDurationMs": 15386,
+  "finalWordEndMs": 15252,
+  "voiceSpeed": 1
+}

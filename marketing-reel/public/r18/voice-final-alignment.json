@@ -1,0 +1,205 @@
+{
+  "source": "public/r18/voice.wav",
+  "finalSha256": "9a1bac739b38daa9eb96a58b5a5b5fd5c41b268ea003b02ed2503f660d6cd4d6",
+  "alignmentMethod": "Local multilingual Whisper small measured on prepared 48kHz WAV; approved spelling reconciled, final WAV pause edges reviewed with silencedetect at -40dB/0.12s. Fused recognition phrases retain their shared measured interval; no guessed internal splits.",
+  "alignedWordCount": 29,
+  "captionCount": 27,
+  "captions": [
+    {
+      "text": "وصل",
+      "startMs": 160,
+      "endMs": 580,
+      "pageBreakAfter": false,
+      "finalRecognition": "وصل"
+    },
+    {
+      "text": "البطل",
+      "startMs": 580,
+      "endMs": 960,
+      "pageBreakAfter": false,
+      "finalRecognition": "البطل"
+    },
+    {
+      "text": "للمفترق.",
+      "startMs": 960,
+      "endMs": 1664,
+      "pageBreakAfter": true,
+      "finalRecognition": "للمفترق",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=2000"
+    },
+    {
+      "text": "قدّامه",
+      "startMs": 2260,
+      "endMs": 2600,
+      "pageBreakAfter": false,
+      "finalRecognition": "الدام"
+    },
+    {
+      "text": "جسر",
+      "startMs": 2600,
+      "endMs": 3120,
+      "pageBreakAfter": false,
+      "finalRecognition": "وجسر"
+    },
+    {
+      "text": "يودّيه",
+      "startMs": 3120,
+      "endMs": 3480,
+      "pageBreakAfter": false,
+      "finalRecognition": "يودي"
+    },
+    {
+      "text": "لصديقه،",
+      "startMs": 3480,
+      "endMs": 4046,
+      "pageBreakAfter": true,
+      "finalRecognition": "لصديقه",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=4300"
+    },
+    {
+      "text": "وطريق",
+      "startMs": 4500,
+      "endMs": 5100,
+      "pageBreakAfter": false,
+      "finalRecognition": "وطريق"
+    },
+    {
+      "text": "يرجّعه",
+      "startMs": 5100,
+      "endMs": 5600,
+      "pageBreakAfter": false,
+      "finalRecognition": "يرجع"
+    },
+    {
+      "text": "يجيب",
+      "startMs": 5600,
+      "endMs": 5960,
+      "pageBreakAfter": false,
+      "finalRecognition": "ويجيب"
+    },
+    {
+      "text": "مساعدة.",
+      "startMs": 5960,
+      "endMs": 6375,
+      "pageBreakAfter": true,
+      "finalRecognition": "مساعدة",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=6700"
+    },
+    {
+      "text": "أي",
+      "startMs": 6940,
+      "endMs": 7120,
+      "pageBreakAfter": false,
+      "finalRecognition": "أي"
+    },
+    {
+      "text": "نهاية",
+      "startMs": 7120,
+      "endMs": 7520,
+      "pageBreakAfter": true,
+      "finalRecognition": "نهاية"
+    },
+    {
+      "text": "بتختاروا له؟",
+      "startMs": 7520,
+      "endMs": 8160,
+      "pageBreakAfter": true,
+      "finalRecognition": "بتختاروله",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=8400"
+    },
+    {
+      "text": "الأولى",
+      "startMs": 8680,
+      "endMs": 9073,
+      "pageBreakAfter": false,
+      "finalRecognition": "الأولة",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=9420"
+    },
+    {
+      "text": "ولا الثانية؟",
+      "startMs": 9420,
+      "endMs": 10003,
+      "pageBreakAfter": true,
+      "finalRecognition": "واللتانية",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=10400"
+    },
+    {
+      "text": "الأجمل",
+      "startMs": 10620,
+      "endMs": 11060,
+      "pageBreakAfter": false,
+      "finalRecognition": "الأجمل"
+    },
+    {
+      "text": "بالحكايات",
+      "startMs": 11060,
+      "endMs": 12020,
+      "pageBreakAfter": false,
+      "finalRecognition": "بالحكاياة"
+    },
+    {
+      "text": "إن",
+      "startMs": 12020,
+      "endMs": 12240,
+      "pageBreakAfter": true,
+      "finalRecognition": "أن"
+    },
+    {
+      "text": "السؤال",
+      "startMs": 12240,
+      "endMs": 12640,
+      "pageBreakAfter": false,
+      "finalRecognition": "السؤال"
+    },
+    {
+      "text": "نفسه",
+      "startMs": 12640,
+      "endMs": 13180,
+      "pageBreakAfter": true,
+      "finalRecognition": "نفسه"
+    },
+    {
+      "text": "يفتح",
+      "startMs": 13180,
+      "endMs": 13560,
+      "pageBreakAfter": false,
+      "finalRecognition": "يفتح"
+    },
+    {
+      "text": "نقاش",
+      "startMs": 13560,
+      "endMs": 14040,
+      "pageBreakAfter": false,
+      "finalRecognition": "نقاش"
+    },
+    {
+      "text": "صغير",
+      "startMs": 14040,
+      "endMs": 14480,
+      "pageBreakAfter": true,
+      "finalRecognition": "صغير"
+    },
+    {
+      "text": "بينكم",
+      "startMs": 14480,
+      "endMs": 15040,
+      "pageBreakAfter": false,
+      "finalRecognition": "بينكم"
+    },
+    {
+      "text": "وبين",
+      "startMs": 15040,
+      "endMs": 15260,
+      "pageBreakAfter": false,
+      "finalRecognition": "وبين"
+    },
+    {
+      "text": "أطفالكم.",
+      "startMs": 15260,
+      "endMs": 15824,
+      "pageBreakAfter": true,
+      "finalRecognition": "أطفالكم",
+      "edgeReview": "End capped at final WAV measured phrase pause; raw Whisper endMs=16033"
+    }
+  ]
+}

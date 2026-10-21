@@ -1,0 +1,54 @@
+import { readFileSync, writeFileSync, copyFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+
+const alignmentPath = process.argv[2];
+if (!alignmentPath) throw new Error('Usage: npm run align:r19 -- /absolute/reviewed-final-wav-alignment.json');
+const root = new URL('../', import.meta.url);
+const asset = (name) => fileURLToPath(new URL(`public/r19/${name}`, root));
+const code = (name) => fileURLToPath(new URL(`src/r19/${name}`, root));
+const hash = createHash('sha256').update(readFileSync(asset('voice.wav'))).digest('hex');
+const previous = JSON.parse(readFileSync(code('voice-timing.json'), 'utf8'));
+if (previous.finalSha256 !== hash) throw new Error('The final WAV has changed. Prepare the new take before aligning it.');
+const probe = spawnSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', asset('voice.wav')], { encoding: 'utf8' });
+const duration = Number(probe.stdout);
+if (probe.status !== 0 || !Number.isFinite(duration) || duration <= 0 || duration >= 17) throw new Error('Final WAV must finish before 17 seconds.');
+const normalize = (word) => word.replace(/[\u064b-\u065f\u0670\u0640]/gu, '').replace(/[أإآ]/gu, 'ا').replace(/ى/gu, 'ي').replace(/[^\p{L}\p{N}]/gu, '');
+const script = readFileSync(asset('voiceover.txt'), 'utf8').trim().split(/\s+/u);
+const input = JSON.parse(readFileSync(alignmentPath, 'utf8'));
+if (input.reviewed !== true || input.finalSha256 !== hash) throw new Error('A reviewed alignment bound to this exact final WAV SHA-256 is required.');
+const measured = input.words ?? input.captions;
+if (!Array.isArray(measured) || measured.length === 0) throw new Error('Missing measured final-WAV intervals.');
+const words = measured.filter((word) => normalize(word.text ?? '').length).map((word) => ({ text: word.text, startMs: word.startMs ?? word.start * 1000, endMs: word.endMs ?? word.end * 1000, pageBreakAfter: word.pageBreakAfter }));
+const recognized = words.flatMap((word) => word.text.trim().split(/\s+/u));
+if (recognized.length !== script.length || recognized.some((word, index) => normalize(word) !== normalize(script[index]))) throw new Error('Every approved script word must be present in order. Review recognition spellings and fused word intervals against the final WAV first.');
+let previousEnd = 0, offset = 0, pageWords = 0;
+const captions = words.map((word, index) => {
+  if (!Number.isFinite(word.startMs) || !Number.isFinite(word.endMs) || word.startMs < 0 || word.startMs < previousEnd - 1 || word.endMs <= word.startMs || word.endMs > duration * 1000 + 30 || word.endMs >= 17000) throw new Error('Invalid, overlapping or late final-WAV intervals.');
+  previousEnd = word.endMs;
+  const count = word.text.trim().split(/\s+/u).length;
+  const text = script.slice(offset, offset + count).join(' ');
+  offset += count; pageWords += count;
+  const pageBreakAfter = word.pageBreakAfter ?? (pageWords >= 3 || /[،.؟]$/u.test(text) || index === words.length - 1);
+  if (pageBreakAfter) pageWords = 0;
+  return { text: `${index ? ' ' : ''}${text}`, startMs: Math.round(word.startMs), endMs: Math.round(word.endMs), timestampMs: Math.round((word.startMs + word.endMs) / 2), confidence: null, ...(pageBreakAfter ? { pageBreakAfter: true } : {}) };
+});
+const cuePlan = JSON.parse(readFileSync(code('audio-cues.json'), 'utf8'));
+const terms = { rain: 'مطر', window: 'الشباك', steps: 'خطوات', corridor: 'بممر', paper: 'ورق', sound: 'صوت', opening: 'بيفتح', imagination: 'يتخيله', listen: 'اسمعوا', together: 'معه', ask: 'واسألوه', question: 'إنت', see: 'شايف' };
+const voiceWordFrames = Object.fromEntries(Object.entries(terms).map(([key, text]) => {
+  const caption = captions.find((candidate) => candidate.text.trim().split(/\s+/u).some((word) => normalize(word) === normalize(text)));
+  if (!caption) throw new Error(`Missing measured cue word: ${text}`);
+  return [key, Math.round(caption.startMs / 1000 * 30)];
+}));
+voiceWordFrames.ticks = captions.flatMap((caption) => caption.text.trim().split(/\s+/u).filter((word) => normalize(word) === normalize('تك')).map(() => Math.round(caption.startMs / 1000 * 30)));
+if (voiceWordFrames.ticks.length !== 3) throw new Error('All three opening tick words must have measured intervals.');
+// Finish validation before writing any enabled state.
+if (resolve(alignmentPath) !== resolve(asset('voice-final-alignment.json'))) copyFileSync(alignmentPath, asset('voice-final-alignment.json'));
+writeFileSync(code('captions.json'), JSON.stringify(captions, null, 2) + '\n');
+writeFileSync(code('voice-timing.json'), JSON.stringify({ ...previous, aligned: true, status: 'Reviewed word alignment measured on the final normalized WAV; approved spelling retained.', alignmentSource: 'Measured and reviewed final WAV', approvedWordCount: script.length, alignedWordCount: script.length, captionCount: captions.length, captionPages: captions.filter((caption) => caption.pageBreakAfter).length, voiceDurationMs: Math.round(duration * 1000), finalWordEndMs: captions.at(-1).endMs, finalSha256: hash }, null, 2) + '\n');
+const openingWord = captions.find((word) => word.text.trim().split(/\s+/u).some((token) => normalize(token) === normalize('بيفتح')));
+const stepFrames = [0, 700, 1400].map((delay) => Math.round((openingWord.startMs + 320 + delay) / 1000 * 30));
+writeFileSync(code('audio-cues.json'), JSON.stringify({ ...cuePlan, alignment: 'Reviewed final WAV; ticks and paper hush follow measured words; steps follow the measured opening phrase after the paper unfolds.', voiceFinalSha256: hash, voiceWordFrames, tickFrames: voiceWordFrames.ticks, paperHushFrame: voiceWordFrames.paper, stepFrames }, null, 2) + '\n');
+console.log(`R19 final WAV aligned: ${script.length} approved words in ${captions.length} measured intervals; last word ends at ${captions.at(-1).endMs}ms. Voice may now be enabled in Studio.`);

@@ -1,0 +1,205 @@
+{
+  "source": "/Users/abood/Downloads/ElevenLabs_2026-10-12T21_53_12_Layla - Modern Arabic _pvc_sp100_s50_sb75_v4.mp3",
+  "sourceSha256": "1b81bcf815517302f125e7e5b2e1cb92a60062ea04f5a044ade1ca916f35dd85",
+  "review": "Source recording local Arabic Whisper small measured timestamps reconciled to all 29 approved script words. Recognition spelling corrected to the approved script; fused ASR tokens retain one measured span for بتختاروا له؟ and ولا الثانية؟, with no guessed internal boundaries. Seven phrase ends capped against measured source waveform pauses. This is source-relative alignment only; final normalized WAV still needs its own measurement/review.",
+  "alignedWordCount": 29,
+  "captionCount": 27,
+  "captions": [
+    {
+      "text": "وصل",
+      "startMs": 160,
+      "endMs": 580,
+      "pageBreakAfter": false,
+      "sourceRecognition": "وصل"
+    },
+    {
+      "text": "البطل",
+      "startMs": 580,
+      "endMs": 960,
+      "pageBreakAfter": false,
+      "sourceRecognition": "البطل"
+    },
+    {
+      "text": "للمفترق.",
+      "startMs": 960,
+      "endMs": 1672,
+      "pageBreakAfter": true,
+      "sourceRecognition": "للمفترق",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=2000"
+    },
+    {
+      "text": "قدّامه",
+      "startMs": 2260,
+      "endMs": 2600,
+      "pageBreakAfter": false,
+      "sourceRecognition": "الدام"
+    },
+    {
+      "text": "جسر",
+      "startMs": 2600,
+      "endMs": 3120,
+      "pageBreakAfter": false,
+      "sourceRecognition": "وجسر"
+    },
+    {
+      "text": "يودّيه",
+      "startMs": 3120,
+      "endMs": 3480,
+      "pageBreakAfter": false,
+      "sourceRecognition": "يودي"
+    },
+    {
+      "text": "لصديقه،",
+      "startMs": 3480,
+      "endMs": 4051,
+      "pageBreakAfter": true,
+      "sourceRecognition": "لصديقه",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=4300"
+    },
+    {
+      "text": "وطريق",
+      "startMs": 4500,
+      "endMs": 5100,
+      "pageBreakAfter": false,
+      "sourceRecognition": "وطريق"
+    },
+    {
+      "text": "يرجّعه",
+      "startMs": 5100,
+      "endMs": 5600,
+      "pageBreakAfter": false,
+      "sourceRecognition": "يرجع"
+    },
+    {
+      "text": "يجيب",
+      "startMs": 5600,
+      "endMs": 5960,
+      "pageBreakAfter": false,
+      "sourceRecognition": "ويجيب"
+    },
+    {
+      "text": "مساعدة.",
+      "startMs": 5960,
+      "endMs": 6369,
+      "pageBreakAfter": true,
+      "sourceRecognition": "مساعدة",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=6700"
+    },
+    {
+      "text": "أي",
+      "startMs": 6940,
+      "endMs": 7120,
+      "pageBreakAfter": false,
+      "sourceRecognition": "أي"
+    },
+    {
+      "text": "نهاية",
+      "startMs": 7120,
+      "endMs": 7520,
+      "pageBreakAfter": true,
+      "sourceRecognition": "نهاية"
+    },
+    {
+      "text": "بتختاروا له؟",
+      "startMs": 7520,
+      "endMs": 8163,
+      "pageBreakAfter": true,
+      "sourceRecognition": "بتختاروله",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=8400"
+    },
+    {
+      "text": "الأولى",
+      "startMs": 8680,
+      "endMs": 9055,
+      "pageBreakAfter": false,
+      "sourceRecognition": "الأولة",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=9420"
+    },
+    {
+      "text": "ولا الثانية؟",
+      "startMs": 9420,
+      "endMs": 10007,
+      "pageBreakAfter": true,
+      "sourceRecognition": "والالتانية",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=10400"
+    },
+    {
+      "text": "الأجمل",
+      "startMs": 10620,
+      "endMs": 11060,
+      "pageBreakAfter": false,
+      "sourceRecognition": "الأجمل"
+    },
+    {
+      "text": "بالحكايات",
+      "startMs": 11060,
+      "endMs": 12040,
+      "pageBreakAfter": false,
+      "sourceRecognition": "بالحكاياة"
+    },
+    {
+      "text": "إن",
+      "startMs": 12040,
+      "endMs": 12260,
+      "pageBreakAfter": true,
+      "sourceRecognition": "أن"
+    },
+    {
+      "text": "السؤال",
+      "startMs": 12260,
+      "endMs": 12640,
+      "pageBreakAfter": false,
+      "sourceRecognition": "السؤال"
+    },
+    {
+      "text": "نفسه",
+      "startMs": 12640,
+      "endMs": 13180,
+      "pageBreakAfter": true,
+      "sourceRecognition": "نفسه"
+    },
+    {
+      "text": "يفتح",
+      "startMs": 13180,
+      "endMs": 13560,
+      "pageBreakAfter": false,
+      "sourceRecognition": "يفتح"
+    },
+    {
+      "text": "نقاش",
+      "startMs": 13560,
+      "endMs": 14040,
+      "pageBreakAfter": false,
+      "sourceRecognition": "نقاش"
+    },
+    {
+      "text": "صغير",
+      "startMs": 14040,
+      "endMs": 14500,
+      "pageBreakAfter": true,
+      "sourceRecognition": "صغير"
+    },
+    {
+      "text": "بينكم",
+      "startMs": 14500,
+      "endMs": 15060,
+      "pageBreakAfter": false,
+      "sourceRecognition": "بينكم"
+    },
+    {
+      "text": "وبين",
+      "startMs": 15060,
+      "endMs": 15280,
+      "pageBreakAfter": false,
+      "sourceRecognition": "وبين"
+    },
+    {
+      "text": "أطفالكم.",
+      "startMs": 15280,
+      "endMs": 15831,
+      "pageBreakAfter": true,
+      "sourceRecognition": "أطفالكم",
+      "edgeReview": "End capped at measured source waveform phrase pause; original Whisper endMs=16039"
+    }
+  ]
+}
